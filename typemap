@@ -1,0 +1,130 @@
+TYPEMAP
+
+Camera *	O_CAMERA
+ColourValue *	O_COLOURVALUE
+ConfigFile *	O_CONFIGFILE
+Degree *	O_DEGREE
+Entity *	O_ENTITY
+Light *	O_LIGHT
+MovableObject *	O_MOVABLEOBJECT
+Node *	O_NODE
+ResourceGroupManager *	O_RESOURCEGROUPMANAGER
+Radian *	O_RADIAN
+RenderWindow *	O_RENDERWINDOW
+Root *	O_ROOT
+SceneManager *	O_SCENEMANAGER
+SceneNode *	O_SCENENODE
+TextureManager *	O_TEXTUREMANAGER
+Viewport *	O_VIEWPORT
+
+String	STRING
+uint16	T_UV
+
+
+INPUT
+
+STRING
+	char * xstmpchr_$var = (char *) SvPV_nolen($arg);
+	$var = xstmpchr_$var;
+
+O_CAMERA
+	TMOGRE_IN($arg, $var, $type, $Package, $func_name, Camera)
+
+O_COLOURVALUE
+	TMOGRE_IN($arg, $var, $type, $Package, $func_name, ColourValue)
+
+O_CONFIGFILE
+	TMOGRE_IN($arg, $var, $type, $Package, $func_name, ConfigFile)
+
+O_DEGREE
+	TMOGRE_IN($arg, $var, $type, $Package, $func_name, Degree)
+
+O_ENTITY
+	TMOGRE_IN($arg, $var, $type, $Package, $func_name, Entity)
+
+O_LIGHT
+	TMOGRE_IN($arg, $var, $type, $Package, $func_name, Light)
+
+O_MOVABLEOBJECT
+	TMOGRE_IN($arg, $var, $type, $Package, $func_name, MovableObject)
+
+O_NODE
+	TMOGRE_IN($arg, $var, $type, $Package, $func_name, Node)
+
+O_RADIAN
+	TMOGRE_IN($arg, $var, $type, $Package, $func_name, Radian)
+
+O_RESOURCEGROUPMANAGER
+	TMOGRE_IN($arg, $var, $type, $Package, $func_name, ResourceGroupManager)
+
+O_RENDERWINDOW
+	TMOGRE_IN($arg, $var, $type, $Package, $func_name, RenderWindow)
+
+O_ROOT
+	TMOGRE_IN($arg, $var, $type, $Package, $func_name, Root)
+
+O_SCENEMANAGER
+	TMOGRE_IN($arg, $var, $type, $Package, $func_name, SceneManager)
+
+O_SCENENODE
+	TMOGRE_IN($arg, $var, $type, $Package, $func_name, SceneNode)
+
+O_TEXTUREMANAGER
+	TMOGRE_IN($arg, $var, $type, $Package, $func_name, TextureManager)
+
+O_VIEWPORT
+	TMOGRE_IN($arg, $var, $type, $Package, $func_name, Viewport)
+
+
+OUTPUT
+
+STRING
+	sv_setpvn((SV*)$arg, (char *) ($var.data()), ($var.size()));
+
+O_CAMERA
+	TMOGRE_OUT($arg, $var, Camera)
+
+O_COLOURVALUE
+	TMOGRE_OUT($arg, $var, ColourValue)
+
+O_CONFIGFILE
+	TMOGRE_OUT($arg, $var, ConfigFile)
+
+O_DEGREE
+	TMOGRE_OUT($arg, $var, Degree)
+
+O_ENTITY
+	TMOGRE_OUT($arg, $var, Entity)
+
+O_LIGHT
+	TMOGRE_OUT($arg, $var, Light)
+
+O_MOVABLEOBJECT
+	TMOGRE_OUT($arg, $var, MovableObject)
+
+O_NODE
+	TMOGRE_OUT($arg, $var, Node)
+
+O_RADIAN
+	TMOGRE_OUT($arg, $var, Radian)
+
+O_RESOURCEGROUPMANAGER
+	TMOGRE_OUT($arg, $var, ResourceGroupManager)
+
+O_RENDERWINDOW
+	TMOGRE_OUT($arg, $var, RenderWindow)
+
+O_ROOT
+	TMOGRE_OUT($arg, $var, Root)
+
+O_SCENEMANAGER
+	TMOGRE_OUT($arg, $var, SceneManager)
+
+O_SCENENODE
+	TMOGRE_OUT($arg, $var, SceneNode)
+
+O_TEXTUREMANAGER
+	TMOGRE_OUT($arg, $var, TextureManager)
+
+O_VIEWPORT
+	TMOGRE_OUT($arg, $var, Viewport)
