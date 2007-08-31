@@ -22,6 +22,8 @@ sub fixed_args {
         'AUTHOR'        => 'Scott Lanning <slanning@cpan.org>',
         'CC'            => $ENV{'CXX'} || 'g++',
         'LD'            => '$(CC)',
+        'OBJECT'        => '$(O_FILES)',
+        'MAN3PODS'      => {},
         'XSOPT'         => '-C++',
         'TYPEMAPS'      => ['perlobject.map'],
     };

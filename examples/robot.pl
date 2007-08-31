@@ -2,6 +2,8 @@
 # Minimal example showing that the binding "works".
 # It just shows the robot from the basic OGRE tutorials,
 # a little rotated and scaled.
+# (Note: as there is no input handling, you'll have to Ctrl-C
+# the application after closing the window.)
 
 use strict;
 use warnings;

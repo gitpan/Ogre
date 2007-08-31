@@ -7,10 +7,26 @@ resources.cfg is just taken from the Samples directory in OGRE,
 but I put it here also. For resources.cfg, you also need to copy
 all the Samples/Media/ directory from OGRE 1.4.3 into ogrenew-1.4.3/
 in this directory (look in resources.cfg, you can change the names
-if you want).
+if you want):
 
-So far, there's only one example:
+  mkdir -p ogrenew-1.4.3/Samples/Media
+  cp -r /tmp/ogrenew-1.4.3/Samples/Media/* ogrenew-1.4.3/Samples/Media/
+
+(That's like 26MB, so I can't distribute it on CPAN. :)
+
+Here are brief descriptions of the examples.
+
 - robot.pl: very minimal, just shows a robot that's been rotated
   and scaled a bit (taken from one of the basic OGRE tutorials;
   if you're not familiar with the tutorials, probably should do
   them before trying this)
+
+- ninja.pl: another minimal demo, this time using OIS to handle input
+  (just exiting the application when ESC is pressed), and the robot
+  is replaced by a cool-looking ninja under different lighting
+
+- listeningninja.pl: same cool ninja scene, but showing how to implement
+  a FrameListener to handle user input (e.g. keyboard)
+
+- tute5.pl: demo of buffered input handling, this implements OGRE's
+  "Basic Tutorial 5"

@@ -9,3 +9,67 @@ RenderWindow::addViewport(cam, ZOrder, left, top, width, height)
     float top
     float width
     float height
+
+
+
+## XXX: not sure if this will work right in all cases,
+## the C++ API returns a void* in the 2nd input parameter,
+## while here we just return a string. I have no idea what
+## all "custom attributes" there are, so I just implemented
+## a few types to cover some of the bases (let me know if there
+## are particular ones that are missing).
+## void getCustomAttribute(const String &name, void *pData)
+size_t
+RenderWindow::getCustomAttributePtr(name)
+    String  name
+  PREINIT:
+    size_t pData;
+  CODE:
+    THIS->getCustomAttribute(name, &pData);
+    RETVAL = pData;
+  OUTPUT:
+    RETVAL
+
+int
+RenderWindow::getCustomAttributeInt(name)
+    String  name
+  PREINIT:
+    int pData;
+  CODE:
+    THIS->getCustomAttribute(name, &pData);
+    RETVAL = pData;
+  OUTPUT:
+    RETVAL
+
+float
+RenderWindow::getCustomAttributeFloat(name)
+    String  name
+  PREINIT:
+    float pData;
+  CODE:
+    THIS->getCustomAttribute(name, &pData);
+    RETVAL = pData;
+  OUTPUT:
+    RETVAL
+
+String
+RenderWindow::getCustomAttributeStr(name)
+    String  name
+  PREINIT:
+    String pData;
+  CODE:
+    THIS->getCustomAttribute(name, &pData);
+    RETVAL = pData;
+  OUTPUT:
+    RETVAL
+
+bool
+RenderWindow::getCustomAttributeBool(name)
+    String  name
+  PREINIT:
+    bool pData;
+  CODE:
+    THIS->getCustomAttribute(name, &pData);
+    RETVAL = pData;
+  OUTPUT:
+    RETVAL

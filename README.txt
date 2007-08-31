@@ -1,5 +1,5 @@
-Ogre version 0.01
-=================
+Perl-Ogre version 0.20
+======================
 
 This is a Perl binding for OGRE, Object-Oriented Graphics Rendering Engine,
 a C++ library found at http://www.ogre3d.org/ .
@@ -23,6 +23,9 @@ files needed to build against OGRE, so you should be able to do this:
 
   pkg-config --libs OGRE
   pkg-config --cflags OGRE
+  pkg-config --modversion OGRE
+
+This latter should say at least 1.4.3.
 
 The C++ compiler used by default is `g++`, but you can specify a different
 C++ compiler by setting the CXX environmental variable. Anything more,

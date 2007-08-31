@@ -1,2 +1,13 @@
-0.01  2007-08-26
+0.20 2007-08-30
+- added ninja.pl example, along with necessary wrappers
+  to get it to work (you also need to install OIS,
+  which I just uploaded to CPAN)
+- also added listeningninja.pl example, along with
+  FrameListener functionality
+- wrapped several other classes, but not fully yet;
+  will have another example next release
+
+0.1  2007-08-26
+(Note: I accidentally put version 0.1 instead of 0.01)
 - first release, minimal wrapping
+- includes robot.pl example

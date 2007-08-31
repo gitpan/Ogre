@@ -1,13 +1,19 @@
 MANIFEST			This list of files
 README.txt
+TODO.txt
 Changes
 Makefile.PL
 
 typemap
 perlobject.map
-
 Ogre.pm
 Ogre.xs
+
+perlOGRE.h
+PerlOGREFrameListener.h
+PerlOGREFrameListener.cpp
+PerlOGREListenerManager.h
+PerlOGREListenerManager.cpp
 
 xs/Camera.xs
 xs/ColourValue.xs
@@ -15,16 +21,26 @@ xs/ConfigFile.xs
 xs/Degree.xs
 xs/Entity.xs
 xs/Light.xs
+xs/LogManager.xs
+xs/MeshManager.xs
+xs/MeshPtr.xs
 xs/MovableObject.xs
 xs/Node.xs
+xs/Overlay.xs
+xs/OverlayElement.xs
+xs/OverlayManager.xs
+xs/Plane.xs
 xs/Radian.xs
+xs/RenderTarget.xs
 xs/RenderWindow.xs
 xs/ResourceGroupManager.xs
 xs/Root.xs
 xs/SceneManager.xs
 xs/SceneNode.xs
 xs/TextureManager.xs
+xs/Vector3.xs
 xs/Viewport.xs
+xs/WindowEventUtilities.xs
 
 Ogre/Camera.pm
 Ogre/ColourValue.pm
@@ -32,18 +48,30 @@ Ogre/ConfigFile.pm
 Ogre/Degree.pm
 Ogre/Entity.pm
 Ogre/Light.pm
+Ogre/LogManager.pm
+Ogre/MeshManager.pm
+Ogre/MeshPtr.pm
 Ogre/MovableObject.pm
 Ogre/Node.pm
+Ogre/Overlay.pm
+Ogre/OverlayElement.pm
+Ogre/OverlayManager.pm
+Ogre/Plane.pm
 Ogre/Radian.pm
+Ogre/RenderTarget.pm
 Ogre/RenderWindow.pm
 Ogre/ResourceGroupManager.pm
 Ogre/Root.pm
 Ogre/SceneManager.pm
 Ogre/SceneNode.pm
 Ogre/TextureManager.pm
+Ogre/Vector3.pm
 Ogre/Viewport.pm
+Ogre/WindowEventUtilities.pm
 
 examples/README.txt
+examples/listeningninja.pl
+examples/ninja.pl
 examples/robot.pl
 examples/resources.cfg
 

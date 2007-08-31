@@ -2,30 +2,45 @@ MODULE = Ogre     PACKAGE = Ogre::Light
 
 void
 Light::setType(type)
-    int type
+    int  type
   C_ARGS:
     (Ogre::Light::LightTypes)type
 
 ## this has 2 versions in the C++ API
 void
 Light::setPosition(x, y, z)
-    float x
-    float y
-    float z
+    float  x
+    float  y
+    float  z
 
 ## this has 2 versions in the C++ API
 void
 Light::setDiffuseColour(red, green, blue)
-    float red
-    float green
-    float blue
+    float  red
+    float  green
+    float  blue
 
 ## this has 2 versions in the C++ API
 void
 Light::setSpecularColour(red, green, blue)
-    float red
-    float green
-    float blue
+    float  red
+    float  green
+    float  blue
+
+## this has 2 versions in the C++ API
+void
+Light::setDirection(x, y, z)
+    float  x
+    float  y
+    float  z
+
+void
+Light::setSpotlightRange(innerAngle, outerAngle, falloff=1.0)
+    Degree * innerAngle
+    Degree * outerAngle
+    float  falloff
+  C_ARGS:
+    *innerAngle, *outerAngle, falloff
 
 
 ## LightTypes enum

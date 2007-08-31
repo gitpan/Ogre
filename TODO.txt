@@ -1,0 +1,37 @@
+Lots of stuff left to do....
+
+- Many methods are currently implemented awkwardly,
+  some requiring more arguments than the C++ API even requires.
+  XSUB arguments can have default values, but I had trouble getting
+  some types of args to work (like strings weren't working,
+  but maybe that's fixable -- the problem was that you only have
+  assignment with an equals sign (=) available, while some data types
+  might not be assignable like that).
+  Another problem is polymorphic methods, where the same method
+  can have different call signatures (e.g. pass in either a Vector3
+  or three Reals). For now I've simply been chosing one,
+  but it'd be better if all the different ways would work.
+  I guess it could be done in Perl, just it would be annoying.
+  (Say you have three different XSUBs, then in the Perl module
+   a single method calls one of those depending on the arguments
+   passed in. But having three different XSUBs, now you have to
+   also implement the CODE and OUTPUT section for each one...
+   Doing this hundreds of times gets tedious.)
+- Constants are not implemented well at all. How to do them right?
+- Tests....
+- More examples (that's the fun part :)
+- The framelistener C++ stuff seems to work fine,
+  but it could be made more general/flexible.
+  We could pass in the method names (frameStarted, frameEnded)
+  to the constructor, then the only tricky part might be
+  the call signatures for the callbacks. Ogre::FrameEvent could be
+  templated, but what about listener classes that have more than
+  one argument to the callback? (For example, see RenderQueueListener,
+  which has three args.)
+- Zillions of classes and methods to wrap. For now, I've just been
+  wrapping what's necessary to make the examples. According to
+  the API docs, there are 541 classes; I'm not sure how many of
+  those are useful to wrap, though. Things like Ogre::Singleton<T>
+  or Ogre::SharedPtr<T> probably don't make sense to wrap.
+  Right now, I'm wrapping classes necessary for OGRE's "Basic Tutorial 5",
+  including ExampleApplication and ExampleFrameListener classes.
