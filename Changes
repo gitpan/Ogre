@@ -1,3 +1,7 @@
+0.21 2007-09-01
+- added WindowEventListener functionality, though not "tested" yet
+  (working on another example)
+
 0.20 2007-08-30
 - added ninja.pl example, along with necessary wrappers
   to get it to work (you also need to install OIS,

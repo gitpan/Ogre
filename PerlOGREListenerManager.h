@@ -13,22 +13,33 @@
 #include <map>
 #include "perlOGRE.h"
 #include "PerlOGREFrameListener.h"
+#include "PerlOGREWindowEventListener.h"
 
 using namespace std;
 
 class PerlOGREListenerManager
 {
  private:
+    // Perl pkgname mapped to single C++ FrameListener
     typedef map<string, Ogre::FrameListener*> FrameListenerMap;
-    FrameListenerMap mListenerMap;
+    FrameListenerMap mFrameListenerMap;
+
+    // Perl pkgname mapped to single C++ WindowEventListener
+    typedef map<string, Ogre::WindowEventListener*> WinEvtListenerMap;
+    WinEvtListenerMap mWinEvtListenerMap;
+    // Perl pkgname mapped to multiple C++ RenderWindows
+    typedef multimap<string, Ogre::RenderWindow*> WinEvtListenerWindowMMap;
+    WinEvtListenerWindowMMap mWinEvtListenerWindowMMap;
 
  public:
     PerlOGREListenerManager();
     ~PerlOGREListenerManager();
 
-    Ogre::FrameListener * addFrameListener(SV *pobj);
-    Ogre::FrameListener * getFrameListener(SV *pobj);
-    void removeFrameListener(SV *pobj);
+    void addFrameListener(SV *pobj, Ogre::Root *root);
+    void removeFrameListener(SV *pobj, Ogre::Root *root);
+
+    void addWindowEventListener(SV *pobj, Ogre::RenderWindow *win);
+    void removeWindowEventListener(SV *pobj, Ogre::RenderWindow *win);
 };
 
 

@@ -8,7 +8,7 @@ require Exporter;
 require DynaLoader;
 our @ISA = qw(Exporter DynaLoader);
 
-our $VERSION = '0.20';
+our $VERSION = '0.21';
 
 # use all files under Ogre/ - probably not a good idea
 use Ogre::Camera;
@@ -18,19 +18,26 @@ use Ogre::Degree;
 use Ogre::Entity;
 use Ogre::Light;
 use Ogre::LogManager;
+use Ogre::MaterialManager;
 use Ogre::MeshManager;
 use Ogre::MeshPtr;
 use Ogre::MovableObject;
 use Ogre::Node;
+use Ogre::Overlay;
+use Ogre::OverlayContainer;
+use Ogre::OverlayElement;
 use Ogre::OverlayManager;
 use Ogre::Plane;
+use Ogre::Quaternion;
 use Ogre::Radian;
+use Ogre::Renderable;
 use Ogre::RenderTarget;
 use Ogre::RenderWindow;
 use Ogre::ResourceGroupManager;
 use Ogre::Root;
 use Ogre::SceneManager;
 use Ogre::SceneNode;
+use Ogre::StringInterface;
 use Ogre::TextureManager;
 use Ogre::Vector3;
 use Ogre::Viewport;

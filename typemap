@@ -5,23 +5,30 @@ ColourValue *	O_COLOURVALUE
 ConfigFile *	O_CONFIGFILE
 Degree *	O_DEGREE
 Entity *	O_ENTITY
+FrameEvent *	O_FRAMEEVENT
 Light *	O_LIGHT
 LogManager *	O_LOGMANAGER
+MaterialManager *	O_MATERIALMANAGER
 MeshManager *	O_MESHMANAGER
 MeshPtr *	O_MESHPTR
 MovableObject *	O_MOVABLEOBJECT
 Node *	O_NODE
 Overlay *	O_OVERLAY
+OverlayContainer *	O_OVERLAYCONTAINER
+const OverlayElement *	O_OVERLAYELEMENT
 OverlayElement *	O_OVERLAYELEMENT
 OverlayManager *	O_OVERLAYMANAGER
 Plane *	O_PLANE
-ResourceGroupManager *	O_RESOURCEGROUPMANAGER
+Quaternion *	O_QUATERNION
 Radian *	O_RADIAN
+Renderable *	O_RENDERABLE
 RenderTarget *	O_RENDERTARGET
 RenderWindow *	O_RENDERWINDOW
+ResourceGroupManager *	O_RESOURCEGROUPMANAGER
 Root *	O_ROOT
 SceneManager *	O_SCENEMANAGER
 SceneNode *	O_SCENENODE
+StringInterface *	O_STRINGINTERFACE
 TextureManager *	O_TEXTUREMANAGER
 Vector3 *	O_VECTOR3
 const Vector3 *	O_VECTOR3
@@ -30,6 +37,7 @@ WindowEventListener *	O_WINDOWEVENTLISTENER
 
 String	STRING
 uint16	T_UV
+uchar	T_U_CHAR
 
 
 INPUT
@@ -53,11 +61,17 @@ O_DEGREE
 O_ENTITY
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, Entity)
 
+O_FRAMEEVENT
+	TMOGRE_IN($arg, $var, $type, $Package, $func_name, FrameEvent)
+
 O_LIGHT
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, Light)
 
 O_LOGMANAGER
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, LogManager)
+
+O_MATERIALMANAGER
+	TMOGRE_IN($arg, $var, $type, $Package, $func_name, MaterialManager)
 
 O_MESHMANAGER
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, MeshManager)
@@ -74,6 +88,9 @@ O_NODE
 O_OVERLAY
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, Overlay)
 
+O_OVERLAYCONTAINER
+	TMOGRE_IN($arg, $var, $type, $Package, $func_name, OverlayContainer)
+
 O_OVERLAYELEMENT
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, OverlayElement)
 
@@ -83,11 +100,17 @@ O_OVERLAYMANAGER
 O_PLANE
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, Plane)
 
+O_QUATERNION
+	TMOGRE_IN($arg, $var, $type, $Package, $func_name, Quaternion)
+
 O_RADIAN
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, Radian)
 
 O_RESOURCEGROUPMANAGER
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, ResourceGroupManager)
+
+O_RENDERABLE
+	TMOGRE_IN($arg, $var, $type, $Package, $func_name, Renderable)
 
 O_RENDERTARGET
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, RenderTarget)
@@ -103,6 +126,9 @@ O_SCENEMANAGER
 
 O_SCENENODE
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, SceneNode)
+
+O_STRINGINTERFACE
+	TMOGRE_IN($arg, $var, $type, $Package, $func_name, StringInterface)
 
 O_TEXTUREMANAGER
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, TextureManager)
@@ -137,11 +163,17 @@ O_DEGREE
 O_ENTITY
 	TMOGRE_OUT($arg, $var, Entity)
 
+O_FRAMEEVENT
+	TMOGRE_OUT($arg, $var, FrameEvent)
+
 O_LIGHT
 	TMOGRE_OUT($arg, $var, Light)
 
 O_LOGMANAGER
 	TMOGRE_OUT($arg, $var, LogManager)
+
+O_MATERIALMANAGER
+	TMOGRE_OUT($arg, $var, MaterialManager)
 
 O_MESHMANAGER
 	TMOGRE_OUT($arg, $var, MeshManager)
@@ -158,6 +190,9 @@ O_NODE
 O_OVERLAY
 	TMOGRE_OUT($arg, $var, Overlay)
 
+O_OVERLAYCONTAINER
+	TMOGRE_OUT($arg, $var, OverlayContainer)
+
 O_OVERLAYELEMENT
 	TMOGRE_OUT($arg, $var, OverlayElement)
 
@@ -167,11 +202,17 @@ O_OVERLAYMANAGER
 O_PLANE
 	TMOGRE_OUT($arg, $var, Plane)
 
+O_QUATERNION
+	TMOGRE_OUT($arg, $var, Quaternion)
+
 O_RADIAN
 	TMOGRE_OUT($arg, $var, Radian)
 
 O_RESOURCEGROUPMANAGER
 	TMOGRE_OUT($arg, $var, ResourceGroupManager)
+
+O_RENDERABLE
+	TMOGRE_OUT($arg, $var, Renderable)
 
 O_RENDERTARGET
 	TMOGRE_OUT($arg, $var, RenderTarget)
@@ -187,6 +228,9 @@ O_SCENEMANAGER
 
 O_SCENENODE
 	TMOGRE_OUT($arg, $var, SceneNode)
+
+O_STRINGINTERFACE
+	TMOGRE_OUT($arg, $var, StringInterface)
 
 O_TEXTUREMANAGER
 	TMOGRE_OUT($arg, $var, TextureManager)

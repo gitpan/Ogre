@@ -3,15 +3,16 @@ MODULE = Ogre     PACKAGE = Ogre::WindowEventUtilities
 static void
 WindowEventUtilities::messagePump()
 
-
-## XXX: this not yet implemented
 static void
-WindowEventUtilities::addWindowEventListener(window, listener)
-    RenderWindow * window
-    WindowEventListener * listener
+WindowEventUtilities::addWindowEventListener(win, perlListener)
+    RenderWindow * win
+    SV * perlListener
+  CODE:
+    pogreListenerManager.addWindowEventListener(perlListener, win);
 
-## XXX: this not yet implemented
 static void
-WindowEventUtilities::removeWindowEventListener(window, listener)
-    RenderWindow * window
-    WindowEventListener * listener
+WindowEventUtilities::removeWindowEventListener(win, perlListener)
+    RenderWindow * win
+    SV * perlListener
+  CODE:
+    pogreListenerManager.removeWindowEventListener(perlListener, win);

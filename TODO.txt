@@ -20,14 +20,6 @@ Lots of stuff left to do....
 - Constants are not implemented well at all. How to do them right?
 - Tests....
 - More examples (that's the fun part :)
-- The framelistener C++ stuff seems to work fine,
-  but it could be made more general/flexible.
-  We could pass in the method names (frameStarted, frameEnded)
-  to the constructor, then the only tricky part might be
-  the call signatures for the callbacks. Ogre::FrameEvent could be
-  templated, but what about listener classes that have more than
-  one argument to the callback? (For example, see RenderQueueListener,
-  which has three args.)
 - Zillions of classes and methods to wrap. For now, I've just been
   wrapping what's necessary to make the examples. According to
   the API docs, there are 541 classes; I'm not sure how many of

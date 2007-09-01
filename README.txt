@@ -1,17 +1,17 @@
-Perl-Ogre version 0.20
+Perl-Ogre version 0.21
 ======================
 
 This is a Perl binding for OGRE, Object-Oriented Graphics Rendering Engine,
 a C++ library found at http://www.ogre3d.org/ .
 
 The wrapping is currently *very* minimal, just enough to be able to run
-the example in the 'examples' directory (see examples/README.txt).
+the examples in the 'examples' directory (see examples/README.txt).
 There is also no documentation yet, which is no doubt frustrating.
 
 
 DEPENDENCIES
 
-Only version 1.4.3 (the current latest release until last week) of OGRE
+Only version 1.4.3 (the current latest release as of late August) of OGRE
 is currently supported (it's the version I have installed), so you need
 to install that either by building from source or by installing
 a package. If you use Ubuntu, I have some notes below that might help.
@@ -25,7 +25,7 @@ files needed to build against OGRE, so you should be able to do this:
   pkg-config --cflags OGRE
   pkg-config --modversion OGRE
 
-This latter should say at least 1.4.3.
+The last one should say at least 1.4.3.
 
 The C++ compiler used by default is `g++`, but you can specify a different
 C++ compiler by setting the CXX environmental variable. Anything more,
@@ -33,12 +33,12 @@ and you'll have to hack at Makefile.PL.
 
 It would be a good idea to make sure you also have installed CEGUI, OIS,
 libdevil, and nVidia Cg, if those aren't already installed. This Perl module
-currently only provides support for OGRE, however; I have plans of also
-wrapping OIS and CEGUI some day, the goal being to run OGRE's samples
-and tutorials from Perl. (The tutorials and documentation for OGRE
-are excellent. I highly recommend going through them before trying
-this Perl wrapper.) The reason I recommend installing those libraries,
-is mainly just so you can run the (C++) tutorials.
+currently only provides support for OGRE and OIS, however; I might wrap
+CEGUI some day, the goal being to run OGRE's samples and tutorials from
+Perl. (The tutorials and documentation for OGRE are excellent.
+I highly recommend going through them before trying this Perl wrapper.)
+The reason I recommend installing those libraries, is mainly just so
+you can run the (C++) tutorials.
 
 
 INSTALLATION
@@ -57,9 +57,9 @@ If so, please let me know.
 INSTALLING OGRE UNDER UBUNTU
 
 As of the time of writing this (Aug 20, 2007), the current release
-of Ubuntu, Feisty Fawn, uses version 1.2.5 of OGRE, whereas these Perl
-binding require version 1.4.3. There are a couple ways to go about
-installing 1.4.3.
+of Ubuntu, Feisty Fawn, has a package for version 1.2.5 of OGRE,
+whereas this Perl module require version 1.4.3. There are a couple of ways
+to go about installing 1.4.3.
 
 First of all, be sure to uninstall any previous version of Ogre that
 you have installed. Otherwise, you might run into this problem:
@@ -69,9 +69,9 @@ After that's out of the way, you can do one of the following:
 
 1) upgrade early to the next version of Ubuntu, Gutsy Gibbon,
 which is not yet released officially. This version has a package for
-version 1.4.3, and this is how I did it on my particular system
+version 1.4.3, and this is how I did it on my particular system.
 (DISCLAIMER: I take no responsibility for your system if it breaks.
-In fact, I wouldn't recommend this approach, as I've found some
+In fact, I wouldn't recommend this approach, as I've had some
 instabilities in my system.) :
 
   -- upgrading from feisty to gutsy
@@ -92,8 +92,11 @@ instabilities in my system.) :
   # apt-get install libois1 libois-dev
   # apt-get install libdevil-dev libdevil1c2
 
+Note: these package names are as of when I installed them.
+The names might change.
+
 2) backport the package from Gutsy Gibbon to Feisty Fawn.
-Good luck with that.
+Good luck with that. (Let me know how it's done.)
 
 3) create your own package by building from source. Check out:
 http://www.ogre3d.org/wiki/index.php/FromSourceUbuntu
@@ -102,7 +105,7 @@ Again, good luck with that.
 
 COPYRIGHT AND LICENCE
 
-Please report any bugs/suggestions to <slanning@cpan.org>
+Please report any bugs/suggestions to <slanning@cpan.org>.
 
 Copyright 2007, Scott Lanning. All rights reserved.
 

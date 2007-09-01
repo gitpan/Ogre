@@ -9,6 +9,8 @@ Vector3::new(fX, fY, fZ)
 void
 Vector3::DESTROY()
 
+
+
 ## XXX: I tried hard to make this work,
 ## but how do you make Perl not try to delete these pointers?
 ## special vectors

@@ -14,19 +14,13 @@ void
 Root::addFrameListener(perlListener)
     SV * perlListener
   CODE:
-    Ogre::FrameListener *fl = pogreListenerManager.addFrameListener(perlListener);
-    THIS->addFrameListener(fl);
+    pogreListenerManager.addFrameListener(perlListener, THIS);
 
 void
 Root::removeFrameListener(perlListener)
     SV * perlListener
-  PREINIT:
-    Ogre::FrameListener *fl;
   CODE:
-    fl = pogreListenerManager.getFrameListener(perlListener);
-    THIS->removeFrameListener(fl);
-    pogreListenerManager.removeFrameListener(perlListener);
-
+    pogreListenerManager.removeFrameListener(perlListener, THIS);
 
 bool
 Root::restoreConfig()

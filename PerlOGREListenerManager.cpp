@@ -10,64 +10,136 @@ PerlOGREListenerManager::PerlOGREListenerManager()
 
 PerlOGREListenerManager::~PerlOGREListenerManager()
 {
-    // delete objects allocated in addFrameListener
-    for (FrameListenerMap::iterator it = mListenerMap.begin(); it != mListenerMap.end(); ++it) {
+    // clean up addFrameListener
+    for (FrameListenerMap::iterator it = mFrameListenerMap.begin(); it != mFrameListenerMap.end(); ++it) {
         delete it->second;
     }
-    mListenerMap.clear();
+    mFrameListenerMap.clear();
+
+    // clean up addWindowEventListener
+    mWinEvtListenerWindowMMap.clear();
+    for (WinEvtListenerMap::iterator it = mWinEvtListenerMap.begin(); it != mWinEvtListenerMap.end(); ++it) {
+        delete it->second;
+    }
+    mWinEvtListenerMap.clear();
 }
 
-Ogre::FrameListener * PerlOGREListenerManager::addFrameListener(SV *pobj)
+void PerlOGREListenerManager::addFrameListener(SV *pobj, Ogre::Root *root)
 {
     if (sv_isobject(pobj)) {
         PerlOGREFrameListener *fl = new PerlOGREFrameListener(pobj);
 
-        // xxx: I'm not sure if it's necessary/right to do this,
-        // but I don't know if pobj is always the same SV * or what,
-        // so I index the FrameListeners by their package name.
         HV *stash = SvSTASH(SvRV(pobj));
-        string pkgname(HvNAME(stash));   // xxx: does string need copied?
+        string pkgname(HvNAME(stash));
 
-        // won't insert if pkgname already has a listener,
-        // is that okay or should it get replaced?
-        if (mListenerMap.find(pkgname) != mListenerMap.end()) {
-            mListenerMap.insert(FrameListenerMap::value_type(pkgname, static_cast<Ogre::FrameListener *>(fl)));
+        // add to the manager
+        // (note: won't insert if pkgname already has a listener,
+        //  that's how maps work)
+        pair<FrameListenerMap::iterator, bool> insertPair;
+        insertPair = mFrameListenerMap.insert(FrameListenerMap::value_type(pkgname, static_cast<Ogre::FrameListener *>(fl)));
+
+        if (insertPair.second) {
+            // add to Root if inserting worked (i.e. didn't already exist)
+            root->addFrameListener(fl);
+        } else {
+            warn("FrameListener %s not added (probably already added)\n", pkgname.c_str());
         }
-
-        return static_cast<Ogre::FrameListener *>(fl);
     } else {
         croak("Argument to addFrameListener has to be an object\n");
     }
 }
 
-Ogre::FrameListener * PerlOGREListenerManager::getFrameListener(SV *pobj)
+void PerlOGREListenerManager::removeFrameListener(SV *pobj, Ogre::Root *root)
 {
     // get package name from object
     HV *stash = SvSTASH(SvRV(pobj));
-    string pkgname(HvNAME(stash));   // xxx: does string need copied?
+    string pkgname(HvNAME(stash));
 
-    FrameListenerMap::iterator it = mListenerMap.find(pkgname);
-    if (it != mListenerMap.end()) {
-        return it->second;
+    FrameListenerMap::iterator it = mFrameListenerMap.find(pkgname);
+    if (it != mFrameListenerMap.end()) {
+        // remove from Root
+        root->removeFrameListener(it->second);
+
+        // remove from the manager
+        delete it->second;
+        mFrameListenerMap.erase(it);
     } else {
-        warn("getFrameListener: %s didn't have a FrameListener",
+        warn("removeFrameListener: %s didn't have a FrameListener, so not removed",
              pkgname.c_str());
-        return (Ogre::FrameListener *)NULL;
     }
 }
 
-void PerlOGREListenerManager::removeFrameListener(SV *pobj)
+void PerlOGREListenerManager::addWindowEventListener(SV *pobj, Ogre::RenderWindow *win)
 {
-    // get package name from object
-    HV *stash = SvSTASH(SvRV(pobj));
-    string pkgname(HvNAME(stash));   // xxx: does string need copied?
+    if (sv_isobject(pobj)) {
+        PerlOGREWindowEventListener *wel = new PerlOGREWindowEventListener(pobj);
 
-    FrameListenerMap::iterator it = mListenerMap.find(pkgname);
-    if (it != mListenerMap.end()) {
-        delete it->second;
-        mListenerMap.erase(it);
+        // As with FrameListener, we keep track of the Perl pkgname for each
+        // C++ listener
+
+        HV *stash = SvSTASH(SvRV(pobj));
+        string pkgname(HvNAME(stash));
+
+        mWinEvtListenerMap.insert(WinEvtListenerMap::value_type(pkgname, static_cast<Ogre::WindowEventListener *>(wel)));
+
+
+        // Now, we can have multiple listeners per window,
+        // and multiple windows per listener,
+        // so we also keep track of which Windows are associated
+        // with each Perl package
+
+        // find out if pkg is already mapped to this win;
+        // if so, don't insert and ignore all this
+        bool doInsert = true;
+        WinEvtListenerWindowMMap::iterator it = mWinEvtListenerWindowMMap.find(pkgname);
+        while (it != mWinEvtListenerWindowMMap.end() && it->first == pkgname) {
+            if (it->second == win) {
+                doInsert = false;
+                break;
+            }
+            ++it;
+        }
+
+        if (doInsert) {
+            mWinEvtListenerWindowMMap.insert(WinEvtListenerWindowMMap::value_type(pkgname, win));
+
+            // do the C++ (the whole point of this manager crap :)
+            Ogre::WindowEventUtilities::addWindowEventListener(win, wel);
+        }
     } else {
-        warn("removeFrameListener: %s didn't have a FrameListener, so not removed",
+        croak("Argument to addWindowEventListener has to be an object\n");
+    }
+}
+
+void PerlOGREListenerManager::removeWindowEventListener(SV *pobj, Ogre::RenderWindow *win)
+{
+    HV *stash = SvSTASH(SvRV(pobj));
+    string pkgname(HvNAME(stash));
+
+    WinEvtListenerMap::iterator mit = mWinEvtListenerMap.find(pkgname);
+
+    if (mit != mWinEvtListenerMap.end()) {
+        // First remove the listener->window mapping
+        WinEvtListenerWindowMMap::iterator mmit = mWinEvtListenerWindowMMap.find(pkgname);
+        while (mmit != mWinEvtListenerWindowMMap.end() && mmit->first == pkgname) {
+            if (mmit->second == win) {
+                // do the C++ part
+                Ogre::WindowEventUtilities::removeWindowEventListener(win, mit->second);
+
+                // and take it out of the manager
+                mWinEvtListenerWindowMMap.erase(mmit);
+            }
+            ++mmit;
+        }
+
+        // Also, if that was the last window, get rid of the
+        // pkgname-listener mapping
+        if (mWinEvtListenerWindowMMap.empty()) {
+            delete mit->second;   // cleanup object created in addWindowEventListener
+            mWinEvtListenerMap.erase(mit);
+        }
+    } else {
+        warn("removeWindowEventListener: %s didn't have a WindowEventListener, so not removed",
              pkgname.c_str());
     }
 }
