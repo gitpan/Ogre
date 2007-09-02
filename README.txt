@@ -1,12 +1,13 @@
-Perl-Ogre version 0.21
+Perl-Ogre version 0.22
 ======================
 
 This is a Perl binding for OGRE, Object-Oriented Graphics Rendering Engine,
 a C++ library found at http://www.ogre3d.org/ .
 
-The wrapping is currently *very* minimal, just enough to be able to run
-the examples in the 'examples' directory (see examples/README.txt).
-There is also no documentation yet, which is no doubt frustrating.
+The wrapping is currently incomplete, but we're now able to run
+"Basic Tutorial 5" in Perl (see examples/README.txt).
+
+There is no documentation yet, which is no doubt frustrating.
 
 
 DEPENDENCIES

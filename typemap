@@ -1,13 +1,16 @@
 TYPEMAP
 
+BillboardChain *	O_BILLBOARDCHAIN
 Camera *	O_CAMERA
 ColourValue *	O_COLOURVALUE
 ConfigFile *	O_CONFIGFILE
 Degree *	O_DEGREE
 Entity *	O_ENTITY
+Frustum *	O_FRUSTUM
 FrameEvent *	O_FRAMEEVENT
 Light *	O_LIGHT
 LogManager *	O_LOGMANAGER
+ManualObject *	O_MANUALOBJECT
 MaterialManager *	O_MATERIALMANAGER
 MeshManager *	O_MESHMANAGER
 MeshPtr *	O_MESHPTR
@@ -19,12 +22,14 @@ const OverlayElement *	O_OVERLAYELEMENT
 OverlayElement *	O_OVERLAYELEMENT
 OverlayManager *	O_OVERLAYMANAGER
 Plane *	O_PLANE
+ParticleSystem *	O_PARTICLESYSTEM
 Quaternion *	O_QUATERNION
 Radian *	O_RADIAN
 Renderable *	O_RENDERABLE
 RenderTarget *	O_RENDERTARGET
 RenderWindow *	O_RENDERWINDOW
 ResourceGroupManager *	O_RESOURCEGROUPMANAGER
+RibbonTrail *	O_RIBBONTRAIL
 Root *	O_ROOT
 SceneManager *	O_SCENEMANAGER
 SceneNode *	O_SCENENODE
@@ -46,6 +51,9 @@ STRING
 	char * xstmpchr_$var = (char *) SvPV_nolen($arg);
 	$var = xstmpchr_$var;
 
+O_BILLBOARDCHAIN
+	TMOGRE_IN($arg, $var, $type, $Package, $func_name, BillboardChain)
+
 O_CAMERA
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, Camera)
 
@@ -61,6 +69,9 @@ O_DEGREE
 O_ENTITY
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, Entity)
 
+O_FRUSTUM
+	TMOGRE_IN($arg, $var, $type, $Package, $func_name, Frustum)
+
 O_FRAMEEVENT
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, FrameEvent)
 
@@ -69,6 +80,9 @@ O_LIGHT
 
 O_LOGMANAGER
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, LogManager)
+
+O_MANUALOBJECT
+	TMOGRE_IN($arg, $var, $type, $Package, $func_name, ManualObject)
 
 O_MATERIALMANAGER
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, MaterialManager)
@@ -97,6 +111,9 @@ O_OVERLAYELEMENT
 O_OVERLAYMANAGER
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, OverlayManager)
 
+O_PARTICLESYSTEM
+	TMOGRE_IN($arg, $var, $type, $Package, $func_name, ParticleSystem)
+
 O_PLANE
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, Plane)
 
@@ -117,6 +134,9 @@ O_RENDERTARGET
 
 O_RENDERWINDOW
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, RenderWindow)
+
+O_RIBBONTRAIL
+	TMOGRE_IN($arg, $var, $type, $Package, $func_name, RibbonTrail)
 
 O_ROOT
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, Root)
@@ -148,6 +168,9 @@ OUTPUT
 STRING
 	sv_setpvn((SV*)$arg, (char *) ($var.data()), ($var.size()));
 
+O_BILLBOARDCHAIN
+	TMOGRE_OUT($arg, $var, BillboardChain)
+
 O_CAMERA
 	TMOGRE_OUT($arg, $var, Camera)
 
@@ -163,6 +186,9 @@ O_DEGREE
 O_ENTITY
 	TMOGRE_OUT($arg, $var, Entity)
 
+O_FRUSTUM
+	TMOGRE_OUT($arg, $var, Frustum)
+
 O_FRAMEEVENT
 	TMOGRE_OUT($arg, $var, FrameEvent)
 
@@ -171,6 +197,9 @@ O_LIGHT
 
 O_LOGMANAGER
 	TMOGRE_OUT($arg, $var, LogManager)
+
+O_MANUALOBJECT
+	TMOGRE_OUT($arg, $var, ManualObject)
 
 O_MATERIALMANAGER
 	TMOGRE_OUT($arg, $var, MaterialManager)
@@ -199,6 +228,9 @@ O_OVERLAYELEMENT
 O_OVERLAYMANAGER
 	TMOGRE_OUT($arg, $var, OverlayManager)
 
+O_PARTICLESYSTEM
+	TMOGRE_OUT($arg, $var, ParticleSystem)
+
 O_PLANE
 	TMOGRE_OUT($arg, $var, Plane)
 
@@ -219,6 +251,9 @@ O_RENDERTARGET
 
 O_RENDERWINDOW
 	TMOGRE_OUT($arg, $var, RenderWindow)
+
+O_RIBBONTRAIL
+	TMOGRE_OUT($arg, $var, RibbonTrail)
 
 O_ROOT
 	TMOGRE_OUT($arg, $var, Root)

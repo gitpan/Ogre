@@ -7,7 +7,7 @@ Lots of stuff left to do....
   but maybe that's fixable -- the problem was that you only have
   assignment with an equals sign (=) available, while some data types
   might not be assignable like that).
-  Another problem is polymorphic methods, where the same method
+- Another problem is polymorphic methods, where the same method
   can have different call signatures (e.g. pass in either a Vector3
   or three Reals). For now I've simply been chosing one,
   but it'd be better if all the different ways would work.
@@ -17,13 +17,21 @@ Lots of stuff left to do....
    passed in. But having three different XSUBs, now you have to
    also implement the CODE and OUTPUT section for each one...
    Doing this hundreds of times gets tedious.)
+- Operator overloading hasn't been implemented yet.
+- There's a problem similar to operator overloading: Vector3 has
+  'x', 'y', and 'z' "public attributes", which would ideally be
+  exposed in Perl like $v->{x} = 23, etc., but I don't see how
+  to do that since the objects are pointers to C++ objects,
+  not hashes. Any ideas?
 - Constants are not implemented well at all. How to do them right?
+  I see ExtUtils::Constant and h2xs apparently provide utilities
+  for doing this.
 - Tests....
 - More examples (that's the fun part :)
 - Zillions of classes and methods to wrap. For now, I've just been
   wrapping what's necessary to make the examples. According to
   the API docs, there are 541 classes; I'm not sure how many of
-  those are useful to wrap, though. Things like Ogre::Singleton<T>
-  or Ogre::SharedPtr<T> probably don't make sense to wrap.
+  those are actually useful to wrap, though. Things like Ogre::Singleton<T>
+  or Ogre::SharedPtr<T> probably don't make sense to wrap...
   Right now, I'm wrapping classes necessary for OGRE's "Basic Tutorial 5",
   including ExampleApplication and ExampleFrameListener classes.

@@ -1,7 +1,7 @@
 MODULE = Ogre     PACKAGE = Ogre::ColourValue
 
 ColourValue *
-ColourValue::new(red, green, blue, alpha)
+ColourValue::new(red=1, green=1, blue=1, alpha=1)
     float red
     float green
     float blue

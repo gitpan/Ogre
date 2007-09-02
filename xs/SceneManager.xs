@@ -1,24 +1,67 @@
 MODULE = Ogre     PACKAGE = Ogre::SceneManager
 
+String
+SceneManager::getName()
+
+String
+SceneManager::getTypeName()
+
 Camera *
 SceneManager::createCamera(name)
     String  name
+
+Camera *
+SceneManager::getCamera(name)
+    String  name
+
+bool
+SceneManager::hasCamera(name)
+    String  name
+
+void
+SceneManager::destroyCamera(name)
+    String  name
+
+void
+SceneManager::destroyAllCameras()
 
 Light *
 SceneManager::createLight(name)
     String  name
 
-void
-SceneManager::setAmbientLight(colour)
-    ColourValue * colour
-  C_ARGS:
-    *colour
+Light *
+SceneManager::getLight(name)
+    String  name
+
+bool
+SceneManager::hasLight(name)
+    String  name
 
 void
-SceneManager::setShadowTechnique(technique)
-    int  technique
-  C_ARGS:
-    (ShadowTechnique)technique
+SceneManager::destroyLight(name)
+    String  name
+
+void
+SceneManager::destroyAllLights()
+
+SceneNode *
+SceneManager::createSceneNode(name)
+    String  name
+
+void
+SceneManager::destroySceneNode(name)
+    String  name
+
+SceneNode *
+SceneManager::getRootSceneNode()
+
+SceneNode *
+SceneManager::getSceneNode(name)
+    String  name
+
+bool
+SceneManager::hasSceneNode(name)
+    String  name
 
 ## there are 2 versions in the C++ API
 Entity *
@@ -26,9 +69,129 @@ SceneManager::createEntity(entityName, meshName)
     String entityName
     String meshName
 
-SceneNode *
-SceneManager::getRootSceneNode()
+Entity *
+SceneManager::getEntity(name)
+    String  name
 
+bool
+SceneManager::hasEntity(name)
+    String  name
+
+void
+SceneManager::destroyEntity(name)
+    String  name
+
+void
+SceneManager::destroyAllEntities()
+
+ManualObject *
+SceneManager::createManualObject(name)
+    String  name
+
+ManualObject *
+SceneManager::getManualObject(name)
+    String  name
+
+bool
+SceneManager::hasManualObject(name)
+    String  name
+
+void
+SceneManager::destroyManualObject(name)
+    String  name
+
+void
+SceneManager::destroyAllManualObjects()
+
+BillboardChain *
+SceneManager::createBillboardChain(name)
+    String  name
+
+BillboardChain *
+SceneManager::getBillboardChain(name)
+    String  name
+
+bool
+SceneManager::hasBillboardChain(name)
+    String  name
+
+void
+SceneManager::destroyBillboardChain(name)
+    String  name
+
+void
+SceneManager::destroyAllBillboardChains()
+
+RibbonTrail *
+SceneManager::createRibbonTrail(name)
+    String  name
+
+RibbonTrail *
+SceneManager::getRibbonTrail(name)
+    String  name
+
+bool
+SceneManager::hasRibbonTrail(name)
+    String  name
+
+void
+SceneManager::destroyRibbonTrail(name)
+    String  name
+
+void
+SceneManager::destroyAllRibbonTrails()
+
+## there is another version of this
+ParticleSystem *
+SceneManager::createParticleSystem(name, templateName)
+    String  name
+    String  templateName
+
+ParticleSystem *
+SceneManager::getParticleSystem(name)
+    String  name
+
+bool
+SceneManager::hasParticleSystem(name)
+    String  name
+
+void
+SceneManager::destroyParticleSystem(name)
+    String  name
+
+void
+SceneManager::destroyAllParticleSystems()
+
+void
+SceneManager::clearScene()
+
+void
+SceneManager::setAmbientLight(colour)
+    ColourValue * colour
+  C_ARGS:
+    *colour
+
+# const ColourValue & getAmbientLight()
+
+## there are two versions of this
+void
+SceneManager::setWorldGeometry(filename)
+    String  filename
+
+## there are two versions of this
+size_t
+SceneManager::estimateWorldGeometry(filename)
+    String  filename
+
+void
+SceneManager::setShadowTechnique(technique)
+    int  technique
+  C_ARGS:
+    (ShadowTechnique)technique
+
+# and much, much more....
+
+####################################
 
 ## SceneType enum
 static uint16

@@ -2,7 +2,7 @@ MODULE = Ogre     PACKAGE = Ogre::RenderTarget
 
 ## Viewport * addViewport(Camera *cam, int ZOrder=0, float left=0.0f, float top=0.0f, float width=1.0f, float height=1.0f)
 Viewport *
-RenderTarget::addViewport(cam, ZOrder, left, top, width, height)
+RenderTarget::addViewport(cam, ZOrder=0, left=0, top=0, width=1, height=1)
     Camera * cam
     int      ZOrder
     float    left

@@ -3,7 +3,11 @@ MODULE = Ogre     PACKAGE = Ogre::MaterialManager
 static MaterialManager *
 MaterialManager::getSingletonPtr()
 
-## void setDefaultTextureFiltering(TextureFilterOptions fo)
+void
+MaterialManager::setDefaultTextureFiltering(fo)
+    int  fo
+  C_ARGS:
+    (TextureFilterOptions)fo
 
 void
 MaterialManager::setDefaultAnisotropy(maxAniso)

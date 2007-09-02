@@ -3,8 +3,9 @@ package Ogre::Node;
 use strict;
 use warnings;
 
+use Ogre::Renderable;
 require Exporter;
-our @ISA = qw(Exporter);
+our @ISA = qw(Exporter Ogre::Renderable);
 
 our %EXPORT_TAGS = (
     'transformspace' => [

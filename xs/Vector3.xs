@@ -9,6 +9,121 @@ Vector3::new(fX, fY, fZ)
 void
 Vector3::DESTROY()
 
+## xxx: it would be nice to be able to do this: $v->{x} = 20;
+## but how is that done (the object is a pointer to a C++ object,
+## not a hash). For now, we have this gimpy interface with setX, etc.
+
+float
+Vector3::x()
+  CODE:
+    RETVAL = (*THIS).x;
+  OUTPUT:
+    RETVAL
+
+float
+Vector3::y()
+  CODE:
+    RETVAL = (*THIS).y;
+  OUTPUT:
+    RETVAL
+
+float
+Vector3::z()
+  CODE:
+    RETVAL = (*THIS).z;
+  OUTPUT:
+    RETVAL
+
+void
+Vector3::setX(x)
+    float  x
+  CODE:
+    (*THIS).x = x;
+
+void
+Vector3::setY(y)
+    float  y
+  CODE:
+    (*THIS).y = y;
+
+void
+Vector3::setZ(z)
+    float  z
+  CODE:
+    (*THIS).z = z;
+
+float
+Vector3::length()
+
+float
+Vector3::squaredLength()
+
+float
+Vector3::distance(rhs)
+    Vector3 * rhs
+  C_ARGS:
+    *rhs
+
+float
+Vector3::squaredDistance(rhs)
+    Vector3 * rhs
+  C_ARGS:
+    *rhs
+
+float
+Vector3::dotProduct(vec)
+    Vector3 * vec
+  C_ARGS:
+    *vec
+
+float
+Vector3::absDotProduct(vec)
+    Vector3 * vec
+  C_ARGS:
+    *vec
+
+float
+Vector3::normalise()
+
+# ...
+
+void
+Vector3::makeFloor(cmp)
+    Vector3 * cmp
+  C_ARGS:
+    *cmp
+
+void
+Vector3::makeCeil(cmp)
+    Vector3 * cmp
+  C_ARGS:
+    *cmp
+
+# ...
+
+bool
+Vector3::isZeroLength()
+
+bool
+Vector3::positionEquals(rhs, tolerance=0.001)
+    Vector3 * rhs
+    float  tolerance
+  C_ARGS:
+    *rhs, tolerance
+
+bool
+Vector3::positionCloses(rhs, tolerance=0.001)
+    Vector3 * rhs
+    float  tolerance
+  C_ARGS:
+    *rhs, tolerance
+
+bool
+Vector3::directionEquals(rhs, tolerance)
+    Vector3 * rhs
+    Radian * tolerance
+  C_ARGS:
+    *rhs, *tolerance
 
 
 ## XXX: I tried hard to make this work,

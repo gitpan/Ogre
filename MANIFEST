@@ -19,15 +19,18 @@ PerlOGREFrameListener.cpp
 PerlOGREWindowEventListener.h
 PerlOGREWindowEventListener.cpp
 
+xs/BillboardChain.xs
 xs/Camera.xs
 xs/ColourValue.xs
 xs/ConfigFile.xs
 xs/Degree.xs
 xs/Entity.xs
+xs/Frustum.xs
 xs/FrameEvent.xs
 xs/FrameStats.xs
 xs/Light.xs
 xs/LogManager.xs
+xs/ManualObject.xs
 xs/MaterialManager.xs
 xs/MeshManager.xs
 xs/MeshPtr.xs
@@ -38,12 +41,14 @@ xs/OverlayContainer.xs
 xs/OverlayElement.xs
 xs/OverlayManager.xs
 xs/Plane.xs
+xs/ParticleSystem.xs
 xs/Quaternion.xs
 xs/Radian.xs
 xs/Renderable.xs
 xs/RenderTarget.xs
 xs/RenderWindow.xs
 xs/ResourceGroupManager.xs
+xs/RibbonTrail.xs
 xs/Root.xs
 xs/SceneManager.xs
 xs/SceneNode.xs
@@ -53,14 +58,17 @@ xs/Vector3.xs
 xs/Viewport.xs
 xs/WindowEventUtilities.xs
 
+Ogre/BillboardChain.pm
 Ogre/Camera.pm
 Ogre/ColourValue.pm
 Ogre/ConfigFile.pm
 Ogre/Degree.pm
 Ogre/Entity.pm
+Ogre/Frustum.pm
 Ogre/FrameEvent.pm
 Ogre/Light.pm
 Ogre/LogManager.pm
+Ogre/ManualObject.pm
 Ogre/MaterialManager.pm
 Ogre/MeshManager.pm
 Ogre/MeshPtr.pm
@@ -71,6 +79,7 @@ Ogre/OverlayContainer.pm
 Ogre/OverlayElement.pm
 Ogre/OverlayManager.pm
 Ogre/Plane.pm
+Ogre/ParticleSystem.pm
 Ogre/Quaternion.pm
 Ogre/Radian.pm
 Ogre/Renderable.pm
@@ -78,6 +87,7 @@ Ogre/RenderTarget.pm
 Ogre/RenderTarget/FrameStats.pm
 Ogre/RenderWindow.pm
 Ogre/ResourceGroupManager.pm
+Ogre/RibbonTrail.pm
 Ogre/Root.pm
 Ogre/SceneManager.pm
 Ogre/SceneNode.pm
@@ -91,6 +101,7 @@ examples/README.txt
 examples/listeningninja.pl
 examples/ninja.pl
 examples/robot.pl
+examples/tute5.pl
 examples/resources.cfg
 
 t/000_use.t

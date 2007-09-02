@@ -15,6 +15,12 @@ Camera::getSceneManager()
 Viewport *
 Camera::getViewport()
 
+SceneNode *
+Camera::getParentSceneNode()
+
+Node *
+Camera::getParentNode()
+
 void
 Camera::lookAt(x, y, z)
     float x
