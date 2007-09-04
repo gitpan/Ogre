@@ -183,13 +183,333 @@ size_t
 SceneManager::estimateWorldGeometry(filename)
     String  filename
 
+# and much, much more....
+
+bool
+SceneManager::hasOption(strKey)
+    String  strKey
+
+# xxx: damn, I really should figure out how to pass String defaults....
+# void setSkyPlane(bool enable, const Plane &plane, const String &materialName, Real scale=1000, Real tiling=10, bool drawFirst=true, Real bow=0, int xsegments=1, int ysegments=1, const String &groupName=ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME)
+void
+SceneManager::setSkyPlane(enable, plane, materialName, scale, tiling, drawFirst, bow, xsegments, ysegments, groupName)
+    bool    enable
+    Plane * plane
+    String  materialName
+    float   scale
+    float   tiling
+    bool    drawFirst
+    float   bow
+    int     xsegments
+    int     ysegments
+    String  groupName
+  C_ARGS:
+    enable, *plane, materialName, scale, tiling, drawFirst, bow, xsegments, ysegments, groupName
+
+bool
+SceneManager::isSkyPlaneEnabled()
+
+SceneNode *
+SceneManager::getSkyPlaneNode()
+
+# virtual void setSkyBox(bool enable, const String &materialName, Real distance=5000, bool drawFirst=true, const Quaternion &orientation=Quaternion::IDENTITY, const String &groupName=ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME)
+void
+SceneManager::setSkyBox(enable, materialName, distance, drawFirst, orientation, groupName)
+    bool         enable
+    String       materialName
+    float        distance
+    bool         drawFirst
+    Quaternion * orientation
+    String       groupName
+  C_ARGS:
+    enable, materialName, distance, drawFirst, *orientation, groupName
+
+bool
+SceneManager::isSkyBoxEnabled()
+
+SceneNode *
+SceneManager::getSkyBoxNode()
+
+# void setSkyDome(bool enable, const String &materialName, Real curvature=10, Real tiling=8, Real distance=4000, bool drawFirst=true, const Quaternion &orientation=Quaternion::IDENTITY, int xsegments=16, int ysegments=16, int ysegments_keep=-1, const String &groupName=ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME)
+void
+SceneManager::setSkyDome(enable, materialName, curvature, tiling, distance, drawFirst, orientation, xsegments, ysegments, ysegments_keep, groupName)
+    bool         enable
+    String       materialName
+    float        curvature
+    float        tiling
+    float        distance
+    bool         drawFirst
+    Quaternion * orientation
+    int          xsegments
+    int          ysegments
+    int          ysegments_keep
+    String       groupName
+  C_ARGS:
+    enable, materialName, curvature, tiling, distance, drawFirst, *orientation, xsegments, ysegments, ysegments_keep, groupName
+
+bool
+SceneManager::isSkyDomeEnabled()
+
+SceneNode *
+SceneManager::getSkyDomeNode()
+
+# xxx: should be mode=FOG_NONE, colour=ColourValue::White too!
+void
+SceneManager::setFog(mode, colour, expDensity=0.001, linearStart=0.0, linearEnd=1.0)
+    int           mode
+    ColourValue * colour
+    float         expDensity
+    float         linearStart
+    float         linearEnd
+  C_ARGS:
+    (FogMode)mode, *colour, expDensity, linearStart, linearEnd
+
+int
+SceneManager::getFogMode()
+
+# getFogColour()
+
+float
+SceneManager::getFogStart()
+
+float
+SceneManager::getFogEnd()
+
+float
+SceneManager::getFogDensity()
+
+BillboardSet *
+SceneManager::createBillboardSet(name, poolSize=20)
+    String  name
+    unsigned int  poolSize
+
+BillboardSet *
+SceneManager::getBillboardSet(name)
+    String        name
+
+bool
+SceneManager::hasBillboardSet(name)
+    String  name
+
+# also a version where you pass a pointer
+void
+SceneManager::destroyBillboardSet(name)
+    String  name
+
+void
+SceneManager::destroyAllBillboardSets()
+
+void
+SceneManager::setDisplaySceneNodes(display)
+    bool  display
+
+bool
+SceneManager::getDisplaySceneNodes()
+
+Animation *
+SceneManager::createAnimation(name, length)
+    String  name
+    float  length
+
+Animation *
+SceneManager::getAnimation(name)
+    String        name
+
+bool
+SceneManager::hasAnimation(name)
+    String  name
+
+void
+SceneManager::destroyAnimation(name)
+    String  name
+
+void
+SceneManager::destroyAllAnimations()
+
+AnimationState *
+SceneManager::createAnimationState(name)
+    String  name
+
+AnimationState *
+SceneManager::getAnimationState(name)
+    String  name
+
+bool
+SceneManager::hasAnimationState(name)
+    String  name
+
+void
+SceneManager::destroyAnimationState(name)
+    String  name
+
+void
+SceneManager::destroyAllAnimationStates()
+
+# bunch of Render stuff...
+
+void
+SceneManager::showBoundingBoxes(bShow)
+    bool  bShow
+
+bool
+SceneManager::getShowBoundingBoxes()
+
+# bunch of Query stuff, other things...
+
 void
 SceneManager::setShadowTechnique(technique)
     int  technique
   C_ARGS:
     (ShadowTechnique)technique
 
-# and much, much more....
+int
+SceneManager::getShadowTechnique()
+
+void
+SceneManager::setShowDebugShadows(debug)
+    bool  debug
+
+bool
+SceneManager::getShowDebugShadows()
+
+void
+SceneManager::setShadowColour(colour)
+    ColourValue * colour
+  C_ARGS:
+    *colour
+
+# getShadowColour....
+
+void
+SceneManager::setShadowDirectionalLightExtrusionDistance(dist)
+    float  dist
+
+float
+SceneManager::getShadowDirectionalLightExtrusionDistance()
+
+void 
+SceneManager::setShadowFarDistance(distance)
+    float  distance
+
+float
+SceneManager::getShadowFarDistance()
+
+void 
+SceneManager::setShadowIndexBufferSize(size)
+    size_t  size
+
+size_t 
+SceneManager::getShadowIndexBufferSize()
+
+void 
+SceneManager::setShadowTextureSize(size)
+    unsigned short  size
+
+# other Shadow stuff....
+
+StaticGeometry *
+SceneManager::createStaticGeometry(name)
+    String  name
+
+StaticGeometry *
+SceneManager::getStaticGeometry(name)
+    String  name
+
+bool
+SceneManager::hasStaticGeometry(name)
+    String  name
+
+# plus a ptr version
+void
+SceneManager::destroyStaticGeometry(name)
+    String  name
+
+void
+SceneManager::destroyAllStaticGeometry()
+
+InstancedGeometry *
+SceneManager::createInstancedGeometry(name)
+    String  name
+
+InstancedGeometry *
+SceneManager::getInstancedGeometry(name)
+    String        name
+
+# they should have this! :)
+#bool
+#SceneManager::hasInstancedGeometry(name)
+#    String  name
+
+# plus a ptr version
+void
+SceneManager::destroyInstancedGeometry(name)
+    String  name
+
+void
+SceneManager::destroyAllInstancedGeometry()
+
+# xxx: skipping params arg for now...
+# MovableObject *createMovableObject(const String &name, const String &typeName, const NameValuePairList *params=0)
+MovableObject *
+SceneManager::createMovableObject(name, typeName)
+    String  name
+    String  typeName
+
+MovableObject *
+SceneManager::getMovableObject(name, typeName)
+    String  name
+    String  typeName
+
+bool
+SceneManager::hasMovableObject(name, typeName)
+    String  name
+    String  typeName
+
+# plus a ptr version
+void
+SceneManager::destroyMovableObject(name, typeName)
+    String  name
+    String  typeName
+
+void
+SceneManager::destroyAllMovableObjects()
+
+void
+SceneManager::destroyAllMovableObjectsByType(typeName)
+    String  typeName
+
+void
+SceneManager::injectMovableObject(m)
+    MovableObject * m
+
+# plus ptr version
+void
+SceneManager::extractMovableObject(name, typeName)
+    String  name
+    String  typeName
+
+void
+SceneManager::extractAllMovableObjectsByType(typeName)
+    String  typeName
+
+void
+SceneManager::setVisibilityMask(vmask)
+    unsigned int  vmask
+
+unsigned int
+SceneManager::getVisibilityMask()
+
+void
+SceneManager::setFindVisibleObjects(find)
+    bool  find
+
+bool
+SceneManager::getFindVisibleObjects()
+
+Viewport *
+SceneManager::getCurrentViewport()
+
+# ...
 
 ####################################
 

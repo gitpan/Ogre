@@ -1,6 +1,9 @@
 TYPEMAP
 
+Animation *	O_ANIMATION
+AnimationState *	O_ANIMATIONSTATE
 BillboardChain *	O_BILLBOARDCHAIN
+BillboardSet *	O_BILLBOARDSET
 Camera *	O_CAMERA
 ColourValue *	O_COLOURVALUE
 ConfigFile *	O_CONFIGFILE
@@ -8,6 +11,7 @@ Degree *	O_DEGREE
 Entity *	O_ENTITY
 Frustum *	O_FRUSTUM
 FrameEvent *	O_FRAMEEVENT
+InstancedGeometry *	O_INSTANCEDGEOMETRY
 Light *	O_LIGHT
 LogManager *	O_LOGMANAGER
 ManualObject *	O_MANUALOBJECT
@@ -33,6 +37,7 @@ RibbonTrail *	O_RIBBONTRAIL
 Root *	O_ROOT
 SceneManager *	O_SCENEMANAGER
 SceneNode *	O_SCENENODE
+StaticGeometry *	O_STATICGEOMETRY
 StringInterface *	O_STRINGINTERFACE
 TextureManager *	O_TEXTUREMANAGER
 Vector3 *	O_VECTOR3
@@ -51,8 +56,17 @@ STRING
 	char * xstmpchr_$var = (char *) SvPV_nolen($arg);
 	$var = xstmpchr_$var;
 
+O_ANIMATION
+	TMOGRE_IN($arg, $var, $type, $Package, $func_name, Animation)
+
+O_ANIMATIONSTATE
+	TMOGRE_IN($arg, $var, $type, $Package, $func_name, AnimationState)
+
 O_BILLBOARDCHAIN
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, BillboardChain)
+
+O_BILLBOARDSET
+	TMOGRE_IN($arg, $var, $type, $Package, $func_name, BillboardSet)
 
 O_CAMERA
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, Camera)
@@ -74,6 +88,9 @@ O_FRUSTUM
 
 O_FRAMEEVENT
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, FrameEvent)
+
+O_INSTANCEDGEOMETRY
+	TMOGRE_IN($arg, $var, $type, $Package, $func_name, InstancedGeometry)
 
 O_LIGHT
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, Light)
@@ -147,6 +164,9 @@ O_SCENEMANAGER
 O_SCENENODE
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, SceneNode)
 
+O_STATICGEOMETRY
+	TMOGRE_IN($arg, $var, $type, $Package, $func_name, StaticGeometry)
+
 O_STRINGINTERFACE
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, StringInterface)
 
@@ -168,8 +188,17 @@ OUTPUT
 STRING
 	sv_setpvn((SV*)$arg, (char *) ($var.data()), ($var.size()));
 
+O_ANIMATION
+	TMOGRE_OUT($arg, $var, Animation)
+
+O_ANIMATIONSTATE
+	TMOGRE_OUT($arg, $var, AnimationState)
+
 O_BILLBOARDCHAIN
 	TMOGRE_OUT($arg, $var, BillboardChain)
+
+O_BILLBOARDSET
+	TMOGRE_OUT($arg, $var, BillboardSet)
 
 O_CAMERA
 	TMOGRE_OUT($arg, $var, Camera)
@@ -191,6 +220,9 @@ O_FRUSTUM
 
 O_FRAMEEVENT
 	TMOGRE_OUT($arg, $var, FrameEvent)
+
+O_INSTANCEDGEOMETRY
+	TMOGRE_OUT($arg, $var, InstancedGeometry)
 
 O_LIGHT
 	TMOGRE_OUT($arg, $var, Light)
@@ -263,6 +295,9 @@ O_SCENEMANAGER
 
 O_SCENENODE
 	TMOGRE_OUT($arg, $var, SceneNode)
+
+O_STATICGEOMETRY
+	TMOGRE_OUT($arg, $var, StaticGeometry)
 
 O_STRINGINTERFACE
 	TMOGRE_OUT($arg, $var, StringInterface)

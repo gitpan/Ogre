@@ -52,6 +52,22 @@ Ogre::PM_POINTS()
   OUTPUT:
     RETVAL
 
+## FogMode enum
+static int
+Ogre::FOG_NONE()
+  ALIAS:
+    Ogre::FOG_EXP = 1
+    Ogre::FOG_EXP2 = 2
+    Ogre::FOG_LINEAR = 3
+  CODE:
+    switch (ix) {
+        case 0: RETVAL = Ogre::FOG_NONE; break;
+        case 1: RETVAL = Ogre::FOG_EXP; break;
+        case 2: RETVAL = Ogre::FOG_EXP2; break;
+        case 3: RETVAL = Ogre::FOG_LINEAR; break;
+    }
+  OUTPUT:
+    RETVAL
 
 
 INCLUDE: perl -e "print qq{INCLUDE: \$_\$/} for <xs/*.xs>" |

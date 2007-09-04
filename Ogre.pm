@@ -8,16 +8,20 @@ require Exporter;
 require DynaLoader;
 our @ISA = qw(Exporter DynaLoader);
 
-our $VERSION = '0.22';
+our $VERSION = '0.23';
 
 # use all files under Ogre/ - probably not a good idea
+use Ogre::Animation;
+use Ogre::AnimationState;
 use Ogre::BillboardChain;
+use Ogre::BillboardSet;
 use Ogre::Camera;
 use Ogre::ColourValue;
 use Ogre::ConfigFile;
 use Ogre::Degree;
 use Ogre::Entity;
 use Ogre::Frustum;
+use Ogre::InstancedGeometry;
 use Ogre::Light;
 use Ogre::LogManager;
 use Ogre::ManualObject;
@@ -42,6 +46,7 @@ use Ogre::RibbonTrail;
 use Ogre::Root;
 use Ogre::SceneManager;
 use Ogre::SceneNode;
+use Ogre::StaticGeometry;
 use Ogre::StringInterface;
 use Ogre::TextureManager;
 use Ogre::Vector3;
@@ -68,6 +73,14 @@ our %EXPORT_TAGS = (
            PM_POINTS
            PM_WIREFRAME
            PM_SOLID
+       )
+    ],
+    'FogMode' => [
+        qw(
+           FOG_NONE
+           FOG_EXP
+           FOG_EXP2
+           FOG_LINEAR
        )
     ],
 );

@@ -30,3 +30,6 @@ Here are brief descriptions of the examples.
 
 - tute5.pl: demo of buffered input handling, this implements OGRE's
   "Basic Tutorial 5"
+
+- tute3.pl: demo of Terrain, Sky, and Fog, this implements OGRE's
+  "Basic Tutorial 3"
