@@ -9,36 +9,36 @@ Light::setType(type)
 ## this has 2 versions in the C++ API
 void
 Light::setPosition(x, y, z)
-    float  x
-    float  y
-    float  z
+    Real  x
+    Real  y
+    Real  z
 
 ## this has 2 versions in the C++ API
 void
 Light::setDiffuseColour(red, green, blue)
-    float  red
-    float  green
-    float  blue
+    Real  red
+    Real  green
+    Real  blue
 
 ## this has 2 versions in the C++ API
 void
 Light::setSpecularColour(red, green, blue)
-    float  red
-    float  green
-    float  blue
+    Real  red
+    Real  green
+    Real  blue
 
 ## this has 2 versions in the C++ API
 void
 Light::setDirection(x, y, z)
-    float  x
-    float  y
-    float  z
+    Real  x
+    Real  y
+    Real  z
 
 void
 Light::setSpotlightRange(innerAngle, outerAngle, falloff=1.0)
     Degree * innerAngle
     Degree * outerAngle
-    float  falloff
+    Real  falloff
   C_ARGS:
     *innerAngle, *outerAngle, falloff
 

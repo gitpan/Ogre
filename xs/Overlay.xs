@@ -47,19 +47,19 @@ Overlay::clear()
 
 void
 Overlay::setScroll(x, y)
-    float  x
-    float  y
+    Real  x
+    Real  y
 
-float
+Real
 Overlay::getScrollX()
 
-float
+Real
 Overlay::getScrollY()
 
 void
 Overlay::scroll(xoff, yoff)
-    float xoff
-    float yoff
+    Real xoff
+    Real yoff
 
 void
 Overlay::setRotate(angle)
@@ -77,19 +77,19 @@ Overlay::rotate(angle)
 
 void
 Overlay::setScale(x, y)
-    float  x
-    float  y
+    Real  x
+    Real  y
 
-float
+Real
 Overlay::getScaleX()
 
-float
+Real
 Overlay::getScaleY()
 
 OverlayElement *
 Overlay::findElementAt(x, y)
-    float  x
-    float  y
+    Real  x
+    Real  y
 
 String
 Overlay::getOrigin()

@@ -11,6 +11,10 @@ void
 ConfigFile::load(filename)
     String  filename
 
+void
+ConfigFile::clear()
+
+
 ## Note: this replaces ConfigFile::getSectionIterator().
 ## Instead of an interator, it returns an array ref.
 ## (The iterator is over a std::map, which is like a hash,

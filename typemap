@@ -2,6 +2,7 @@ TYPEMAP
 
 Animation *	O_ANIMATION
 AnimationState *	O_ANIMATIONSTATE
+AnimationStateSet *	O_ANIMATIONSTATESET
 BillboardChain *	O_BILLBOARDCHAIN
 BillboardSet *	O_BILLBOARDSET
 Camera *	O_CAMERA
@@ -16,6 +17,7 @@ Light *	O_LIGHT
 LogManager *	O_LOGMANAGER
 ManualObject *	O_MANUALOBJECT
 MaterialManager *	O_MATERIALMANAGER
+Matrix3 *	O_MATRIX3
 MeshManager *	O_MESHMANAGER
 MeshPtr *	O_MESHPTR
 MovableObject *	O_MOVABLEOBJECT
@@ -39,6 +41,7 @@ SceneManager *	O_SCENEMANAGER
 SceneNode *	O_SCENENODE
 StaticGeometry *	O_STATICGEOMETRY
 StringInterface *	O_STRINGINTERFACE
+SubEntity *	O_SUBENTITY
 TextureManager *	O_TEXTUREMANAGER
 Vector3 *	O_VECTOR3
 const Vector3 *	O_VECTOR3
@@ -48,6 +51,7 @@ WindowEventListener *	O_WINDOWEVENTLISTENER
 String	STRING
 uint16	T_UV
 uchar	T_U_CHAR
+Real	T_REAL
 
 
 INPUT
@@ -56,11 +60,17 @@ STRING
 	char * xstmpchr_$var = (char *) SvPV_nolen($arg);
 	$var = xstmpchr_$var;
 
+T_REAL
+	$var = (Real)SvNV($arg)
+
 O_ANIMATION
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, Animation)
 
 O_ANIMATIONSTATE
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, AnimationState)
+
+O_ANIMATIONSTATESET
+	TMOGRE_IN($arg, $var, $type, $Package, $func_name, AnimationStateSet)
 
 O_BILLBOARDCHAIN
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, BillboardChain)
@@ -103,6 +113,9 @@ O_MANUALOBJECT
 
 O_MATERIALMANAGER
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, MaterialManager)
+
+O_MATRIX3
+	TMOGRE_IN($arg, $var, $type, $Package, $func_name, Matrix3)
 
 O_MESHMANAGER
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, MeshManager)
@@ -170,6 +183,9 @@ O_STATICGEOMETRY
 O_STRINGINTERFACE
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, StringInterface)
 
+O_SUBENTITY
+	TMOGRE_IN($arg, $var, $type, $Package, $func_name, SubEntity)
+
 O_TEXTUREMANAGER
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, TextureManager)
 
@@ -188,11 +204,17 @@ OUTPUT
 STRING
 	sv_setpvn((SV*)$arg, (char *) ($var.data()), ($var.size()));
 
+T_REAL
+	sv_setnv($arg, (Real)$var);
+
 O_ANIMATION
 	TMOGRE_OUT($arg, $var, Animation)
 
 O_ANIMATIONSTATE
 	TMOGRE_OUT($arg, $var, AnimationState)
+
+O_ANIMATIONSTATESET
+	TMOGRE_OUT($arg, $var, AnimationStateSet)
 
 O_BILLBOARDCHAIN
 	TMOGRE_OUT($arg, $var, BillboardChain)
@@ -235,6 +257,9 @@ O_MANUALOBJECT
 
 O_MATERIALMANAGER
 	TMOGRE_OUT($arg, $var, MaterialManager)
+
+O_MATRIX3
+	TMOGRE_OUT($arg, $var, Matrix3)
 
 O_MESHMANAGER
 	TMOGRE_OUT($arg, $var, MeshManager)
@@ -301,6 +326,9 @@ O_STATICGEOMETRY
 
 O_STRINGINTERFACE
 	TMOGRE_OUT($arg, $var, StringInterface)
+
+O_SUBENTITY
+	TMOGRE_OUT($arg, $var, SubEntity)
 
 O_TEXTUREMANAGER
 	TMOGRE_OUT($arg, $var, TextureManager)

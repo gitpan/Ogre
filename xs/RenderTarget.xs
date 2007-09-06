@@ -1,14 +1,14 @@
 MODULE = Ogre     PACKAGE = Ogre::RenderTarget
 
-## Viewport * addViewport(Camera *cam, int ZOrder=0, float left=0.0f, float top=0.0f, float width=1.0f, float height=1.0f)
+## Viewport * addViewport(Camera *cam, int ZOrder=0, Real left=0.0f, Real top=0.0f, Real width=1.0f, Real height=1.0f)
 Viewport *
 RenderTarget::addViewport(cam, ZOrder=0, left=0, top=0, width=1, height=1)
     Camera * cam
     int      ZOrder
-    float    left
-    float    top
-    float    width
-    float    height
+    Real    left
+    Real    top
+    Real    width
+    Real    height
 
 ## C++ version uses output parameters (pointers),
 ## this Perl version will return a list instead:
@@ -20,7 +20,7 @@ RenderTarget::getMetrics(OUTLIST unsigned int width, OUTLIST unsigned int height
     width, height, colourDepth
 
 #void
-#RenderTarget::getStatistics(OUTLIST float lastFPS, OUTLIST float avgFPS, OUTLIST float bestFPS, OUTLIST float worstFPS)
+#RenderTarget::getStatistics(OUTLIST Real lastFPS, OUTLIST Real avgFPS, OUTLIST Real bestFPS, OUTLIST Real worstFPS)
 #  C_ARGS:
 #    lastFPS, avgFPS, bestFPS, worstFPS
 
@@ -41,22 +41,22 @@ RenderTarget::getMetrics(OUTLIST unsigned int width, OUTLIST unsigned int height
 void
 RenderTarget::resetStatistics()
 
-float
+Real
 RenderTarget::getLastFPS()
 
-float
+Real
 RenderTarget::getAverageFPS()
 
-float
+Real
 RenderTarget::getBestFPS()
 
-float
+Real
 RenderTarget::getWorstFPS()
 
-float
+Real
 RenderTarget::getBestFrameTime()
 
-float
+Real
 RenderTarget::getWorstFrameTime()
 
 size_t
@@ -160,11 +160,11 @@ RenderTarget::getCustomAttributeInt(name)
   OUTPUT:
     RETVAL
 
-float
+Real
 RenderTarget::getCustomAttributeFloat(name)
     String  name
   PREINIT:
-    float pData;
+    Real pData;
   CODE:
     THIS->getCustomAttribute(name, &pData);
     RETVAL = pData;

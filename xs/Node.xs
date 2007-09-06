@@ -29,9 +29,9 @@ Node::yaw(angle, relativeTo=Node::TS_LOCAL)
 ## there are 2 versions of this in the C++ API
 void
 Node::scale(x, y, z)
-    float x
-    float y
-    float z
+    Real x
+    Real y
+    Real z
 
 ## 2 versions
 void
@@ -52,25 +52,25 @@ Node::getParent()
 
 void
 Node::setOrientation(w, x, y, z)
-    float  w
-    float  x
-    float  y
-    float  z
+    Real  w
+    Real  x
+    Real  y
+    Real  z
 
 void
 Node::resetOrientation()
 
 void
 Node::setPosition(x, y, z)
-    float  x
-    float  y
-    float  z
+    Real  x
+    Real  y
+    Real  z
 
 void
 Node::setScale(x, y, z)
-    float  x
-    float  y
-    float  z
+    Real  x
+    Real  y
+    Real  z
 
 void
 Node::setInheritOrientation(inherit)
@@ -89,9 +89,9 @@ Node::getInheritScale()
 ## there are 4 versions of this one...
 void
 Node::translate(x, y, z, relativeTo=Node::TS_PARENT)
-    float  x
-    float  y
-    float  z
+    Real  x
+    Real  y
+    Real  z
     int    relativeTo
   C_ARGS:
     x, y, z, (Ogre::Node::TransformSpace)relativeTo

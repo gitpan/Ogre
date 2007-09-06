@@ -1,19 +1,25 @@
-0.23 2007-09-04
+0.24 2007-09-06 | minor improvements
+- added typemap for Real and changed all occurrences of float to Real
+  (which can be float or double)
+- added constructors, overloaded (bool) operators, tests to:
+  ColourValue, ConfigFile, Degree, Plane, Quaternion, Radian, Vector3
+
+0.23 2007-09-04 | tute3.pl
 - moved ExampleFrameListener and ExampleApplication packages from
   examples/tute5.pl out under Ogre/ , so they can be used by other
   applications
 - added tute3.pl example, which implements OGRE's "Basic Tutorial 3"
-- fixed unbuffered input
+- fixed unbuffered input in the Example* classes
 - wrapped a lot of SceneManager
 
-0.22 2007-09-02
+0.22 2007-09-02 | tute5.pl
 - added tute5.pl, which implements OGRE's "Basic Tutorial 5"
 
-0.21 2007-09-01
+0.21 2007-09-01 |
 - added WindowEventListener functionality, though not "tested" yet
   (working on another example)
 
-0.20 2007-08-30
+0.20 2007-08-30 | ninja.pl, listeningninja.pl
 - added ninja.pl example, along with necessary wrappers
   to get it to work (you also need to install OIS,
   which I just uploaded to CPAN)
@@ -22,7 +28,7 @@
 - wrapped several other classes, but not fully yet;
   will have another example next release
 
-0.1  2007-08-26
+0.1  2007-08-26 | robot.pl
 (Note: I accidentally put version 0.1 instead of 0.01)
 - first release, minimal wrapping
 - includes robot.pl example

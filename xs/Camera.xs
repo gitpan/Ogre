@@ -2,9 +2,9 @@ MODULE = Ogre     PACKAGE = Ogre::Camera
 
 void
 Camera::setPosition(x, y, z)
-    float x
-    float y
-    float z
+    Real x
+    Real y
+    Real z
 
 #Vector3 *
 #Camera::getPosition()
@@ -23,17 +23,17 @@ Camera::getParentNode()
 
 void
 Camera::lookAt(x, y, z)
-    float x
-    float y
-    float z
+    Real x
+    Real y
+    Real z
 
 void
 Camera::setAspectRatio(ratio)
-    float ratio
+    Real ratio
 
 void
 Camera::setNearClipDistance(nearDist)
-    float nearDist
+    Real nearDist
 
 void
 Camera::moveRelative(vec)
@@ -89,9 +89,9 @@ Camera::setOrientation(q)
 
 void
 Camera::setDirection(x, y, z)
-    float x
-    float y
-    float z
+    Real x
+    Real y
+    Real z
 
 # Vector3 getDirection()
 # Vector3 getUp()

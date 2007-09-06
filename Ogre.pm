@@ -8,11 +8,12 @@ require Exporter;
 require DynaLoader;
 our @ISA = qw(Exporter DynaLoader);
 
-our $VERSION = '0.23';
+our $VERSION = '0.24';
 
 # use all files under Ogre/ - probably not a good idea
 use Ogre::Animation;
 use Ogre::AnimationState;
+use Ogre::AnimationStateSet;
 use Ogre::BillboardChain;
 use Ogre::BillboardSet;
 use Ogre::Camera;
@@ -26,6 +27,7 @@ use Ogre::Light;
 use Ogre::LogManager;
 use Ogre::ManualObject;
 use Ogre::MaterialManager;
+use Ogre::Matrix3;
 use Ogre::MeshManager;
 use Ogre::MeshPtr;
 use Ogre::MovableObject;
@@ -48,6 +50,7 @@ use Ogre::SceneManager;
 use Ogre::SceneNode;
 use Ogre::StaticGeometry;
 use Ogre::StringInterface;
+use Ogre::SubEntity;
 use Ogre::TextureManager;
 use Ogre::Vector3;
 use Ogre::Viewport;

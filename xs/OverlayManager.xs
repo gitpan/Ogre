@@ -28,7 +28,7 @@ OverlayManager::getViewportHeight()
 int
 OverlayManager::getViewportWidth()
 
-float
+Real
 OverlayManager::getViewportAspectRatio()
 
 OverlayElement *

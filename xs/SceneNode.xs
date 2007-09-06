@@ -5,7 +5,7 @@ MODULE = Ogre     PACKAGE = Ogre::SceneNode
 SceneNode *
 SceneNode::createChildSceneNode(...)
   CODE:
-// Alrighty then, here we go...
+    // Alrighty then, here we go...
 
     // 0 args passed, must not be 2nd version, so pass no args
     if (items == 1) {
@@ -121,9 +121,9 @@ SceneNode::setFixedYawAxis(useFixed, fixedAxis)
 
 void
 SceneNode::setDirection(x, y, z, relativeTo, localDirectionVector)
-    float  x
-    float  y
-    float  z
+    Real  x
+    Real  y
+    Real  z
     int    relativeTo
     Vector3 * localDirectionVector
   C_ARGS:

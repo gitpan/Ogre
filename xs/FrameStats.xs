@@ -6,28 +6,28 @@ MODULE = Ogre     PACKAGE = Ogre::RenderTarget::FrameStats
 
 ## These are "public attributes", not methods.
 
-#float
+#Real
 #FrameStats::lastFPS()
 #  CODE:
 #    RETVAL = (*THIS).lastFPS;
 #  OUTPUT:
 #    RETVAL
 #
-#float
+#Real
 #FrameStats::avgFPS()
 #  CODE:
 #    RETVAL = (*THIS).avgFPS;
 #  OUTPUT:
 #    RETVAL
 #
-#float
+#Real
 #FrameStats::bestFPS()
 #  CODE:
 #    RETVAL = (*THIS).bestFPS;
 #  OUTPUT:
 #    RETVAL
 #
-#float
+#Real
 #FrameStats::worstFPS()
 #  CODE:
 #    RETVAL = (*THIS).worstFPS;

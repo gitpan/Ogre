@@ -196,10 +196,10 @@ SceneManager::setSkyPlane(enable, plane, materialName, scale, tiling, drawFirst,
     bool    enable
     Plane * plane
     String  materialName
-    float   scale
-    float   tiling
+    Real   scale
+    Real   tiling
     bool    drawFirst
-    float   bow
+    Real   bow
     int     xsegments
     int     ysegments
     String  groupName
@@ -217,7 +217,7 @@ void
 SceneManager::setSkyBox(enable, materialName, distance, drawFirst, orientation, groupName)
     bool         enable
     String       materialName
-    float        distance
+    Real        distance
     bool         drawFirst
     Quaternion * orientation
     String       groupName
@@ -235,9 +235,9 @@ void
 SceneManager::setSkyDome(enable, materialName, curvature, tiling, distance, drawFirst, orientation, xsegments, ysegments, ysegments_keep, groupName)
     bool         enable
     String       materialName
-    float        curvature
-    float        tiling
-    float        distance
+    Real        curvature
+    Real        tiling
+    Real        distance
     bool         drawFirst
     Quaternion * orientation
     int          xsegments
@@ -258,9 +258,9 @@ void
 SceneManager::setFog(mode, colour, expDensity=0.001, linearStart=0.0, linearEnd=1.0)
     int           mode
     ColourValue * colour
-    float         expDensity
-    float         linearStart
-    float         linearEnd
+    Real         expDensity
+    Real         linearStart
+    Real         linearEnd
   C_ARGS:
     (FogMode)mode, *colour, expDensity, linearStart, linearEnd
 
@@ -269,13 +269,13 @@ SceneManager::getFogMode()
 
 # getFogColour()
 
-float
+Real
 SceneManager::getFogStart()
 
-float
+Real
 SceneManager::getFogEnd()
 
-float
+Real
 SceneManager::getFogDensity()
 
 BillboardSet *
@@ -309,7 +309,7 @@ SceneManager::getDisplaySceneNodes()
 Animation *
 SceneManager::createAnimation(name, length)
     String  name
-    float  length
+    Real  length
 
 Animation *
 SceneManager::getAnimation(name)
@@ -382,16 +382,16 @@ SceneManager::setShadowColour(colour)
 
 void
 SceneManager::setShadowDirectionalLightExtrusionDistance(dist)
-    float  dist
+    Real  dist
 
-float
+Real
 SceneManager::getShadowDirectionalLightExtrusionDistance()
 
 void 
 SceneManager::setShadowFarDistance(distance)
-    float  distance
+    Real  distance
 
-float
+Real
 SceneManager::getShadowFarDistance()
 
 void 

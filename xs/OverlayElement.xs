@@ -24,40 +24,40 @@ OverlayElement::setEnabled(b)
 
 void
 OverlayElement::setDimensions(width, height)
-    float  width
-    float  height
+    Real  width
+    Real  height
 
 void
 OverlayElement::setPosition(left, top)
-    float  left
-    float  top
+    Real  left
+    Real  top
 
 void
 OverlayElement::setWidth(width)
-    float  width
+    Real  width
 
 void
 OverlayElement::setHeight(height)
-    float  height
+    Real  height
 
 void
 OverlayElement::setLeft(left)
-    float  left
+    Real  left
 
 void
 OverlayElement::setTop(top)
-    float  top
+    Real  top
 
-float
+Real
 OverlayElement::getWidth()
 
-float
+Real
 OverlayElement::getHeight()
 
-float
+Real
 OverlayElement::getLeft()
 
-float
+Real
 OverlayElement::getTop()
 
 String
@@ -92,13 +92,13 @@ OverlayElement::setColour(col)
 
 bool
 OverlayElement::contains(x, y)
-    float  x
-    float  y
+    Real  x
+    Real  y
 
 OverlayElement *
 OverlayElement::findElementAt(x, y)
-    float  x
-    float  y
+    Real  x
+    Real  y
 
 bool
 OverlayElement::isContainer()
@@ -115,7 +115,7 @@ OverlayElement::getParent()
 unsigned short
 OverlayElement::getZOrder()
 
-float
+Real
 OverlayElement::getSquaredViewDepth(cam)
     Camera * cam
 

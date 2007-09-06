@@ -11,14 +11,14 @@ MeshManager::createPlane(name, groupName, plane, width, height, xsegments, ysegm
     String    name
     String    groupName
     Plane   * plane
-    float     width
-    float     height
+    Real     width
+    Real     height
     int       xsegments
     int       ysegments
     bool      normals
     int       numTexCoordSets
-    float     uTile
-    float     vTile
+    Real     uTile
+    Real     vTile
     Vector3 * upVector
   PREINIT:
     MeshPtr  mp;

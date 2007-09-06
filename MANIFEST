@@ -21,6 +21,7 @@ PerlOGREWindowEventListener.cpp
 
 xs/Animation.xs
 xs/AnimationState.xs
+xs/AnimationStateSet.xs
 xs/BillboardChain.xs
 xs/BillboardSet.xs
 xs/Camera.xs
@@ -36,6 +37,7 @@ xs/Light.xs
 xs/LogManager.xs
 xs/ManualObject.xs
 xs/MaterialManager.xs
+xs/Matrix3.xs
 xs/MeshManager.xs
 xs/MeshPtr.xs
 xs/MovableObject.xs
@@ -58,6 +60,7 @@ xs/SceneManager.xs
 xs/SceneNode.xs
 xs/StaticGeometry.xs
 xs/StringInterface.xs
+xs/SubEntity.xs
 xs/TextureManager.xs
 xs/Vector3.xs
 xs/Viewport.xs
@@ -65,6 +68,7 @@ xs/WindowEventUtilities.xs
 
 Ogre/Animation.pm
 Ogre/AnimationState.pm
+Ogre/AnimationStateSet.pm
 Ogre/BillboardChain.pm
 Ogre/BillboardSet.pm
 Ogre/Camera.pm
@@ -81,6 +85,7 @@ Ogre/Light.pm
 Ogre/LogManager.pm
 Ogre/ManualObject.pm
 Ogre/MaterialManager.pm
+Ogre/Matrix3.pm
 Ogre/MeshManager.pm
 Ogre/MeshPtr.pm
 Ogre/MovableObject.pm
@@ -104,6 +109,7 @@ Ogre/SceneManager.pm
 Ogre/SceneNode.pm
 Ogre/StaticGeometry.pm
 Ogre/StringInterface.pm
+Ogre/SubEntity.pm
 Ogre/TextureManager.pm
 Ogre/Vector3.pm
 Ogre/Viewport.pm
@@ -112,10 +118,20 @@ Ogre/WindowEventUtilities.pm
 examples/README.txt
 examples/resources.cfg
 examples/listeningninja.pl
+examples/itute1.pl
 examples/ninja.pl
 examples/robot.pl
 examples/tute3.pl
 examples/tute5.pl
 
+t/Ogre/TestBase.pm
 t/000_use.t
+t/100_vector3.t
+t/110_plane.t
+t/120_quaternion.t
+t/200_colourvalue.t
+t/210_degree.t
+t/220_radian.t
+t/300_configfile.t
+t/400_root.t
 META.yml                                 Module meta-data (added by MakeMaker)

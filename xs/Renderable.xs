@@ -1,6 +1,6 @@
 MODULE = Ogre     PACKAGE = Ogre::Renderable
 
-float
+Real
 Renderable::getSquaredViewDepth(cam)
     Camera * cam
 
