@@ -28,8 +28,13 @@ Here are brief descriptions of the examples.
 - listeningninja.pl: same cool ninja scene, but showing how to implement
   a FrameListener to handle user input (e.g. keyboard)
 
-- tute5.pl: demo of buffered input handling, this implements OGRE's
+- buffered.pl: demo of buffered input handling, this implements OGRE's
   "Basic Tutorial 5"
 
-- tute3.pl: demo of Terrain, Sky, and Fog, this implements OGRE's
+- sky.pl: demo of Terrain, Sky, and Fog, this implements OGRE's
   "Basic Tutorial 3"
+
+- animate.pl: watch the robot walk
+  (note: this is still a little incomplete, so the robot will "moonwalk"
+   once he reaches the first waypoint - I have to wrap a few more Node
+   and Quaternion methods, and fix some overloaded operators)

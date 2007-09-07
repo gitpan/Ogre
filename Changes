@@ -1,19 +1,23 @@
+0.25 2007-09-07 | animate.pl
+- added animate.pl example, which demos animation
+  (note: this is still a little incomplete)
+
 0.24 2007-09-06 | minor improvements
 - added typemap for Real and changed all occurrences of float to Real
   (which can be float or double)
 - added constructors, overloaded (bool) operators, tests to:
   ColourValue, ConfigFile, Degree, Plane, Quaternion, Radian, Vector3
 
-0.23 2007-09-04 | tute3.pl
+0.23 2007-09-04 | sky.pl
 - moved ExampleFrameListener and ExampleApplication packages from
-  examples/tute5.pl out under Ogre/ , so they can be used by other
+  examples/buffered.pl out under Ogre/ , so they can be used by other
   applications
-- added tute3.pl example, which implements OGRE's "Basic Tutorial 3"
+- added sky.pl example, which implements OGRE's "Basic Tutorial 3"
 - fixed unbuffered input in the Example* classes
 - wrapped a lot of SceneManager
 
-0.22 2007-09-02 | tute5.pl
-- added tute5.pl, which implements OGRE's "Basic Tutorial 5"
+0.22 2007-09-02 | buffered.pl
+- added buffered.pl, which implements OGRE's "Basic Tutorial 5"
 
 0.21 2007-09-01 |
 - added WindowEventListener functionality, though not "tested" yet

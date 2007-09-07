@@ -9,12 +9,29 @@ package MoveDemoListener;
 use strict;
 use warnings;
 
+BEGIN {
+    if (eval { require Readonly }) {
+        Readonly->import();
+    }
+    else {
+        die("Please install the 'Readonly' Perl module from CPAN.\n");
+    }
+}
+
 use Ogre::ExampleFrameListener;
 @MoveDemoListener::ISA = qw(Ogre::ExampleFrameListener);
 
-use Ogre 0.24;
+use Ogre 0.25;
 use Ogre::Quaternion;
 use Ogre::Vector3;
+
+# I made this readonly because I ended up accidentally
+# changing it (it's a reference) in a previous tutorial,
+# and chaos ensued. (Note: I hope to fix the constants in XS some day...)
+my $zerovec = Ogre::Vector3->new(0, 0, 0);
+Readonly my $ZERO => $zerovec;
+my $xvec = Ogre::Vector3->new(1, 0, 0);
+Readonly my $UNIT_X => $xvec;
 
 
 sub new {
@@ -24,42 +41,94 @@ sub new {
     my $self = bless $super, $pkg;
 
     $self->{mEntity} = $ent;    # The Entity we are animating
-    $self->{mSceneNode} = $sn;  # The SceneNode that the Entity is attached to
+    $self->{mNode} = $sn;       # The SceneNode that the Entity is attached to
     $self->{mWalkList} = $walk; # The list of points we are walking to
 
     $self->{mWalkSpeed} = 35;  # The speed at which the object is moving
     $self->{mDistance} = 0;    # The distance the object has left to travel
     # direction object is moving, and destination it's moving towards
-    $self->{mDirection}   = Ogre::Vector3->new(0, 0, 0);
-    $self->{mDestination} = Ogre::Vector3->new(0, 0, 0);
-
-
-    if (0) {
-        # set idle animation
-        $self->{mAnimationState} = $ent->getAnimationState("Idle");
-        $self->{mAnimationState}->setLoop(1);
-        $self->{mAnimationState}->setEnabled(1);
-    }
+    $self->{mDirection}   = $ZERO;
+    $self->{mDestination} = $ZERO;
 
     return $self;
 }
 
-# This function is called to start the object moving to the next position in mWalkList.
+# This is called to start the object moving to the next position in mWalkList.
 sub nextLocation {
+    my ($self) = @_;
+
+    # we're done, no where else to go
+    return 0 unless @{ $self->{mWalkList} };
+
+    # our next destination
+    $self->{mDestination} = shift @{ $self->{mWalkList} };
+
+    $self->{mDirection} = $self->{mDestination} - $self->{mNode}->getPosition();
+    $self->{mDistance} = $self->{mDirection}->normalise();
+
     return 1;
 }
 
 sub frameStarted {
     my ($self, $evt) = @_;
 
+    # if the robot's not moving
+    if ($self->{mDirection} == $ZERO) {    # comparing Vector3s is now possible!
+        # if there's another location to go to
+        if ($self->nextLocation()) {
+            # don't just stand there!
+            $self->setAnimationLoop('Walk');
+        }
+    }
+    # the robot's moving now
+    else {
+        my $move = $self->{mWalkSpeed} * $evt->timeSinceLastFrame;
+        $self->{mDistance} -= $move;
 
+        # if we'd overshoot the target, jump to it instead
+        if ($self->{mDistance} <= 0) {
+            # xxx: I need to wrap the other variations of `setPosition' ....
+            # $self->{mNode}->setPosition($self->{mDestination});
+            $self->{mNode}->setPosition($self->{mDestination}->x,
+                                        $self->{mDestination}->y,
+                                        $self->{mDestination}->z);
+            $self->{mDirection} = $ZERO;
 
+            # since we're at the destination, setup for next point
+            if (! $self->nextLocation()) {
+                # no more locations, so just act menacing
+                $self->setAnimationLoop('Idle');
+            }
+            else {
+                # rotate the robot
+
+                # XXX: need to implement this
+
+                #my $src = $self->{mNode}->getOrientation() * $UNIT_X;
+                #my $quat = $src->getRotationTo($self->{mDirection});
+                #$self->{mNode}->rotate($quat);
+            }
+        }
+        else {
+            # xxx: I need to wrap the other variations of `translate'
+            # $self->{mNode}->translate($self->{mDirection} * $move);
+            $self->{mNode}->translate($self->{mDirection}->x * $move,
+                                      $self->{mDirection}->y * $move,
+                                      $self->{mDirection}->z * $move);
+        }
+    }
 
     $self->{mAnimationState}->addTime($evt->timeSinceLastFrame);
-
     return $self->SUPER::frameStarted($evt);
 }
 
+sub setAnimationLoop {
+    my ($self, $state) = @_;
+
+    $self->{mAnimationState} = $self->{mEntity}->getAnimationState($state);
+    $self->{mAnimationState}->setLoop(1);
+    $self->{mAnimationState}->setEnabled(1);
+}
 
 package MoveDemoApplication;
 
@@ -69,7 +138,7 @@ use warnings;
 use Ogre::ExampleApplication;
 @MoveDemoApplication::ISA = qw(Ogre::ExampleApplication);
 
-use Ogre 0.24;
+use Ogre 0.25;
 use Ogre::Degree;
 use Ogre::ColourValue;
 use Ogre::Vector3;
@@ -143,7 +212,7 @@ sub createFrameListener {
                                                     $self->{mCamera},
                                                     $self->{mNode},
                                                     $self->{mEntity},
-                                                    $self->{mWalkList}
+                                                    $self->{mWalkList},
                                                 );
     $self->{mFrameListener}->showDebugOverlay(1);
     $self->{mRoot}->addFrameListener($self->{mFrameListener});

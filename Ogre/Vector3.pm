@@ -9,6 +9,10 @@ use overload
   '!=' => \&ne_xs,
   '<' => \&lt_xs,
   '>' => \&gt_xs,
+  '+' => \&plus_xs,
+  '-' => \&minus_xs,
+  '*' => \&mult_xs,
+  '/' => \&div_xs,
   ;
 
 

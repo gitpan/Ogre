@@ -1,4 +1,4 @@
-Perl-Ogre version 0.24
+Perl-Ogre version 0.25
 ======================
 
 This is a Perl binding for OGRE, Object-Oriented Graphics Rendering Engine,
@@ -41,13 +41,16 @@ I highly recommend going through them before trying this Perl wrapper.)
 The reason I recommend installing those libraries, is mainly just so
 you can run the (C++) tutorials.
 
-If you want to run most of scripts under examples/ , you'll need to
-install OIS ( http://search.cpan.org/ ). Note that there's apparently
-an incompatibility between versions 0.99_rc1 (which I have installed)
-and 1.0.0 of libois, in particular in xs/InputManager.xs you might
-get two methods failing to work: s/numJoysticks/numJoySticks/
-and s/numKeyBoards/numKeyboards/. I'll try to get that worked around
-soon.
+Some scripts under examples/ require these Perl modules:
+
+ - OIS
+ - Readonly
+ 
+Note for OIS: there's apparently an incompatibility between versions
+0.99_rc1 (which I have installed) and 1.0.0 of libois; in particular
+in OIS/xs/InputManager.xs you might get two methods failing to work:
+s/numJoysticks/numJoySticks/ and s/numKeyBoards/numKeyboards/.
+I'll try to get that worked around soon.
 
 
 INSTALLATION

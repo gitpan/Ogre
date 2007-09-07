@@ -134,6 +134,8 @@ sub keyPressed {
 
     # keyboard movement
     elsif ($key == OIS::Keyboard->KC_UP || $key == OIS::Keyboard->KC_W) {
+        # xxx: this is what I want:
+        # $self->{mDirection}{z} -= $self->{mMove};
         $self->{mDirection}->setZ($self->{mDirection}->z - $self->{mMove});
     }
     elsif ($key == OIS::Keyboard->KC_DOWN || $key == OIS::Keyboard->KC_S) {

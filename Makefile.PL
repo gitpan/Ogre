@@ -48,7 +48,10 @@ sub varied_args {
     return {
         'PREREQ_PM'         => {
             'Test::More' => 0,
-            # 'OIS' => 0.03,     # suggested
+
+            # these are required for some tutorials
+            # 'OIS' => 0.03,
+            # 'Readonly' => 0,
         },
         'INC'               => join(' ', @cflags),
         'LIBS'              => join(' ', @libs),

@@ -1,5 +1,23 @@
 Lots of stuff left to do....
 
+- No methods that return objects (instead of pointers)
+  have been wrapped. It's because I'm not sure if I handle
+  them right. For example, this method of SceneNode
+
+    const Vector3 &getPosition (void) const
+
+  returns a reference, not a pointer. Should I do this?
+
+  Vector3 *
+  SceneNode::getPosition()
+    CODE:
+      Vector3 *vec = new Vector3;
+      *vec = THIS->getPosition();
+      RETVAL = vec;
+    OUTPUT:
+      RETVAL
+
+  Does that leak memory?
 - Many methods are currently implemented awkwardly,
   some requiring more arguments than the C++ API even requires.
   XSUB arguments can have default values, but I had trouble getting

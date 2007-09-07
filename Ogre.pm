@@ -8,7 +8,7 @@ require Exporter;
 require DynaLoader;
 our @ISA = qw(Exporter DynaLoader);
 
-our $VERSION = '0.24';
+our $VERSION = '0.25';
 
 # use all files under Ogre/ - probably not a good idea
 use Ogre::Animation;

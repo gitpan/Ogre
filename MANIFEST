@@ -116,13 +116,13 @@ Ogre/Viewport.pm
 Ogre/WindowEventUtilities.pm
 
 examples/README.txt
-examples/resources.cfg
+examples/animate.pl
+examples/buffered.pl
 examples/listeningninja.pl
-examples/itute1.pl
 examples/ninja.pl
+examples/resources.cfg
 examples/robot.pl
-examples/tute3.pl
-examples/tute5.pl
+examples/sky.pl
 
 t/Ogre/TestBase.pm
 t/000_use.t

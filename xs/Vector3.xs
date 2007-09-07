@@ -67,6 +67,30 @@ eq_xs(lobj, robj, swap)
   OUTPUT:
     RETVAL
 
+# xxx: this is incomplete (no mult by Real, for example)
+# +, -
+Vector3 *
+plus_xs(lobj, robj, swap)
+    Vector3 * lobj
+    Vector3 * robj
+    IV        swap
+  ALIAS:
+    minus_xs = 1
+    mult_xs = 2
+    div_xs = 3
+  PREINIT:
+    Vector3 *vec = new Vector3;
+  CODE:
+    switch(ix) {
+        case 0: *vec = *lobj + *robj; break;
+        case 1: *vec = swap ? (*robj - *lobj) : (*lobj - *robj); break;
+        case 2: *vec = *lobj * *robj; break;
+        case 3: *vec = swap ? (*robj / *lobj) : (*lobj / *robj); break;
+    }
+    RETVAL = vec;
+  OUTPUT:
+    RETVAL
+
 
 ## xxx: it would be nice to be able to do this: $v->{x} = 20;
 ## but how is that done (the object is a pointer to a C++ object,

@@ -49,7 +49,17 @@ Node *
 Node::getParent()
 
 # Quaternion & getOrientation()
+Quaternion *
+Node::getOrientation()
+  CODE:
+    // xxx?
+    Quaternion *q = new Quaternion;
+    *q = THIS->getOrientation();
+    RETVAL = q;
+  OUTPUT:
+    RETVAL
 
+# xxx: missing the quaternion version
 void
 Node::setOrientation(w, x, y, z)
     Real  w
@@ -65,6 +75,16 @@ Node::setPosition(x, y, z)
     Real  x
     Real  y
     Real  z
+
+Vector3 *
+Node::getPosition()
+  CODE:
+    // xxx?
+    Vector3 *vec = new Vector3;
+    *vec = THIS->getPosition();
+    RETVAL = vec;
+  OUTPUT:
+    RETVAL
 
 void
 Node::setScale(x, y, z)
@@ -87,12 +107,16 @@ bool
 Node::getInheritScale()
 
 ## there are 4 versions of this one...
+# void translate(const Vector3 &d, TransformSpace relativeTo=TS_PARENT)
+# void translate(Real x, Real y, Real z, TransformSpace relativeTo=TS_PARENT)
+# void translate(const Matrix3 &axes, const Vector3 &move, TransformSpace relativeTo=TS_PARENT)
+# void translate(const Matrix3 &axes, Real x, Real y, Real z, TransformSpace relativeTo=TS_PARENT)
 void
 Node::translate(x, y, z, relativeTo=Node::TS_PARENT)
     Real  x
     Real  y
     Real  z
-    int    relativeTo
+    int   relativeTo
   C_ARGS:
     x, y, z, (Ogre::Node::TransformSpace)relativeTo
 
