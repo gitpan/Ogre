@@ -12,9 +12,26 @@
 if (sv_isobject(arg) && sv_derived_from(arg, "Ogre::" #pkg)) { \
 		var = (type) SvIV((SV *) SvRV(arg)); \
 	} else { \
-		warn(#package "::" #func "():" #var " is not an Ogre::" #pkg " object"); \
-		XSRETURN_UNDEF; \
+		croak(#package "::" #func "():" #var " is not an Ogre::" #pkg " object\n"); \
 	}
+
+// typedef for handling Degree or Radian input parameters
+typedef Ogre::Radian DegRad;
+
+#define TMOGRE_DEGRAD_IN(arg, var, package, func) \
+	Radian rad_ ## var; \
+	if (sv_isobject(arg) && sv_derived_from(arg, "Ogre::Radian")) { \
+		var = (Radian *) SvIV((SV *) SvRV(arg)); \
+	} \
+	else if (sv_isobject(arg) && sv_derived_from(arg, "Ogre::Degree")) { \
+		Degree * degptr_ ## var = (Degree *) SvIV((SV *) SvRV(arg)); \
+		rad_ ## var = * degptr_ ## var; \
+		var = &rad_ ## var; \
+	} else { \
+		croak(#package "::" #func "():" #var " is not a Degree or Radian object\n"); \
+	}
+
+
 
 // for C++
 #ifdef __cplusplus

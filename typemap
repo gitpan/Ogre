@@ -8,6 +8,7 @@ BillboardSet *	O_BILLBOARDSET
 Camera *	O_CAMERA
 ColourValue *	O_COLOURVALUE
 ConfigFile *	O_CONFIGFILE
+DegRad *	O_DEGRAD
 Degree *	O_DEGREE
 Entity *	O_ENTITY
 Frustum *	O_FRUSTUM
@@ -61,7 +62,10 @@ STRING
 	$var = xstmpchr_$var;
 
 T_REAL
-	$var = (Real)SvNV($arg)
+	$var = (Real)SvNV($arg);
+
+O_DEGRAD
+	TMOGRE_DEGRAD_IN($arg, $var, $Package, $func_name)
 
 O_ANIMATION
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, Animation)

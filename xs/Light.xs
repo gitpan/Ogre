@@ -36,8 +36,8 @@ Light::setDirection(x, y, z)
 
 void
 Light::setSpotlightRange(innerAngle, outerAngle, falloff=1.0)
-    Degree * innerAngle
-    Degree * outerAngle
+    DegRad * innerAngle
+    DegRad * outerAngle
     Real  falloff
   C_ARGS:
     *innerAngle, *outerAngle, falloff

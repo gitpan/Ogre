@@ -104,7 +104,7 @@ sub frameStarted {
 
                 # XXX: need to implement this
 
-                #my $src = $self->{mNode}->getOrientation() * $UNIT_X;
+                my $src = $self->{mNode}->getOrientation();     # * $UNIT_X;
                 #my $quat = $src->getRotationTo($self->{mDirection});
                 #$self->{mNode}->rotate($quat);
             }

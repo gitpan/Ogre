@@ -63,7 +63,7 @@ Overlay::scroll(xoff, yoff)
 
 void
 Overlay::setRotate(angle)
-    Degree * angle
+    DegRad * angle
   C_ARGS:
     *angle
 
@@ -71,7 +71,7 @@ Overlay::setRotate(angle)
 
 void
 Overlay::rotate(angle)
-    Degree * angle
+    DegRad * angle
   C_ARGS:
     *angle
 

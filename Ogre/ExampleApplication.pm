@@ -213,3 +213,32 @@ sub loadResources {
 
 
 1;
+
+__END__
+=head1 NAME
+
+Ogre::ExampleApplication
+
+=head1 SYNOPSIS
+
+  package MyApplication;
+
+  use Ogre::ExampleApplication;
+  @ISA = qw(Ogre::ExampleApplication);
+
+  # override methods...
+
+=head1 DESCRIPTION
+
+This is a port of OGRE's F<Samples/Common/include/ExampleApplication.h>.
+As the name implies, it's an example of how to do things. You can subclass
+it to customize it how you want. See the examples referred to in
+F<examples/README.txt>.
+
+=head1 AUTHOR
+
+Scott Lanning E<lt>slanning@cpan.orgE<gt>
+
+For licensing information, see README.txt .
+
+=cut

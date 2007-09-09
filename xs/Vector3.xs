@@ -36,16 +36,15 @@ void
 Vector3::DESTROY()
 
 
-### overloaded ops, perldoc perlxs
+## overloaded ops, perldoc perlxs
 #bool
-#cmp(lobj, robj, swap)
+#Vector3::cmp(lobj, robj, swap)
 #    Vector3 * lobj
 #    Vector3 * robj
 #    IV        swap
 #  OVERLOAD: ==
-#  {
-#      RETVAL = (*lobj == *robj);
-#  }
+#    RETVAL = (*lobj == *robj);
+
 
 # ==, !=, <, >
 bool

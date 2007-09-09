@@ -1,11 +1,9 @@
 MODULE = Ogre     PACKAGE = Ogre::Node
 
-## Note: Radian is interchangeable with Degree
-
 ## void roll(const Radian &angle, TransformSpace relativeTo=Node::TS_LOCAL)
 void
 Node::roll(angle, relativeTo=Node::TS_LOCAL)
-    Degree * angle
+    DegRad * angle
     int relativeTo
   C_ARGS:
     *angle, (Ogre::Node::TransformSpace)relativeTo
@@ -13,7 +11,7 @@ Node::roll(angle, relativeTo=Node::TS_LOCAL)
 ## void pitch(const Radian &angle, TransformSpace relativeTo=Node::TS_LOCAL)
 void
 Node::pitch(angle, relativeTo=Node::TS_LOCAL)
-    Degree * angle
+    DegRad * angle
     int relativeTo
   C_ARGS:
     *angle, (Ogre::Node::TransformSpace)relativeTo
@@ -21,7 +19,7 @@ Node::pitch(angle, relativeTo=Node::TS_LOCAL)
 ## void yaw(const Radian &angle, TransformSpace relativeTo=Node::TS_LOCAL)
 void
 Node::yaw(angle, relativeTo=Node::TS_LOCAL)
-    Degree * angle
+    DegRad * angle
     int relativeTo
   C_ARGS:
     *angle, (Ogre::Node::TransformSpace)relativeTo
@@ -37,7 +35,7 @@ Node::scale(x, y, z)
 void
 Node::rotate(axis, angle, relativeTo=Node::TS_LOCAL)
     Vector3 * axis
-    Degree *  angle
+    DegRad *  angle
     int       relativeTo
   C_ARGS:
     *axis, *angle, (Ogre::Node::TransformSpace)relativeTo
@@ -130,7 +128,7 @@ unsigned short
 Node::numChildren()
 
 # 2 versions..
-void
+Node *
 Node::getChild(name)
     String  name
 
@@ -142,6 +140,14 @@ Node::removeChild(name)
 void
 Node::removeAllChildren()
 
+# ...
+
+static void
+Node::queueNeedUpdate(n)
+    Node * n
+
+static void
+Node::processQueuedUpdates()
 
 
 ## TransformSpace enum

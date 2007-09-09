@@ -49,19 +49,19 @@ Camera::move(vec)
 
 void
 Camera::roll(angle)
-    Degree * angle
+    DegRad * angle
   C_ARGS:
     *angle
 
 void
 Camera::yaw(angle)
-    Degree * angle
+    DegRad * angle
   C_ARGS:
     *angle
 
 void
 Camera::pitch(angle)
-    Degree * angle
+    DegRad * angle
   C_ARGS:
     *angle
 

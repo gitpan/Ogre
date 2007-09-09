@@ -47,3 +47,355 @@ our @EXPORT = ();
 
 
 1;
+
+__END__
+=head1 NAME
+
+Ogre::Vector3
+
+=head1 SYNOPSIS
+
+  use Ogre;
+  use Ogre::Vector3;
+  # (for now see examples/README.txt)
+
+=head1 DESCRIPTION
+
+See the online API documentation at
+ L<http://www.ogre3d.org/docs/api/html/classOgre_1_1Vector3.html>
+
+B<Note:> this Perl binding is currently I<experimental> and subject to API changes.
+
+=head1 CLASS METHODS
+
+=head2 Ogre::Vector3->new(...)
+
+I<Parameter types>
+
+=over
+
+=item ... : this varies... (sorry, look in the .xs file)
+
+=back
+
+I<Returns>
+
+=over
+
+=item Vector3 *
+
+=back
+
+=head2 Ogre::Vector3->B<DESTROY>()
+
+This method is called automatically, don't call it yourself.
+
+=head2 \&B<eq_xs>
+
+This is an operator overload method, don't call it yourself.
+
+=head2 \&B<plus_xs>
+
+This is an operator overload method, don't call it yourself.
+
+=head1 INSTANCE METHODS
+
+=head2 $obj->x()
+
+I<Returns>
+
+=over
+
+=item Real
+
+=back
+
+=head2 $obj->y()
+
+I<Returns>
+
+=over
+
+=item Real
+
+=back
+
+=head2 $obj->z()
+
+I<Returns>
+
+=over
+
+=item Real
+
+=back
+
+=head2 $obj->setX($x)
+
+I<Parameter types>
+
+=over
+
+=item $x : Real
+
+=back
+
+I<Returns>
+
+=over
+
+=item void
+
+=back
+
+=head2 $obj->setY($y)
+
+I<Parameter types>
+
+=over
+
+=item $y : Real
+
+=back
+
+I<Returns>
+
+=over
+
+=item void
+
+=back
+
+=head2 $obj->setZ($z)
+
+I<Parameter types>
+
+=over
+
+=item $z : Real
+
+=back
+
+I<Returns>
+
+=over
+
+=item void
+
+=back
+
+=head2 $obj->length()
+
+I<Returns>
+
+=over
+
+=item Real
+
+=back
+
+=head2 $obj->squaredLength()
+
+I<Returns>
+
+=over
+
+=item Real
+
+=back
+
+=head2 $obj->distance($rhs)
+
+I<Parameter types>
+
+=over
+
+=item $rhs : Vector3 *
+
+=back
+
+I<Returns>
+
+=over
+
+=item Real
+
+=back
+
+=head2 $obj->squaredDistance($rhs)
+
+I<Parameter types>
+
+=over
+
+=item $rhs : Vector3 *
+
+=back
+
+I<Returns>
+
+=over
+
+=item Real
+
+=back
+
+=head2 $obj->dotProduct($vec)
+
+I<Parameter types>
+
+=over
+
+=item $vec : Vector3 *
+
+=back
+
+I<Returns>
+
+=over
+
+=item Real
+
+=back
+
+=head2 $obj->absDotProduct($vec)
+
+I<Parameter types>
+
+=over
+
+=item $vec : Vector3 *
+
+=back
+
+I<Returns>
+
+=over
+
+=item Real
+
+=back
+
+=head2 $obj->normalise()
+
+I<Returns>
+
+=over
+
+=item Real
+
+=back
+
+=head2 $obj->makeFloor($cmp)
+
+I<Parameter types>
+
+=over
+
+=item $cmp : Vector3 *
+
+=back
+
+I<Returns>
+
+=over
+
+=item void
+
+=back
+
+=head2 $obj->makeCeil($cmp)
+
+I<Parameter types>
+
+=over
+
+=item $cmp : Vector3 *
+
+=back
+
+I<Returns>
+
+=over
+
+=item void
+
+=back
+
+=head2 $obj->isZeroLength()
+
+I<Returns>
+
+=over
+
+=item bool
+
+=back
+
+=head2 $obj->positionEquals($rhs, $tolerance=0.001)
+
+I<Parameter types>
+
+=over
+
+=item $rhs : Vector3 *
+
+=item $tolerance=0.001 : Real
+
+=back
+
+I<Returns>
+
+=over
+
+=item bool
+
+=back
+
+=head2 $obj->positionCloses($rhs, $tolerance=0.001)
+
+I<Parameter types>
+
+=over
+
+=item $rhs : Vector3 *
+
+=item $tolerance=0.001 : Real
+
+=back
+
+I<Returns>
+
+=over
+
+=item bool
+
+=back
+
+=head2 $obj->directionEquals($rhs, $tolerance)
+
+I<Parameter types>
+
+=over
+
+=item $rhs : Vector3 *
+
+=item $tolerance : Radian *
+
+=back
+
+I<Returns>
+
+=over
+
+=item bool
+
+=back
+
+=head1 AUTHOR
+
+Scott Lanning E<lt>slanning@cpan.orgE<gt>
+
+For licensing information, see README.txt .
+
+=cut

@@ -1,6 +1,13 @@
+0.26 2007-09-09 | documentation
+- added some documentation (and gendocs.pl script which generates it)
+- added DegRad typemap to handle both Degree or Radian types,
+  so now Degree and Radian are interchangeable like in the C++ API
+  (and wrapping those methods is simpler :)
+
 0.25 2007-09-07 | animate.pl
 - added animate.pl example, which demos animation
-  (note: this is still a little incomplete)
+  (note: this is still a little incomplete, so the robot moonwalks
+   part of the way)
 
 0.24 2007-09-06 | minor improvements
 - added typemap for Real and changed all occurrences of float to Real

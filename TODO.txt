@@ -35,7 +35,7 @@ Lots of stuff left to do....
    passed in. But having three different XSUBs, now you have to
    also implement the CODE and OUTPUT section for each one...
    Doing this hundreds of times gets tedious.)
-- Operator overloading hasn't been implemented yet.
+- Some operator overloading hasn't been implemented yet.
 - There's a problem similar to operator overloading: Vector3 has
   'x', 'y', and 'z' "public attributes", which would ideally be
   exposed in Perl like $v->{x} = 23, etc., but I don't see how
@@ -51,3 +51,6 @@ Lots of stuff left to do....
   the API docs, there are 541 classes; I'm not sure how many of
   those are actually useful to wrap, though. Things like Ogre::Singleton<T>
   or Ogre::SharedPtr<T> probably don't make sense to wrap...
+- All the modules are loaded from Ogre.pm and Ogre.xs, and the number
+  of modules is increasing.... Need to look at getting them to load
+  only when used.

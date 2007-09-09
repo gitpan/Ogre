@@ -64,7 +64,7 @@ sub createScene {
 
 
     # select which scene you want to show
-    my $sky = 'box';
+    my $sky = 'dome';
 
     # (note: unfortunately for now all the args are required to these setSky* methods)
     if ($sky eq 'box') {

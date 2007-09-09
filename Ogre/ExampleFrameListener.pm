@@ -397,3 +397,37 @@ sub frameEnded {
 
 
 1;
+
+__END__
+=head1 NAME
+
+Ogre::ExampleFrameListener
+
+=head1 SYNOPSIS
+
+  package MyFrameListener;
+
+  use Ogre::ExampleFrameListener;
+  @ISA = qw(Ogre::ExampleFrameListener);
+
+  # override methods...
+
+  package MyApplication;
+
+  # ...
+
+  my $framelistener = MyFrameListener->new();
+  $root->addFrameListener($framelistener);
+
+=head1 DESCRIPTION
+
+This is a port of OGRE's F<Samples/Common/include/ExampleFrameListener.h>.
+See the examples referred to in F<examples/README.txt>.
+
+=head1 AUTHOR
+
+Scott Lanning E<lt>slanning@cpan.orgE<gt>
+
+For licensing information, see README.txt .
+
+=cut

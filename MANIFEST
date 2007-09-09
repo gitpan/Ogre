@@ -3,6 +3,7 @@ README.txt
 TODO.txt
 Changes
 Makefile.PL
+gendocs.pl
 
 typemap
 perlobject.map

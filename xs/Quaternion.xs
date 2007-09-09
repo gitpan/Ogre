@@ -37,18 +37,9 @@ Quaternion::new(...)
         else if (sv_isobject(ST(2)) && sv_derived_from(ST(2), "Ogre::Vector3")) {
             Vector3 *v = (Vector3 *) SvIV((SV *) SvRV(ST(2)));
 
-            // either Degree or Radian works
-            if (sv_isobject(ST(1)) && sv_derived_from(ST(1), "Ogre::Radian")) {
-                Radian *r = (Radian *) SvIV((SV *) SvRV(ST(1)));   // TMOGRE_IN
-                RETVAL = new Quaternion(*r, *v);
-            }
-            else if (sv_isobject(ST(1)) && sv_derived_from(ST(1), "Ogre::Degree")) {
-                Degree *d = (Degree *) SvIV((SV *) SvRV(ST(1)));   // TMOGRE_IN
-                RETVAL = new Quaternion(*d, *v);
-            }
-            else {
-                croak(usage);
-            }
+            DegRad * rfAngle;
+            TMOGRE_DEGRAD_IN(ST(1), rfAngle, Ogre::Quaternion, new);
+            RETVAL = new Quaternion(*rfAngle, *v);
         }
         else {
             croak(usage);
@@ -113,3 +104,130 @@ eq_xs(lobj, robj, swap)
 
 
 # ....
+
+
+void
+Quaternion::FromRotationMatrix(kRot)
+    Matrix3 * kRot
+  C_ARGS:
+    *kRot
+
+void
+Quaternion::ToRotationMatrix(kRot)
+    Matrix3 * kRot
+  C_ARGS:
+    *kRot
+
+void
+Quaternion::FromAngleAxis(rfAngle, rkAxis)
+    DegRad * rfAngle
+    Vector3 * rkAxis
+  C_ARGS:
+    *rfAngle, *rkAxis
+
+void
+Quaternion::ToAngleAxis(rfAngle, rkAxis)
+    DegRad * rfAngle
+    Vector3 * rkAxis
+  C_ARGS:
+    *rfAngle, *rkAxis
+
+void
+Quaternion::FromAxes(xAxis, yAxis, zAxis)
+    Vector3 * xAxis
+    Vector3 * yAxis
+    Vector3 * zAxis
+  C_ARGS:
+    *xAxis, *yAxis, *zAxis
+
+void
+Quaternion::ToAxes(xAxis, yAxis, zAxis)
+    Vector3 * xAxis
+    Vector3 * yAxis
+    Vector3 * zAxis
+  C_ARGS:
+    *xAxis, *yAxis, *zAxis
+
+# xAxis, yAxis, zAxis...
+
+Real
+Quaternion::Dot(rkQ)
+    Quaternion * rkQ
+  C_ARGS:
+    *rkQ
+
+Real
+Quaternion::Norm()
+
+Real
+Quaternion::normalise()
+
+# getRoll, getPitch, getYaw...
+
+bool
+Quaternion::equals(rhs, tolerance)
+    Quaternion * rhs
+    DegRad * tolerance
+  C_ARGS:
+    *rhs, *tolerance
+
+
+# ...
+
+
+
+## xxx: it would be nice to be able to do this: $v->{x} = 20;
+## but how is that done (the object is a pointer to a C++ object,
+## not a hash). For now, we have this gimpy interface with setX, etc.
+
+Real
+Quaternion::w()
+  CODE:
+    RETVAL = (*THIS).w;
+  OUTPUT:
+    RETVAL
+
+Real
+Quaternion::x()
+  CODE:
+    RETVAL = (*THIS).x;
+  OUTPUT:
+    RETVAL
+
+Real
+Quaternion::y()
+  CODE:
+    RETVAL = (*THIS).y;
+  OUTPUT:
+    RETVAL
+
+Real
+Quaternion::z()
+  CODE:
+    RETVAL = (*THIS).z;
+  OUTPUT:
+    RETVAL
+
+void
+Quaternion::setW(w)
+    Real  w
+  CODE:
+    (*THIS).w = w;
+
+void
+Quaternion::setX(x)
+    Real  x
+  CODE:
+    (*THIS).x = x;
+
+void
+Quaternion::setY(y)
+    Real  y
+  CODE:
+    (*THIS).y = y;
+
+void
+Quaternion::setZ(z)
+    Real  z
+  CODE:
+    (*THIS).z = z;
