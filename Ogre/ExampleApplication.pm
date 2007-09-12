@@ -3,7 +3,7 @@ package Ogre::ExampleApplication;
 use strict;
 use warnings;
 
-use Ogre 0.22;
+use Ogre 0.27 qw(:SceneType);
 use Ogre::ColourValue;
 use Ogre::Root;
 use Ogre::SceneManager;
@@ -121,7 +121,7 @@ sub chooseSceneManager {
     my ($self) = @_;
 
     # Create the SceneManager, in this case a generic one
-    $self->{mSceneMgr} = $self->{mRoot}->createSceneManager(Ogre::SceneManager->ST_GENERIC,
+    $self->{mSceneMgr} = $self->{mRoot}->createSceneManager(ST_GENERIC,
                                                             "ExampleSMInstance");
 }
 

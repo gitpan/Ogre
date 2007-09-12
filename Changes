@@ -1,3 +1,11 @@
+0.27 2007-09-12 | constants
+- API CHANGE: fixed constants, adding all enums (and genconsts.pl script);
+  now you export them normally, not call as static methods.
+  Some export tags changed, too; they're all named after the corresponding
+  enum's name now. (Note: OIS constants are still "broken".)
+  Thanks to Vladimir Olenin for pointing me to `gccxml`, which was used
+  in parsing the C++ headers.
+
 0.26 2007-09-09 | documentation
 - added some documentation (and gendocs.pl script which generates it)
 - added DegRad typemap to handle both Degree or Radian types,

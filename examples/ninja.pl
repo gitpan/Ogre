@@ -25,16 +25,16 @@ sub main {
 
 package Application;
 
-use Ogre 0.20;   # won't work with 0.1
+use Ogre 0.27 qw(:SceneType :ShadowTechnique);
 use Ogre::ConfigFile;
 use Ogre::ColourValue;
 use Ogre::Degree;
-use Ogre::Light qw(:lighttypes);
-use Ogre::Node qw(:transformspace);
+use Ogre::Light qw(:LightTypes);
+use Ogre::Node qw(:TransformSpace);
 use Ogre::Plane;
 use Ogre::Root;
-use Ogre::ResourceGroupManager qw(:groupnames);
-use Ogre::SceneManager qw(:scenetype :ShadowTechnique);
+use Ogre::ResourceGroupManager qw(:GroupName);
+use Ogre::SceneManager;
 use Ogre::Vector3;
 
 use OIS;
@@ -141,7 +141,7 @@ sub setupScene {
 
     my $root = $self->{root};
 
-    my $mgr = $root->createSceneManager(&ST_GENERIC, 'Default SceneManager');
+    my $mgr = $root->createSceneManager(ST_GENERIC, 'Default SceneManager');
 
     my $cam = $mgr->createCamera('Camera');
     $cam->setPosition(400, 150, 150);
@@ -156,7 +156,7 @@ sub setupScene {
     $cam->setAspectRatio($vp->getActualWidth / $vp->getActualHeight);
 
     $mgr->setAmbientLight(Ogre::ColourValue->new(0, 0, 0, 1));
-    $mgr->setShadowTechnique(&SHADOWTYPE_STENCIL_ADDITIVE);
+    $mgr->setShadowTechnique(SHADOWTYPE_STENCIL_ADDITIVE);
 
     # note: more meshes are in Samples/Media/models/ ,
     # though obviously none as cool as the ninja
@@ -168,7 +168,7 @@ sub setupScene {
     my $plane = Ogre::Plane->new(Ogre::Vector3->new(0, 1, 0), 0);
     my $meshmgr = Ogre::MeshManager->getSingletonPtr();
     $meshmgr->createPlane("ground",
-                          &DEFAULT_RESOURCE_GROUP_NAME,
+                          DEFAULT_RESOURCE_GROUP_NAME,
                           $plane, 1500, 1500, 20, 20, 1, 1, 5, 5,
                           Ogre::Vector3->new(0, 0, 1));
     $ent = $mgr->createEntity("GroundEntity", "ground");
@@ -178,23 +178,23 @@ sub setupScene {
 
     # xxx: annoying, C++ API has "relativeTo" value optional
     # xxx: also have to use Degree instead of Radian
-    $node1->yaw(Ogre::Degree->new(-150), &TS_LOCAL);
-    $node1->pitch(Ogre::Degree->new(-10), &TS_LOCAL);
+    $node1->yaw(Ogre::Degree->new(-150), TS_LOCAL);
+    $node1->pitch(Ogre::Degree->new(-10), TS_LOCAL);
 
     my $light = $mgr->createLight("Light1");
-    $light->setType(&LT_POINT);
+    $light->setType(LT_POINT);
     $light->setPosition(0, 150, 250);
     $light->setDiffuseColour(1.0, 0.0, 0.0);
     $light->setSpecularColour(1.0, 0.0, 0.0);
 
     $light = $mgr->createLight("Light3");
-    $light->setType(&LT_DIRECTIONAL);
+    $light->setType(LT_DIRECTIONAL);
     $light->setDiffuseColour(0.25, 0.25, 0.0);
     $light->setSpecularColour(0.25, 0.25, 0.0);
     $light->setDirection(0, -1, 1);
 
     $light = $mgr->createLight("Light2");
-    $light->setType(&LT_SPOTLIGHT);
+    $light->setType(LT_SPOTLIGHT);
     $light->setDiffuseColour(0, 0, 1);
     $light->setSpecularColour(0, 0, 1);
     $light->setDirection(-1, -1, 0);

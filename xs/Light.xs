@@ -41,19 +41,3 @@ Light::setSpotlightRange(innerAngle, outerAngle, falloff=1.0)
     Real  falloff
   C_ARGS:
     *innerAngle, *outerAngle, falloff
-
-
-## LightTypes enum
-static int
-Light::LT_POINT()
-  ALIAS:
-    Ogre::Light::LT_DIRECTIONAL = 1
-    Ogre::Light::LT_SPOTLIGHT = 2
-  CODE:
-    switch (ix) {
-        case 0: RETVAL = Ogre::Light::LT_POINT; break;
-        case 1: RETVAL = Ogre::Light::LT_DIRECTIONAL; break;
-        case 2: RETVAL = Ogre::Light::LT_SPOTLIGHT; break;
-    }
-  OUTPUT:
-    RETVAL

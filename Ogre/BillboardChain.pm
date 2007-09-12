@@ -8,6 +8,22 @@ use Ogre::Renderable;
 our @ISA = qw(Ogre::MovableObject Ogre::Renderable);
 
 
+########## GENERATED CONSTANTS BEGIN
+require Exporter;
+unshift @Ogre::BillboardChain::ISA, 'Exporter';
+
+our %EXPORT_TAGS = (
+	'TexCoordDirection' => [qw(
+		TCD_U
+		TCD_V
+	)],
+);
+
+$EXPORT_TAGS{'all'} = [ map { @{ $EXPORT_TAGS{$_} } } keys %EXPORT_TAGS ];
+our @EXPORT_OK = @{ $EXPORT_TAGS{'all'} };
+our @EXPORT = ();
+########## GENERATED CONSTANTS END
+
 1;
 
 __END__

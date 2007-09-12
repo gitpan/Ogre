@@ -4,6 +4,27 @@ use strict;
 use warnings;
 
 
+########## GENERATED CONSTANTS BEGIN
+require Exporter;
+unshift @Ogre::RenderTarget::ISA, 'Exporter';
+
+our %EXPORT_TAGS = (
+	'StatFlags' => [qw(
+		SF_NONE
+		SF_FPS
+		SF_AVG_FPS
+		SF_BEST_FPS
+		SF_WORST_FPS
+		SF_TRIANGLE_COUNT
+		SF_ALL
+	)],
+);
+
+$EXPORT_TAGS{'all'} = [ map { @{ $EXPORT_TAGS{$_} } } keys %EXPORT_TAGS ];
+our @EXPORT_OK = @{ $EXPORT_TAGS{'all'} };
+our @EXPORT = ();
+########## GENERATED CONSTANTS END
+
 1;
 
 __END__

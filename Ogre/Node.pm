@@ -5,23 +5,25 @@ use warnings;
 
 use Ogre::Renderable;
 require Exporter;
-our @ISA = qw(Exporter Ogre::Renderable);
+our @ISA = qw(Ogre::Renderable);
+
+
+########## GENERATED CONSTANTS BEGIN
+require Exporter;
+unshift @Ogre::Node::ISA, 'Exporter';
 
 our %EXPORT_TAGS = (
-    'transformspace' => [
-        qw(
-           TS_LOCAL
-           TS_PARENT
-           TS_WORLD
-       )
-    ],
+	'TransformSpace' => [qw(
+		TS_LOCAL
+		TS_PARENT
+		TS_WORLD
+	)],
 );
 
 $EXPORT_TAGS{'all'} = [ map { @{ $EXPORT_TAGS{$_} } } keys %EXPORT_TAGS ];
-
 our @EXPORT_OK = @{ $EXPORT_TAGS{'all'} };
 our @EXPORT = ();
-
+########## GENERATED CONSTANTS END
 
 1;
 

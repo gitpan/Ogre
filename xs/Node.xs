@@ -148,19 +148,3 @@ Node::queueNeedUpdate(n)
 
 static void
 Node::processQueuedUpdates()
-
-
-## TransformSpace enum
-static int
-Node::TS_LOCAL()
-  ALIAS:
-    Ogre::Node::TS_PARENT = 1
-    Ogre::Node::TS_WORLD = 2
-  CODE:
-    switch (ix) {
-        case 0: RETVAL = Ogre::Node::TS_LOCAL; break;
-        case 1: RETVAL = Ogre::Node::TS_PARENT; break;
-        case 2: RETVAL = Ogre::Node::TS_WORLD; break;
-    }
-  OUTPUT:
-    RETVAL

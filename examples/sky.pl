@@ -13,18 +13,18 @@ use warnings;
 use Ogre::ExampleApplication;
 @TutorialApplication::ISA = qw(Ogre::ExampleApplication);
 
-use Ogre 0.23;
+use Ogre 0.27 qw(:SceneType :FogMode);
 use Ogre::ColourValue;
 use Ogre::Plane;
-use Ogre::ResourceGroupManager qw(:groupnames);
-use Ogre::SceneManager qw(:scenetype);
+use Ogre::ResourceGroupManager qw(:GroupName);
+use Ogre::SceneManager;
 use Ogre::Quaternion;
 use Ogre::Vector3;
 
 
 sub chooseSceneManager {
     my ($self) = @_;
-    $self->{mSceneMgr} = $self->{mRoot}->createSceneManager(Ogre::SceneManager->ST_EXTERIOR_CLOSE,
+    $self->{mSceneMgr} = $self->{mRoot}->createSceneManager(ST_EXTERIOR_CLOSE,
                                                             "Tute3");
 }
 
@@ -44,17 +44,17 @@ sub createScene {
 
         if ($fog eq 'linear') {
             if ($darkfog) {
-                $mgr->setFog(Ogre->FOG_LINEAR, $fadeColour, 0.0, 10, 150);
+                $mgr->setFog(FOG_LINEAR, $fadeColour, 0.0, 10, 150);
             }
             else {
-                $mgr->setFog(Ogre->FOG_LINEAR, $fadeColour, 0.0, 50, 500);
+                $mgr->setFog(FOG_LINEAR, $fadeColour, 0.0, 50, 500);
             }
         }
         elsif ($fog eq 'exp') {
-            $mgr->setFog(Ogre->FOG_EXP, $fadeColour, 0.005);
+            $mgr->setFog(FOG_EXP, $fadeColour, 0.005);
         }
         elsif ($fog eq 'exp2') {
-            $mgr->setFog(Ogre->FOG_EXP2, $fadeColour, 0.003);
+            $mgr->setFog(FOG_EXP2, $fadeColour, 0.003);
         }
     }
 
@@ -70,14 +70,14 @@ sub createScene {
     if ($sky eq 'box') {
         $mgr->setSkyBox(1, "Examples/SpaceSkyBox", 5000, 0,
                         Ogre::Quaternion->new(1, 0, 0, 0),
-                        Ogre::ResourceGroupManager->DEFAULT_RESOURCE_GROUP_NAME
+                        DEFAULT_RESOURCE_GROUP_NAME
                     );
     }
     elsif ($sky eq 'dome') {
         $mgr->setSkyDome(1, "Examples/CloudySky", 5, 8, 4000, 1,
                          Ogre::Quaternion->new(1, 0, 0, 0),
                          16, 16, -1,
-                         Ogre::ResourceGroupManager->DEFAULT_RESOURCE_GROUP_NAME
+                         DEFAULT_RESOURCE_GROUP_NAME
                      );
     }
     elsif ($sky eq 'plane') {
@@ -90,7 +90,7 @@ sub createScene {
         # annoying here that last arg is required
         $mgr->setSkyPlane(1, $plane, "Examples/SpaceSkyPlane", ($darkfog ? 100 : 1500),
                           45, 1, 0.5, 150, 150,
-                          Ogre::ResourceGroupManager->DEFAULT_RESOURCE_GROUP_NAME);
+                          DEFAULT_RESOURCE_GROUP_NAME);
     }
 }
 

@@ -41,9 +41,6 @@ Lots of stuff left to do....
   exposed in Perl like $v->{x} = 23, etc., but I don't see how
   to do that since the objects are pointers to C++ objects,
   not hashes. Any ideas?
-- Constants are not implemented well at all. How to do them right?
-  I see ExtUtils::Constant and h2xs apparently provide utilities
-  for doing this.
 - Tests....
 - More examples (that's the fun part :)
 - Zillions of classes and methods to wrap. For now, I've just been

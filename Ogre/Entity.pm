@@ -7,6 +7,24 @@ use Ogre::MovableObject;
 our @ISA = qw(Ogre::MovableObject);   # Ogre::Resource::Listener
 
 
+########## GENERATED CONSTANTS BEGIN
+require Exporter;
+unshift @Ogre::Entity::ISA, 'Exporter';
+
+our %EXPORT_TAGS = (
+	'VertexDataBindChoice' => [qw(
+		BIND_ORIGINAL
+		BIND_SOFTWARE_SKELETAL
+		BIND_SOFTWARE_MORPH
+		BIND_HARDWARE_MORPH
+	)],
+);
+
+$EXPORT_TAGS{'all'} = [ map { @{ $EXPORT_TAGS{$_} } } keys %EXPORT_TAGS ];
+our @EXPORT_OK = @{ $EXPORT_TAGS{'all'} };
+our @EXPORT = ();
+########## GENERATED CONSTANTS END
+
 1;
 
 __END__

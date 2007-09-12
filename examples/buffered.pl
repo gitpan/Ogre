@@ -18,8 +18,8 @@ use warnings;
 use Ogre::ExampleFrameListener;
 @TutorialFrameListener::ISA = qw(Ogre::ExampleFrameListener);
 
-use Ogre 0.22;
-use Ogre::Node;
+use Ogre 0.27;
+use Ogre::Node qw(:TransformSpace);
 
 use OIS 0.03;
 use OIS::Keyboard;
@@ -67,7 +67,7 @@ sub frameStarted {
     $self->{mCamNode}->translate($t * $d->x,
                                  $t * $d->y,
                                  $t * $d->z,
-                                 Ogre::Node->TS_LOCAL);
+                                 TS_LOCAL);
 
     return $self->{mContinue};
 }
@@ -79,9 +79,9 @@ sub mouseMoved {
     my $state = $evt->state;
     if ($state->buttonDown(OIS::Mouse->MB_Right)) {
         $self->{mCamNode}->yaw(Ogre::Degree->new(- $self->{mRotate} * $state->X->rel),
-                               Ogre::Node->TS_WORLD);
+                               TS_WORLD);
         $self->{mCamNode}->pitch(Ogre::Degree->new(- $self->{mRotate} * $state->Y->rel),
-                                 Ogre::Node->TS_LOCAL);
+                                 TS_LOCAL);
     }
 
     return 1;
@@ -195,10 +195,10 @@ package TutorialApplication;
 use strict;
 use warnings;
 
-use Ogre 0.22;
+use Ogre 0.27;
 use Ogre::ColourValue;
 use Ogre::Degree;
-use Ogre::Light;
+use Ogre::Light qw(:LightTypes);
 use Ogre::Vector3;
 
 # uncomment this if the packages are in separate files
@@ -225,7 +225,7 @@ sub createScene {
 
     # create the light
     my $light = $self->{mSceneMgr}->createLight("Light1");
-    $light->setType(Ogre::Light->LT_POINT);
+    $light->setType(LT_POINT);
     $light->setPosition(250, 150, 250);
     $light->setDiffuseColour(1, 1, 1);
     $light->setSpecularColour(1, 1, 1);

@@ -4,7 +4,7 @@ package Ogre::ExampleFrameListener;
 use strict;
 use warnings;
 
-use Ogre 0.22;
+use Ogre 0.27 qw(:TextureFilterOptions :PolygonMode);
 use Ogre::Degree;
 use Ogre::OverlayManager;
 use Ogre::LogManager;
@@ -46,7 +46,7 @@ sub new {
         mMoveScale           => 0,
         mRotScale            => 0,
         mTimeUntilNextToggle => 0,
-        mFiltering           => Ogre->TFO_BILINEAR,
+        mFiltering           => TFO_BILINEAR,
         mAniso               => 1,
         mSceneDetailIndex    => 0,
         mMoveSpeed           => 100,
@@ -215,16 +215,16 @@ sub processUnbufferedKeyInput {
     }
 
     if ($kb->isKeyDown(OIS::Keyboard->KC_T) && $self->{mTimeUntilNextToggle} <= 0) {
-        if ($self->{mFiltering} == Ogre->TFO_BILINEAR) {
-            $self->{mFiltering} = Ogre->TFO_TRILINEAR;
+        if ($self->{mFiltering} == TFO_BILINEAR) {
+            $self->{mFiltering} = TFO_TRILINEAR;
             $self->{mAniso} = 1;
         }
-        elsif ($self->{mFiltering} == Ogre->TFO_TRILINEAR) {
-            $self->{mFiltering} = Ogre->TFO_ANISOTROPIC;
+        elsif ($self->{mFiltering} == TFO_TRILINEAR) {
+            $self->{mFiltering} = TFO_ANISOTROPIC;
             $self->{mAniso} = 8;
         }
-        elsif ($self->{mFiltering} == Ogre->TFO_ANISOTROPIC) {
-            $self->{mFiltering} = Ogre->TFO_BILINEAR;
+        elsif ($self->{mFiltering} == TFO_ANISOTROPIC) {
+            $self->{mFiltering} = TFO_BILINEAR;
             $self->{mAniso} = 1;
         }
 
@@ -246,13 +246,13 @@ sub processUnbufferedKeyInput {
         $self->{mSceneDetailIndex} = ($self->{mSceneDetailIndex} + 1) % 3;
 
         if ($self->{mSceneDetailIndex} == 0) {
-            $cam->setPolygonMode(Ogre->PM_SOLID);
+            $cam->setPolygonMode(PM_SOLID);
         }
         elsif ($self->{mSceneDetailIndex} == 1) {
-            $cam->setPolygonMode(Ogre->PM_WIREFRAME);
+            $cam->setPolygonMode(PM_WIREFRAME);
         }
         elsif ($self->{mSceneDetailIndex} == 2) {
-            $cam->setPolygonMode(Ogre->PM_POINTS);
+            $cam->setPolygonMode(PM_POINTS);
         }
 
         $self->{mTimeUntilNextToggle} = 0.5;

@@ -15,12 +15,12 @@ ResourceGroupManager::initialiseAllResourceGroups()
 
 
 ## resource group names
-static String
-ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME()
+String
+DEFAULT_RESOURCE_GROUP_NAME()
   ALIAS:
-    Ogre::ResourceGroupManager::INTERNAL_RESOURCE_GROUP_NAME = 1
-    Ogre::ResourceGroupManager::BOOTSTRAP_RESOURCE_GROUP_NAME = 2
-    Ogre::ResourceGroupManager::AUTODETECT_RESOURCE_GROUP_NAME = 3
+    INTERNAL_RESOURCE_GROUP_NAME = 1
+    BOOTSTRAP_RESOURCE_GROUP_NAME = 2
+    AUTODETECT_RESOURCE_GROUP_NAME = 3
   CODE:
     switch (ix) {
         case 0: RETVAL = Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME; break;

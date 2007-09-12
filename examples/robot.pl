@@ -19,15 +19,15 @@ sub main {
 
 package App::Robot;
 
-use Ogre;
+use Ogre 0.27 qw(:SceneType);
 use Ogre::ConfigFile;
 use Ogre::ColourValue;
 use Ogre::Degree;
-use Ogre::Light qw(:lighttypes);
-use Ogre::Node qw(:transformspace);
+use Ogre::Light qw(:LightTypes);
+use Ogre::Node qw(:TransformSpace);
 use Ogre::Root;
 use Ogre::ResourceGroupManager;
-use Ogre::SceneManager qw(:scenetype);
+use Ogre::SceneManager;
 
 sub new {
     my ($pkg, %args) = @_;
@@ -114,7 +114,7 @@ sub setupScene {
 
     my $root = $self->{root};
 
-    my $mgr = $root->createSceneManager(&ST_GENERIC, 'Default SceneManager');
+    my $mgr = $root->createSceneManager(ST_GENERIC, 'Default SceneManager');
 
     my $cam = $mgr->createCamera('Camera');
     $cam->setPosition(0, 10, 500);
@@ -135,13 +135,13 @@ sub setupScene {
 
     # xxx: annoying, C++ API has "relativeTo" value optional
     # xxx: also have to use Degree instead of Radian
-    $node1->yaw(Ogre::Degree->new(-90), &TS_LOCAL);
-    $node1->roll(Ogre::Degree->new(-45), &TS_LOCAL);
-    $node1->pitch(Ogre::Degree->new(-30), &TS_LOCAL);
+    $node1->yaw(Ogre::Degree->new(-90), TS_LOCAL);
+    $node1->roll(Ogre::Degree->new(-45), TS_LOCAL);
+    $node1->pitch(Ogre::Degree->new(-30), TS_LOCAL);
     $node1->scale(.5, 2, 1);
 
     my $light = $mgr->createLight('Light1');
-    $light->setType(&LT_POINT);
+    $light->setType(LT_POINT);
     $light->setPosition(0, 150, 250);
     $light->setDiffuseColour(1.0, 0.0, 0.0);
     $light->setSpecularColour(1.0, 0.0, 0.0);
