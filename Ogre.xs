@@ -6,18 +6,57 @@
 #include "PerlOGREFrameListener.h"
 #include "PerlOGREWindowEventListener.h"
 
-using namespace std;
-using namespace Ogre;
-
 
 // This object manages FrameListeners,
 // see xs/Root.xs addFrameListener/removeFrameListener
 PerlOGREListenerManager pogreListenerManager;
 
 
+// This allows using a wxPerl or Gtk2 window
+// as a render window, rather than relying on Ogre
+// to create a default render window.
+#include "perlOGREGUI.h"
+
+
+// note: I think these have to come after the includes,
+// esp. the gtk+ ones, because otherwise a conflict
+// appears in X11/Xlib.h which refers to Font,
+// and this is cnofused with Ogre::Font)
+using namespace std;
+using namespace Ogre;
+
+
 MODULE = Ogre		PACKAGE = Ogre
 
 PROTOTYPES: ENABLE
+
+
+#ifdef PERLOGRE_HAS_GTK2
+
+static String
+Ogre::getWindowHandleString(w)
+    SV * w
+  PREINIT:
+    GtkWidget *widget;
+  CODE:
+    // for gtk2-perl, object that isa Gtk2::Widget
+    if (sv_isobject(ST(1))) {
+        TMOGRE_GTKWIDGET_IN(ST(1), widget, Ogre, getWindowHandleString);
+    }
+    // for wxPerl, (IV) result of GetHandle() on (isa) Wx::Window object
+    else if (SvIOK(ST(1))) {
+        widget = INT2PTR(GtkWidget *, SvIV(ST(1)));    // T_PTR
+    }
+    else {
+        croak("Usage: Ogre::getWindowHandleString(CLASS, Gtk2::Widget) or (CLASS, integer)\n");
+    }
+
+    RETVAL = getWindowHandleString(widget);
+  OUTPUT:
+    RETVAL
+
+#endif  /* PERLOGRE_HAS_GTK2 */
+
 
 INCLUDE: perl -e "print qq{INCLUDE: \$_\$/} for <xs/*.xs>" |
 

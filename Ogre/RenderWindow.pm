@@ -29,21 +29,77 @@ B<Note:> this Perl binding is currently I<experimental> and subject to API chang
 
 =head1 INSTANCE METHODS
 
-=head2 $obj->getMetrics($OUTLIST unsigned int width, $OUTLIST unsigned int height, $OUTLIST unsigned int colourDepth, $OUTLIST int left, $OUTLIST int top)
+=head2 $obj->setFullscreen($fullScreen, $width, $height)
 
 I<Parameter types>
 
 =over
 
-=item $OUTLIST unsigned int width : (no info available)
+=item $fullScreen : bool
 
-=item $OUTLIST unsigned int height : (no info available)
+=item $width : unsigned int
 
-=item $OUTLIST unsigned int colourDepth : (no info available)
+=item $height : unsigned int
 
-=item $OUTLIST int left : (no info available)
+=back
 
-=item $OUTLIST int top : (no info available)
+I<Returns>
+
+=over
+
+=item void
+
+=back
+
+=head2 $obj->destroy()
+
+I<Returns>
+
+=over
+
+=item void
+
+=back
+
+=head2 $obj->resize($width, $height)
+
+I<Parameter types>
+
+=over
+
+=item $width : unsigned int
+
+=item $height : unsigned int
+
+=back
+
+I<Returns>
+
+=over
+
+=item void
+
+=back
+
+=head2 $obj->windowMovedOrResized()
+
+I<Returns>
+
+=over
+
+=item void
+
+=back
+
+=head2 $obj->reposition($left, $top)
+
+I<Parameter types>
+
+=over
+
+=item $left : int
+
+=item $top : int
 
 =back
 
@@ -83,7 +139,7 @@ I<Returns>
 
 =back
 
-=head2 $obj->isActive()
+=head2 $obj->isClosed()
 
 I<Returns>
 
@@ -93,13 +149,21 @@ I<Returns>
 
 =back
 
-=head2 $obj->isClosed()
+=head2 $obj->swapBuffers($waitForVSync=true)
+
+I<Parameter types>
+
+=over
+
+=item $waitForVSync=true : bool
+
+=back
 
 I<Returns>
 
 =over
 
-=item bool
+=item void
 
 =back
 
@@ -113,25 +177,21 @@ I<Returns>
 
 =back
 
-=head2 $obj->destroy()
-
-I<Returns>
-
-=over
-
-=item void
-
-=back
-
-=head2 $obj->resize($width, $height)
+=head2 $obj->getMetrics($OUTLIST unsigned int width, $OUTLIST unsigned int height, $OUTLIST unsigned int colourDepth, $OUTLIST int left, $OUTLIST int top)
 
 I<Parameter types>
 
 =over
 
-=item $width : unsigned int
+=item $OUTLIST unsigned int width : (no info available)
 
-=item $height : unsigned int
+=item $OUTLIST unsigned int height : (no info available)
+
+=item $OUTLIST unsigned int colourDepth : (no info available)
+
+=item $OUTLIST int left : (no info available)
+
+=item $OUTLIST int top : (no info available)
 
 =back
 

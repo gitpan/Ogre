@@ -55,13 +55,13 @@ I<Returns>
 
 =back
 
-=head2 Ogre::Degree->B<DESTROY>()
+=head2 Ogre::Degree->DESTROY()
 
-This method is called automatically, don't call it yourself.
+This method is called automatically; don't call it yourself.
 
-=head2 \&B<eq_xs>
+=head2 \&eq_xs
 
-This is an operator overload method, don't call it yourself.
+This is an operator overload method; don't call it yourself.
 
 =head1 INSTANCE METHODS
 

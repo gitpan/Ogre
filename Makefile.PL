@@ -30,31 +30,83 @@ sub fixed_args {
 }
 
 sub varied_args {
-    # Make sure libs are known by pkg-config
+    # Make sure OGRE libs are known by pkg-config
+    my $pkgname = 'OGRE';
+
     my @errors = ();
-    push @errors, check_pkg_config('OGRE', '1.4.3');
+    push @errors, check_pkg_config($pkgname, '1.4.3');
     if (@errors) {
         die(map { "$_$/" } @errors);
     }
 
     # Get include dirs and defines
     my @cflags = ();
-    push @cflags, pkg_config('OGRE', 'cflags');
+    push @cflags, pkg_config($pkgname, 'cflags');
 
     # Get lib dirs
     my @libs = ();
-    push @libs, pkg_config('OGRE', 'libs');
+    push @libs, pkg_config($pkgname, 'libs');
+
+    my @defines = ();
+
+
+    # Check if Gtk+ is installed
+    # (don't know what version is actually required, gtk2-perl uses 2.0.0)
+    $pkgname = 'gtk+-2.0';
+
+    @errors = check_pkg_config($pkgname, '2.0.0');
+    if (@errors) {
+        print "\nNote: gtk+ support not enabled.\nReasons:\n",
+          map({ "- $_$/" } @errors);
+        print "See README.txt for information on enabling Gtk2 support.\n";
+    }
+    else {
+        print "\nEnabling gtk+ support.\n";
+        push @cflags, pkg_config($pkgname, 'cflags');
+        push @libs, pkg_config($pkgname, 'libs');
+        push @defines, '-DPERLOGRE_HAS_GTK2';
+    }
+
+
+    my %prereqs = (
+        'Test::More' => 0,
+    );
+
+    # Check if optional Perl modules are installed.
+    my $OIS_REQ_VERSION = 0.03;
+    unless (eval { require OIS && $OIS::VERSION >= $OIS_REQ_VERSION }) {
+        my $msg = "\nNote: the Perl module OIS >= $OIS_REQ_VERSION is not installed,\n"
+          . "so you won't be able to run some examples\n"
+          . "or use Ogre::ExampleFrameListener.\n"
+          . "Installing OIS would be a very good idea\n"
+          . "unless you have some other way to handle keyboard and mouse input.\n"
+          . "It's fine to install it after installing Ogre.\n\n"
+          . "Do you want to install OIS now?";
+
+        my $val = ExtUtils::MakeMaker::prompt($msg, 'n');
+        if ($val =~ /^y/i) {
+            $prereqs{'OIS'} = $OIS_REQ_VERSION;
+            print "\nOIS >= $OIS_REQ_VERSION added to prerequisites.\n";
+        }
+    }
+    unless (eval { require Readonly }) {
+        my $msg = "\nNote: the Perl module Readonly is not installed,\n"
+          . "so you won't be able to run some examples.\n"
+          . "I recommend installing this module (and Readonly::XS if possible).\n"
+          . "It's fine to install it after installing Ogre.\n\n"
+          . "Do you want to install Readonly now?";
+        my $val = ExtUtils::MakeMaker::prompt($msg, 'n');
+        if ($val =~ /^y/i) {
+            $prereqs{'Readonly'} = '0';
+            print "\nReadonly added to prerequisites.\n";
+        }
+    }
 
     return {
-        'PREREQ_PM'         => {
-            'Test::More' => 0,
-
-            # these are required for some tutorials
-            # 'OIS' => 0.03,
-            # 'Readonly' => 0,
-        },
+        'PREREQ_PM'         => \%prereqs,
         'INC'               => join(' ', @cflags),
         'LIBS'              => join(' ', @libs),
+        (@defines ? ('DEFINE' => join(' ', @defines)) : ()),
     };
 }
 
@@ -88,9 +140,9 @@ sub check_pkg_config {
 }
 
 sub pkg_config {
-    my ($pkg, $option) = @_;
+    my ($pkg, $option, $pc) = @_;
 
-    my $pc = 'pkg-config';
+    $pc = 'pkg-config' unless defined $pc;
 
     my $str = `$pc --$option $pkg`;
     if ($?) {

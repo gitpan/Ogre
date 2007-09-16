@@ -44,6 +44,28 @@ See the online API documentation at
 
 B<Note:> this Perl binding is currently I<experimental> and subject to API changes.
 
+=head1 INSTANCE METHODS
+
+=head2 $obj->getName()
+
+I<Returns>
+
+=over
+
+=item String
+
+=back
+
+=head2 $obj->getLength()
+
+I<Returns>
+
+=over
+
+=item Real
+
+=back
+
 =head1 AUTHOR
 
 Scott Lanning E<lt>slanning@cpan.orgE<gt>

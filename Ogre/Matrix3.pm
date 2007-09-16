@@ -44,9 +44,9 @@ I<Returns>
 
 =back
 
-=head2 Ogre::Matrix3->B<DESTROY>()
+=head2 Ogre::Matrix3->DESTROY()
 
-This method is called automatically, don't call it yourself.
+This method is called automatically; don't call it yourself.
 
 =head1 AUTHOR
 

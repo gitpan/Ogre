@@ -44,9 +44,9 @@ I<Returns>
 
 =back
 
-=head2 Ogre::Root->B<DESTROY>()
+=head2 Ogre::Root->DESTROY()
 
-This method is called automatically, don't call it yourself.
+This method is called automatically; don't call it yourself.
 
 =head1 INSTANCE METHODS
 
@@ -290,7 +290,7 @@ I<Returns>
 
 =back
 
-=head2 $obj->createRenderWindow($name, $width, $height, $fullScreen)
+=head2 $obj->createRenderWindow($name, $width, $height, $fullScreen, ...)
 
 I<Parameter types>
 
@@ -303,6 +303,8 @@ I<Parameter types>
 =item $height : unsigned int
 
 =item $fullScreen : bool
+
+=item ... : this varies... (sorry, look in the .xs file)
 
 =back
 

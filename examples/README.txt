@@ -38,3 +38,10 @@ Here are brief descriptions of the examples.
   (note: this is still a little incomplete, so the robot will "moonwalk"
    once he reaches the first waypoint - I have to wrap a few more Node
    and Quaternion methods, and fix some overloaded operators)
+
+- wx.pl: this is NOT WORKING YET, but if it were it should show how
+  to make wxPerl work with Ogre. I think the problem is more that
+  the example I copied it from doesn't work, rather than the Perl
+  version per se. (It's segfaulting after failing a GDK_IS_DRAWABLE
+  assertion, I'm guessing because the window isn't fully "realized".
+  But I can't really tell.)

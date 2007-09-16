@@ -58,16 +58,6 @@ I<Returns>
 
 =back
 
-=head2 Ogre::ResourceGroupManager->DEFAULT_RESOURCE_GROUP_NAME()
-
-I<Returns>
-
-=over
-
-=item String
-
-=back
-
 =head1 INSTANCE METHODS
 
 =head2 $obj->addResourceLocation($name, $locType, $resGroup)
@@ -99,6 +89,16 @@ I<Returns>
 =over
 
 =item void
+
+=back
+
+=head2 $obj->DEFAULT_RESOURCE_GROUP_NAME()
+
+I<Returns>
+
+=over
+
+=item String
 
 =back
 

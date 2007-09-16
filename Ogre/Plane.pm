@@ -63,9 +63,9 @@ I<Returns>
 
 =back
 
-=head2 Ogre::Plane->B<DESTROY>()
+=head2 Ogre::Plane->DESTROY()
 
-This method is called automatically, don't call it yourself.
+This method is called automatically; don't call it yourself.
 
 =head1 INSTANCE METHODS
 

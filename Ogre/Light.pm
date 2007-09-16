@@ -44,18 +44,6 @@ See the online API documentation at
 
 B<Note:> this Perl binding is currently I<experimental> and subject to API changes.
 
-=head1 CLASS METHODS
-
-=head2 Ogre::Light->LT_POINT()
-
-I<Returns>
-
-=over
-
-=item int
-
-=back
-
 =head1 INSTANCE METHODS
 
 =head2 $obj->setType($type)

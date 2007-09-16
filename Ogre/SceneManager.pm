@@ -50,38 +50,6 @@ See the online API documentation at
 
 B<Note:> this Perl binding is currently I<experimental> and subject to API changes.
 
-=head1 CLASS METHODS
-
-=head2 Ogre::SceneManager->ST_GENERIC()
-
-I<Returns>
-
-=over
-
-=item uint16
-
-=back
-
-=head2 Ogre::SceneManager->PT_PLANE()
-
-I<Returns>
-
-=over
-
-=item int
-
-=back
-
-=head2 Ogre::SceneManager->SHADOWTYPE_NONE()
-
-I<Returns>
-
-=over
-
-=item int
-
-=back
-
 =head1 INSTANCE METHODS
 
 =head2 $obj->getName()

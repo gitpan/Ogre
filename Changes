@@ -1,3 +1,13 @@
+0.28 2007-09-16 | gtk2-perl and wxPerl
+- added a VERY EXPERIMENTAL feature to allow Ogre's render window to be
+  an existing Gtk2 or Wx window instead of the defaultly generated one.
+  See README.txt for details (you have to have gtk2 libs/headers installed).
+  I kind of got it working for Gtk2, see examples/gtk2robot.pl.
+  I couldn't get examples/wx.pl to actually work yet, though it's no longer
+  segfaulting at least. (I think the Ogre window is underneath the other ones,
+  i.e it's the "parent" window.)
+- wrapped more methods in RenderWindow, Viewport
+
 0.27 2007-09-12 | constants
 - API CHANGE: fixed constants, adding all enums (and genconsts.pl script);
   now you export them normally, not call as static methods.

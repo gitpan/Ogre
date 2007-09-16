@@ -198,7 +198,6 @@ sub setupResources {
             $rgm->addResourceLocation($archName, $typeName, $secName);
         }
     }
-
 }
 
 # Optional override method where you can create resource listeners (e.g. for loading screens)

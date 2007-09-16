@@ -7,7 +7,7 @@ use warnings;
 require DynaLoader;
 our @ISA = qw(DynaLoader);
 
-our $VERSION = '0.27';
+our $VERSION = '0.28';
 
 # use all files under Ogre/ - probably not a good idea
 use Ogre::AnimableValue;

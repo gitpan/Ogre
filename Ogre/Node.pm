@@ -75,16 +75,6 @@ I<Returns>
 
 =back
 
-=head2 Ogre::Node->TS_LOCAL()
-
-I<Returns>
-
-=over
-
-=item int
-
-=back
-
 =head1 INSTANCE METHODS
 
 =head2 $obj->roll($angle, $relativeTo=Node::TS_LOCAL)

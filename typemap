@@ -50,7 +50,10 @@ Viewport *	O_VIEWPORT
 WindowEventListener *	O_WINDOWEVENTLISTENER
 
 String	STRING
-uint16	T_UV
+uint32	T_U_LONG
+uint16	T_U_SHORT
+uint8	T_UV
+uint	T_UV
 uchar	T_U_CHAR
 Real	T_REAL
 

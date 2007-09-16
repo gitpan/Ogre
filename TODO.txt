@@ -51,3 +51,4 @@ Lots of stuff left to do....
 - All the modules are loaded from Ogre.pm and Ogre.xs, and the number
   of modules is increasing.... Need to look at getting them to load
   only when used.
+- Get Wx and Gtk2 support working better, also look at SDL.

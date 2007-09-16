@@ -36,9 +36,9 @@ I<Returns>
 
 =back
 
-=head2 Ogre::ConfigFile->B<DESTROY>()
+=head2 Ogre::ConfigFile->DESTROY()
 
-This method is called automatically, don't call it yourself.
+This method is called automatically; don't call it yourself.
 
 =head1 INSTANCE METHODS
 

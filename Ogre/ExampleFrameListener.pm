@@ -12,6 +12,9 @@ use Ogre::MaterialManager;
 use Ogre::Vector3;
 use Ogre::WindowEventUtilities;
 
+# keep CPAN indexer from barfing on OIS below
+our $VERSION = 0.27;
+
 BEGIN {
     if (eval { require OIS && $OIS::VERSION >= 0.03 }) {
         require OIS::InputManager;

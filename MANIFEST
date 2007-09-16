@@ -12,6 +12,8 @@ Ogre.pm
 Ogre.xs
 
 perlOGRE.h
+perlOGREGUI.h
+perlOGREGUI.cpp
 PerlOGREListener.h
 PerlOGREListener.cpp
 PerlOGREListenerManager.h
@@ -144,11 +146,13 @@ Ogre/WindowEventUtilities.pm
 examples/README.txt
 examples/animate.pl
 examples/buffered.pl
+examples/gtk2robot.pl
 examples/listeningninja.pl
 examples/ninja.pl
 examples/resources.cfg
 examples/robot.pl
 examples/sky.pl
+examples/wx.pl
 
 t/Ogre/TestBase.pm
 t/000_use.t

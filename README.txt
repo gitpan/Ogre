@@ -1,4 +1,4 @@
-Perl-Ogre version 0.27
+Perl-Ogre version 0.28
 ======================
 
 This is a Perl binding for OGRE, Object-Oriented Graphics Rendering Engine,
@@ -6,6 +6,8 @@ a C++ library found at http://www.ogre3d.org/ .
 
 The wrapping is currently incomplete, but we're now able to run
 OGRE's "Basic Tutorial" 3 and 5 in Perl (see examples/README.txt).
+See TODO.txt for the things I'd like to do. Suggest more things
+(preferably submitted with patches) if you like.
 
 
 DEPENDENCIES
@@ -30,6 +32,34 @@ The C++ compiler used by default is `g++`, but you can specify a different
 C++ compiler by setting the CXX environmental variable. Anything more,
 and you'll have to hack at Makefile.PL.
 
+
+OPTIONAL
+
+If you have Gtk2 installed, which in practice means that this is true:
+
+  pkg-config --atleast-version=2.0.0 gtk+-2.0
+
+then a static method, Ogre->getWindowHandleString, will be built.
+The string returned can be passed to the `params' argument of
+Ogre::Root::createRenderWindow in order to use a window (widget)
+already created by gtk2-perl or wxPerl, thereby letting you embed
+an Ogre widget in a GUI application. This feature is currently
+EXPERIMENTAL, meaning its usage might change in the future
+or be dropped altogether if it doesn't work.
+
+Some scripts under examples/ require these Perl modules:
+
+ - OIS
+ - Readonly
+
+I recommend installing both of them, but you don't have to. 
+
+Note for OIS: there's apparently an incompatibility between versions
+0.99_rc1 (which I have installed) and 1.0.0 of libois; in particular
+in OIS/xs/InputManager.xs you might get two methods failing to work:
+s/numJoysticks/numJoySticks/ and s/numKeyBoards/numKeyboards/.
+I'll try to get that worked around soon.
+
 It would be a good idea to make sure you also have installed CEGUI, OIS,
 libdevil, and nVidia Cg, if those aren't already installed. This Perl module
 currently only provides support for OGRE and OIS, however; I might wrap
@@ -38,17 +68,6 @@ Perl. (The tutorials and documentation for OGRE are excellent.
 I highly recommend going through them before trying this Perl wrapper.)
 The reason I recommend installing those libraries, is mainly just so
 you can run the (C++) tutorials.
-
-Some scripts under examples/ require these Perl modules:
-
- - OIS
- - Readonly
- 
-Note for OIS: there's apparently an incompatibility between versions
-0.99_rc1 (which I have installed) and 1.0.0 of libois; in particular
-in OIS/xs/InputManager.xs you might get two methods failing to work:
-s/numJoysticks/numJoySticks/ and s/numKeyBoards/numKeyboards/.
-I'll try to get that worked around soon.
 
 
 INSTALLATION
@@ -106,10 +125,12 @@ Note: these package names are as of when I installed them.
 The names might change.
 
 2) backport the package from Gutsy Gibbon to Feisty Fawn.
-Good luck with that. (Let me know how it's done.)
+Good luck with that. (Let me know how it's done, especially
+if you are simply able to install the package as is.)
 
 3) create your own package by building from source. Check out:
 http://www.ogre3d.org/wiki/index.php/FromSourceUbuntu
+Seems like it should be pretty easy using `make checkinstall`.
 Again, good luck with that.
 
 
