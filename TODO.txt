@@ -41,6 +41,8 @@ Lots of stuff left to do....
   exposed in Perl like $v->{x} = 23, etc., but I don't see how
   to do that since the objects are pointers to C++ objects,
   not hashes. Any ideas?
+  I guess I could make the pointers be referenced from the hash
+  instead of being the object itself.
 - Tests....
 - More examples (that's the fun part :)
 - Zillions of classes and methods to wrap. For now, I've just been

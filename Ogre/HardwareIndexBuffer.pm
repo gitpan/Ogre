@@ -3,6 +3,9 @@ package Ogre::HardwareIndexBuffer;
 use strict;
 use warnings;
 
+use Ogre::HardwareBuffer;
+our @ISA = qw(Ogre::HardwareBuffer);
+
 
 ########## GENERATED CONSTANTS BEGIN
 require Exporter;

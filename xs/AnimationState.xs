@@ -10,26 +10,22 @@ Real
 AnimationState::getTimePosition()
 
 void
-AnimationState::setTimePosition(timePos)
-    Real  timePos
+AnimationState::setTimePosition(Real timePos)
 
 Real
 AnimationState::getLength()
 
 void
-AnimationState::setLength(len)
-    Real  len
+AnimationState::setLength(Real len)
 
 Real
 AnimationState::getWeight()
 
 void
-AnimationState::setWeight(weight)
-    Real  weight
+AnimationState::setWeight(Real weight)
 
 void
-AnimationState::addTime(offset)
-    Real  offset
+AnimationState::addTime(Real offset)
 
 bool
 AnimationState::hasEnded()
@@ -38,15 +34,13 @@ bool
 AnimationState::getEnabled()
 
 void
-AnimationState::setEnabled(enabled)
-    bool  enabled
+AnimationState::setEnabled(bool enabled)
 
 bool
 AnimationState::getLoop()
 
 void
-AnimationState::setLoop(loop)
-    bool  loop
+AnimationState::setLoop(bool loop)
 
 void
 AnimationState::copyStateFrom(animState)

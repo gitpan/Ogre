@@ -1,4 +1,5 @@
 #!/usr/bin/perl
+# Run this from the top directory (where Ogre.xs is).
 # This is what I'm using to generate doc stubs
 # in Ogre/*.pm from the XS files xs/*.xs .
 
@@ -6,15 +7,20 @@ use strict;
 use warnings;
 
 use File::Copy;
+use File::Spec;
 
 my $XSDIR = 'xs';
 my $PMDIR = 'Ogre';
+
+my $BEGINCLASS = 'CLASS LIST BEGIN';
+my $ENDCLASS = 'CLASS LIST END';
 
 main();
 exit();
 
 sub main {
-    my @xsfiles = <$XSDIR/*.xs>;
+    my $xss = File::Spec->catfile(File::Spec->curdir, $XSDIR, '*.xs');
+    my @xsfiles = glob($xss);
 
     foreach my $xsfile (@xsfiles) {
         my ($sigs, $package) = read_signatures($xsfile);
@@ -34,6 +40,8 @@ sub main {
             update_pod($pmfile, $sigs, $package);
         }
     }
+
+    update_class_list();
 }
 
 # This assumes a certain structure of the XS files...
@@ -139,6 +147,15 @@ sub read_signatures {
 sub update_pod {
     my ($pmfile, $sigs, $package) = @_;
 
+    # create the file if it doesn't already exist
+    unless (-f $pmfile) {
+        open(my $fh, "> $pmfile") || die "Couldn't create .pm file '$pmfile': $!";
+        # note: important to put two \n
+        # so that output_docs has a chance to output the docs
+        print $fh "package $package;\n\nuse strict;\nuse warnings;\n\n\n1;\n\n__END__\n\n";
+        close($fh);
+    }
+
     # we'll copy the original to *~, and overwrite the original
     my $origpmfile = $pmfile . '.bak~';
     unless (copy($pmfile, $origpmfile)) {
@@ -175,6 +192,61 @@ sub update_pod {
         output_docs($newfh, $sigs, $package);
     }
 
+    close($newfh);
+}
+
+# update Ogre.pm's class list
+sub update_class_list {
+    my $pmfile = File::Spec->catfile(File::Spec->curdir, 'Ogre.pm');
+    my @pmfiles = grep { ! /CEGUI/ }     # top secret :)
+      glob(File::Spec->catfile(File::Spec->curdir, $PMDIR, '*.pm'));
+
+    # backup old file
+    my $oldfile = $pmfile . '.bak~~';
+    unless (copy($pmfile, $oldfile)) {
+        print STDERR "Couldn't copy '$oldfile' '$pmfile': $!\n";
+        return;
+    }
+
+    my $gensection = 0;
+
+    open(my $newfh, "> $pmfile") || die "Can't open file '$pmfile': $!";
+    open(my $oldfh, $oldfile)     || die "Can't open file '$oldfile': $!";
+    while (<$oldfh>) {
+        if (m{$BEGINCLASS}) {
+            $gensection = 1;
+            print $newfh $_;
+        }
+
+        elsif (m{$ENDCLASS}) {
+            # where the work actually is done,
+            # updating the lines between the begin and end strings
+
+            print $newfh "\n=over\n\n";
+            foreach my $file (@pmfiles) {
+                my ($pkg) = $file =~ m{/([^/]+)\.pm$};
+                print $newfh "=item L<Ogre::$pkg>\n\n";
+            }
+            print $newfh "=back\n\n";
+
+            print $newfh $_;
+            $gensection = 0;
+        }
+
+        elsif ($gensection) {
+            next;
+        }
+
+        else {
+            print $newfh $_;
+        }
+    }
+
+    if ($gensection) {
+        die "No end string found in file '$pmfile'\n";
+    }
+
+    close($oldfh);
     close($newfh);
 }
 

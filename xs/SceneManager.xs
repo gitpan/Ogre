@@ -18,6 +18,7 @@ bool
 SceneManager::hasCamera(name)
     String  name
 
+## xxx: virtual void 	destroyCamera (Camera *cam)
 void
 SceneManager::destroyCamera(name)
     String  name
@@ -37,6 +38,7 @@ bool
 SceneManager::hasLight(name)
     String  name
 
+## xxx: virtual void 	destroyLight (Light *light)
 void
 SceneManager::destroyLight(name)
     String  name
@@ -44,6 +46,7 @@ SceneManager::destroyLight(name)
 void
 SceneManager::destroyAllLights()
 
+## xxx: virtual SceneNode * 	createSceneNode (void)
 SceneNode *
 SceneManager::createSceneNode(name)
     String  name
@@ -63,7 +66,7 @@ bool
 SceneManager::hasSceneNode(name)
     String  name
 
-## there are 2 versions in the C++ API
+## xxx: also  Entity * createEntity (const String &entityName, PrefabType ptype)
 Entity *
 SceneManager::createEntity(entityName, meshName)
     String entityName
@@ -77,6 +80,7 @@ bool
 SceneManager::hasEntity(name)
     String  name
 
+## xxx: virtual void 	destroyEntity (Entity *ent)
 void
 SceneManager::destroyEntity(name)
     String  name
@@ -96,6 +100,7 @@ bool
 SceneManager::hasManualObject(name)
     String  name
 
+## xxx: virtual void 	destroyManualObject (ManualObject *obj)
 void
 SceneManager::destroyManualObject(name)
     String  name
@@ -115,6 +120,7 @@ bool
 SceneManager::hasBillboardChain(name)
     String  name
 
+## xxx: void 	destroyBillboardChain (BillboardChain *obj)
 void
 SceneManager::destroyBillboardChain(name)
     String  name
@@ -134,6 +140,7 @@ bool
 SceneManager::hasRibbonTrail(name)
     String  name
 
+## xxx: void 	destroyRibbonTrail (RibbonTrail *obj)
 void
 SceneManager::destroyRibbonTrail(name)
     String  name
@@ -141,11 +148,21 @@ SceneManager::destroyRibbonTrail(name)
 void
 SceneManager::destroyAllRibbonTrails()
 
-## there is another version of this
+## xxx: also   ParticleSystem * 	createParticleSystem (const String &name, size_t quota=500, const String &resourceGroup=ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME)
 ParticleSystem *
 SceneManager::createParticleSystem(name, templateName)
     String  name
     String  templateName
+
+## xxx: this is a workaround; otherwise, for some reason,
+## the ParticleSystem is returned attached by createParticleSystem
+void
+SceneManager::createAndAttachParticleSystem(name, templateName, node)
+    String  name
+    String  templateName
+    SceneNode * node
+  CODE:
+    node->attachObject( THIS->createParticleSystem(name, templateName) );
 
 ParticleSystem *
 SceneManager::getParticleSystem(name)
@@ -155,6 +172,7 @@ bool
 SceneManager::hasParticleSystem(name)
     String  name
 
+## xxx: void 	destroyParticleSystem (ParticleSystem *obj)
 void
 SceneManager::destroyParticleSystem(name)
     String  name
@@ -171,28 +189,35 @@ SceneManager::setAmbientLight(colour)
   C_ARGS:
     *colour
 
-# const ColourValue & getAmbientLight()
+## const ColourValue & getAmbientLight()
 
-## there are two versions of this
+## xxx: void 	setWorldGeometry (DataStreamPtr &stream, const String &typeName=StringUtil::BLANK)
 void
 SceneManager::setWorldGeometry(filename)
     String  filename
 
-## there are two versions of this
+## xxx: size_t 	estimateWorldGeometry (DataStreamPtr &stream, const String &typeName=StringUtil::BLANK)
 size_t
 SceneManager::estimateWorldGeometry(filename)
     String  filename
 
-# and much, much more....
+## ViewPoint is a struct with a Vector3 and Quaternion
+## xxx: ViewPoint 	getSuggestedViewpoint (bool random=false)
+
+## xxx: void*
+## bool 	setOption (const String &strKey, const void *pValue)
+## bool 	getOption (const String &strKey, void *pDestValue)
 
 bool
 SceneManager::hasOption(strKey)
     String  strKey
 
-# xxx: damn, I really should figure out how to pass String defaults....
-# void setSkyPlane(bool enable, const Plane &plane, const String &materialName, Real scale=1000, Real tiling=10, bool drawFirst=true, Real bow=0, int xsegments=1, int ysegments=1, const String &groupName=ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME)
+## xxx: std::vector<String>
+## virtual bool 	getOptionValues (const String &strKey, StringVector &refValueList)
+## virtual bool 	getOptionKeys (StringVector &refKeys)
+
 void
-SceneManager::setSkyPlane(enable, plane, materialName, scale, tiling, drawFirst, bow, xsegments, ysegments, groupName)
+SceneManager::setSkyPlane(enable, plane, materialName, scale=1000, tiling=10, drawFirst=true, bow=0, xsegments=1, ysegments=1, groupName=ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME)
     bool    enable
     Plane * plane
     String  materialName
@@ -204,7 +229,7 @@ SceneManager::setSkyPlane(enable, plane, materialName, scale, tiling, drawFirst,
     int     ysegments
     String  groupName
   C_ARGS:
-    enable, *plane, materialName, scale, tiling, drawFirst, bow, xsegments, ysegments, groupName
+    enable, *plane, materialName, scale, tiling, drawFirst, bow, xsegments, ysegments, (const String)groupName
 
 bool
 SceneManager::isSkyPlaneEnabled()
@@ -212,14 +237,16 @@ SceneManager::isSkyPlaneEnabled()
 SceneNode *
 SceneManager::getSkyPlaneNode()
 
-# virtual void setSkyBox(bool enable, const String &materialName, Real distance=5000, bool drawFirst=true, const Quaternion &orientation=Quaternion::IDENTITY, const String &groupName=ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME)
+## xxx: this returns a struct; could return individual values instead
+## virtual const SkyPlaneGenParameters & 	getSkyPlaneGenParameters (void) const
+
 void
-SceneManager::setSkyBox(enable, materialName, distance, drawFirst, orientation, groupName)
+SceneManager::setSkyBox(enable, materialName, distance=5000, drawFirst=true, orientation=&Quaternion::IDENTITY, groupName=ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME)
     bool         enable
     String       materialName
     Real        distance
     bool         drawFirst
-    Quaternion * orientation
+    const Quaternion * orientation
     String       groupName
   C_ARGS:
     enable, materialName, distance, drawFirst, *orientation, groupName
@@ -230,16 +257,17 @@ SceneManager::isSkyBoxEnabled()
 SceneNode *
 SceneManager::getSkyBoxNode()
 
-# void setSkyDome(bool enable, const String &materialName, Real curvature=10, Real tiling=8, Real distance=4000, bool drawFirst=true, const Quaternion &orientation=Quaternion::IDENTITY, int xsegments=16, int ysegments=16, int ysegments_keep=-1, const String &groupName=ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME)
+## xxx: const SkyBoxGenParameters & 	getSkyBoxGenParameters (void) const
+
 void
-SceneManager::setSkyDome(enable, materialName, curvature, tiling, distance, drawFirst, orientation, xsegments, ysegments, ysegments_keep, groupName)
+SceneManager::setSkyDome(enable, materialName, curvature=10, tiling=8, distance=4000, drawFirst=true, orientation=&Quaternion::IDENTITY, xsegments=16, ysegments=16, ysegments_keep=-1, groupName=ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME)
     bool         enable
     String       materialName
     Real        curvature
     Real        tiling
     Real        distance
     bool         drawFirst
-    Quaternion * orientation
+    const Quaternion * orientation
     int          xsegments
     int          ysegments
     int          ysegments_keep
@@ -253,11 +281,12 @@ SceneManager::isSkyDomeEnabled()
 SceneNode *
 SceneManager::getSkyDomeNode()
 
-# xxx: should be mode=FOG_NONE, colour=ColourValue::White too!
+## xxx: const SkyDomeGenParameters & 	getSkyDomeGenParameters (void) const
+
 void
-SceneManager::setFog(mode, colour, expDensity=0.001, linearStart=0.0, linearEnd=1.0)
+SceneManager::setFog(mode=FOG_NONE, colour=&ColourValue::White, expDensity=0.001, linearStart=0.0, linearEnd=1.0)
     int           mode
-    ColourValue * colour
+    const ColourValue * colour
     Real         expDensity
     Real         linearStart
     Real         linearEnd
@@ -267,7 +296,7 @@ SceneManager::setFog(mode, colour, expDensity=0.001, linearStart=0.0, linearEnd=
 int
 SceneManager::getFogMode()
 
-# getFogColour()
+## xxx: const ColourValue & 	getFogColour (void) const
 
 Real
 SceneManager::getFogStart()
@@ -291,7 +320,7 @@ bool
 SceneManager::hasBillboardSet(name)
     String  name
 
-# also a version where you pass a pointer
+## xxx: also   void destroyBillboardSet (BillboardSet *set)
 void
 SceneManager::destroyBillboardSet(name)
     String  name
@@ -345,7 +374,50 @@ SceneManager::destroyAnimationState(name)
 void
 SceneManager::destroyAllAnimationStates()
 
-# bunch of Render stuff...
+
+void
+SceneManager::manualRender(rend, pass, vp, worldMatrix, viewMatrix, projMatrix, doBeginEndFrame=false)
+    RenderOperation * rend
+    Pass * pass
+    Viewport * vp
+    const Matrix4 * worldMatrix
+    const Matrix4 * viewMatrix
+    const Matrix4 * projMatrix
+    bool  doBeginEndFrame
+  C_ARGS:
+    rend, pass, vp, *worldMatrix, *viewMatrix, *projMatrix, doBeginEndFrame
+
+RenderQueue *
+SceneManager::getRenderQueue()
+
+## void 	addRenderQueueListener (RenderQueueListener *newListener)
+## void 	removeRenderQueueListener (RenderQueueListener *delListener)
+
+void
+SceneManager::addSpecialCaseRenderQueue(uint8 qid)
+
+void
+SceneManager::removeSpecialCaseRenderQueue(uint8 qid)
+
+void
+SceneManager::clearSpecialCaseRenderQueues()
+
+void
+SceneManager::setSpecialCaseRenderQueueMode(int mode)
+  C_ARGS:
+    (Ogre::SceneManager::SpecialCaseRenderQueueMode)mode
+
+int
+SceneManager::getSpecialCaseRenderQueueMode()
+
+bool
+SceneManager::isRenderQueueToBeProcessed(uint8 qid)
+
+void
+SceneManager::setWorldGeometryRenderQueue(uint8 qid)
+
+uint8
+SceneManager::getWorldGeometryRenderQueue()
 
 void
 SceneManager::showBoundingBoxes(bShow)
@@ -354,7 +426,47 @@ SceneManager::showBoundingBoxes(bShow)
 bool
 SceneManager::getShowBoundingBoxes()
 
-# bunch of Query stuff, other things...
+## AxisAlignedBoxSceneQuery * createAABBQuery (const AxisAlignedBox &box, unsigned long mask=0xFFFFFFFF)
+AxisAlignedBoxSceneQuery *
+SceneManager::createAABBQuery(box, mask=0xFFFFFFFF)
+    AxisAlignedBox * box
+    unsigned long  mask
+  C_ARGS:
+    *box, mask
+
+SphereSceneQuery *
+SceneManager::createSphereQuery(sphere, mask=0xFFFFFFFF)
+    Sphere * sphere
+    unsigned long  mask
+  C_ARGS:
+    *sphere, mask
+
+## xxx: std::vector<PlaneBoundedVolume>
+## PlaneBoundedVolumeListSceneQuery * createPlaneBoundedVolumeQuery (const PlaneBoundedVolumeList &volumes, unsigned long mask=0xFFFFFFFF)
+##PlaneBoundedVolumeListSceneQuery *
+##SceneManager::createPlaneBoundedVolumeQuery(volumes, mask=0xFFFFFFFF)
+##    PlaneBoundedVolumeList * volumes
+##    unsigned long  mask
+##  C_ARGS:
+##    *volumes, mask
+
+RaySceneQuery *
+SceneManager::createRayQuery(ray, mask=0xFFFFFFFF)
+    Ray * ray
+    unsigned long  mask
+  C_ARGS:
+    *ray, mask
+
+IntersectionSceneQuery *
+SceneManager::createIntersectionQuery(unsigned long mask=0xFFFFFFFF)
+
+void
+SceneManager::destroyQuery(query)
+    SceneQuery * query
+
+## CameraIterator 	getCameraIterator (void)
+## AnimationIterator 	getAnimationIterator (void)
+## AnimationStateIterator 	getAnimationStateIterator (void)
 
 void
 SceneManager::setShadowTechnique(technique)
@@ -378,7 +490,7 @@ SceneManager::setShadowColour(colour)
   C_ARGS:
     *colour
 
-# getShadowColour....
+# xxx: const ColourValue & 	getShadowColour (void) const
 
 void
 SceneManager::setShadowDirectionalLightExtrusionDistance(dist)
@@ -405,7 +517,91 @@ void
 SceneManager::setShadowTextureSize(size)
     unsigned short  size
 
-# other Shadow stuff....
+## there is also a struct version:
+## void setShadowTextureConfig (size_t shadowIndex, const ShadowTextureConfig &config)
+void 
+SceneManager::setShadowTextureConfig(size_t shadowIndex, unsigned short width, unsigned short height, int format)
+  C_ARGS:
+     shadowIndex, width, height, (PixelFormat)format
+
+## ConstShadowTextureConfigIterator SceneManager::getShadowTextureConfigIterator()
+
+void 
+SceneManager::setShadowTexturePixelFormat(int fmt)
+  C_ARGS:
+    (PixelFormat)fmt
+
+void 
+SceneManager::setShadowTextureCount(size_t count)
+
+size_t 
+SceneManager::getShadowTextureCount()
+
+void 
+SceneManager::setShadowTextureSettings(unsigned short size, unsigned short count, int fmt=PF_X8R8G8B8)
+  C_ARGS:
+    size, count, (PixelFormat)fmt
+
+## const TexturePtr & SceneManager::getShadowTexture(size_t shadowIndex)
+
+void 
+SceneManager::setShadowDirLightTextureOffset(Real offset)
+
+Real 
+SceneManager::getShadowDirLightTextureOffset()
+
+void 
+SceneManager::setShadowTextureFadeStart(Real fadeStart)
+
+void 
+SceneManager::setShadowTextureFadeEnd(Real fadeEnd)
+
+void 
+SceneManager::setShadowTextureSelfShadow(bool selfShadow)
+
+bool 
+SceneManager::getShadowTextureSelfShadow()
+
+void 
+SceneManager::setShadowTextureCasterMaterial(name)
+    String  name
+
+void 
+SceneManager::setShadowTextureReceiverMaterial(name)
+    String  name
+
+void 
+SceneManager::setShadowCasterRenderBackFaces(bool bf)
+
+bool 
+SceneManager::getShadowCasterRenderBackFaces()
+
+## xxx: void SceneManager::setShadowCameraSetup(const ShadowCameraSetupPtr &shadowSetup)
+## const ShadowCameraSetupPtr & SceneManager::getShadowCameraSetup()
+
+void 
+SceneManager::setShadowUseInfiniteFarPlane(bool enable)
+
+bool 
+SceneManager::isShadowTechniqueStencilBased()
+
+bool 
+SceneManager::isShadowTechniqueTextureBased()
+
+bool 
+SceneManager::isShadowTechniqueModulative()
+
+bool 
+SceneManager::isShadowTechniqueAdditive()
+
+bool 
+SceneManager::isShadowTechniqueIntegrated()
+
+bool 
+SceneManager::isShadowTechniqueInUse()
+
+## void SceneManager::addShadowListener(ShadowListener *s)
+## void SceneManager::removeShadowListener(ShadowListener *s)
 
 StaticGeometry *
 SceneManager::createStaticGeometry(name)
@@ -419,7 +615,7 @@ bool
 SceneManager::hasStaticGeometry(name)
     String  name
 
-# plus a ptr version
+## xxx: void 	destroyStaticGeometry (StaticGeometry *geom)
 void
 SceneManager::destroyStaticGeometry(name)
     String  name
@@ -435,12 +631,12 @@ InstancedGeometry *
 SceneManager::getInstancedGeometry(name)
     String        name
 
-# they should have this! :)
-#bool
-#SceneManager::hasInstancedGeometry(name)
-#    String  name
+## they should have this! :)
+##bool
+##SceneManager::hasInstancedGeometry(name)
+##    String  name
 
-# plus a ptr version
+## xxx: void 	destroyInstancedGeometry (InstancedGeometry *geom)
 void
 SceneManager::destroyInstancedGeometry(name)
     String  name
@@ -455,6 +651,19 @@ SceneManager::createMovableObject(name, typeName)
     String  name
     String  typeName
 
+## xxx: void 	destroyMovableObject (MovableObject *m)
+void
+SceneManager::destroyMovableObject(name, typeName)
+    String  name
+    String  typeName
+
+void
+SceneManager::destroyAllMovableObjectsByType(typeName)
+    String  typeName
+
+void
+SceneManager::destroyAllMovableObjects()
+
 MovableObject *
 SceneManager::getMovableObject(name, typeName)
     String  name
@@ -465,24 +674,13 @@ SceneManager::hasMovableObject(name, typeName)
     String  name
     String  typeName
 
-# plus a ptr version
-void
-SceneManager::destroyMovableObject(name, typeName)
-    String  name
-    String  typeName
-
-void
-SceneManager::destroyAllMovableObjects()
-
-void
-SceneManager::destroyAllMovableObjectsByType(typeName)
-    String  typeName
+## MovableObjectIterator 	getMovableObjectIterator (const String &typeName)
 
 void
 SceneManager::injectMovableObject(m)
     MovableObject * m
 
-# plus ptr version
+## xxx: void 	extractMovableObject (MovableObject *m)
 void
 SceneManager::extractMovableObject(name, typeName)
     String  name
@@ -493,20 +691,26 @@ SceneManager::extractAllMovableObjectsByType(typeName)
     String  typeName
 
 void
-SceneManager::setVisibilityMask(vmask)
-    unsigned int  vmask
+SceneManager::setVisibilityMask(uint32 vmask)
 
-unsigned int
+uint32
 SceneManager::getVisibilityMask()
 
 void
-SceneManager::setFindVisibleObjects(find)
-    bool  find
+SceneManager::setFindVisibleObjects(bool find)
 
 bool
 SceneManager::getFindVisibleObjects()
 
+## void 	setQueuedRenderableVisitor (SceneMgrQueuedRenderableVisitor *visitor)
+## SceneMgrQueuedRenderableVisitor * 	getQueuedRenderableVisitor (void) const
+
+RenderSystem *
+SceneManager::getDestinationRenderSystem()
+
 Viewport *
 SceneManager::getCurrentViewport()
 
-# ...
+## xxx: these return a struct
+## const VisibleObjectsBoundsInfo & 	getVisibleObjectsBoundsInfo (const Camera *cam) const
+## const VisibleObjectsBoundsInfo & 	getShadowCasterBoundsInfo (const Light *light) const

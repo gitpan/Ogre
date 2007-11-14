@@ -1,3 +1,8 @@
+0.29 2007-11-14 | cameratrack.pl, particleFX.pl
+- added cameratrack.pl and particleFX.pl examples
+- wrapped many classes, mainly to make the examples work
+- fixed a tiny bug in Ogre::ExampleFrameListener
+
 0.28 2007-09-16 | gtk2-perl and wxPerl
 - added a VERY EXPERIMENTAL feature to allow Ogre's render window to be
   an existing Gtk2 or Wx window instead of the defaultly generated one.

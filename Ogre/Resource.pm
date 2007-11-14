@@ -3,6 +3,9 @@ package Ogre::Resource;
 use strict;
 use warnings;
 
+use Ogre::StringInterface;
+our @ISA = qw(Ogre::StringInterface);
+
 
 ########## GENERATED CONSTANTS BEGIN
 require Exporter;

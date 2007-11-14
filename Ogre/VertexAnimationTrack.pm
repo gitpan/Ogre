@@ -3,6 +3,9 @@ package Ogre::VertexAnimationTrack;
 use strict;
 use warnings;
 
+use Ogre::AnimationTrack;
+our @ISA = qw(Ogre::AnimationTrack);
+
 
 ########## GENERATED CONSTANTS BEGIN
 require Exporter;

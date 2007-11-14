@@ -242,7 +242,7 @@ sub processUnbufferedKeyInput {
         my $ss = "screenshot_" . ++$self->{mNumScreenShots} . ".png";
         $self->{mWindow}->writeContentsToFile($ss);
         $self->{mTimeUntilNextToggle} = 0.5;
-        $self->{mDebugText} = "Saved: " + $ss;
+        $self->{mDebugText} = "Saved: $ss";
     }
 
     if ($kb->isKeyDown(OIS::Keyboard->KC_R) && $self->{mTimeUntilNextToggle} <= 0) {

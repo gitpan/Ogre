@@ -76,7 +76,6 @@ SceneNode::createChildSceneNode(...)
   OUTPUT:
     RETVAL
 
-## void attachObject (MovableObject *obj)
 void
 SceneNode::attachObject(obj)
     MovableObject * obj

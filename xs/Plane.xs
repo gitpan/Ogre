@@ -55,6 +55,29 @@ Plane::DESTROY()
 # OVERLOAD: == !=
 
 
+## xxx: 3 x getSide
+
+Real
+Plane::getDistance(rkPoint)
+    Vector3 * rkPoint
+  C_ARGS:
+    *rkPoint
+
+## xxx: 2 x redefine
+
+## Vector3 	projectVector (const Vector3 &v) const
+#Vector3 *
+#Plane::projectVector(v)
+#    Vector3 * v
+#  C_ARGS:
+#    *v
+
+Real
+Plane::normalise()
+
+
+
+
 Real
 Plane::d()
   CODE:
@@ -83,24 +106,3 @@ Plane::setNormal(normal)
     Vector3 * normal
   CODE:
     (*THIS).normal = *normal;
-
-# 3 x getSide
-
-Real
-Plane::getDistance(rkPoint)
-    Vector3 * rkPoint
-  C_ARGS:
-    *rkPoint
-
-# 2 x redefine
-
-# XXX: Vector3, not Vector3*  .....
-#Vector3 *
-#Plane::projectVector(v)
-#    Vector3 * v
-#  C_ARGS:
-#    *v
-
-Real
-Plane::normalise()
-

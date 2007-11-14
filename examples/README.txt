@@ -39,9 +39,13 @@ Here are brief descriptions of the examples.
    once he reaches the first waypoint - I have to wrap a few more Node
    and Quaternion methods, and fix some overloaded operators)
 
-- wx.pl: this is NOT WORKING YET, but if it were it should show how
-  to make wxPerl work with Ogre. I think the problem is more that
-  the example I copied it from doesn't work, rather than the Perl
-  version per se. (It's segfaulting after failing a GDK_IS_DRAWABLE
-  assertion, I'm guessing because the window isn't fully "realized".
-  But I can't really tell.)
+- gtk2robot.pl, wx.pl: this is NOT WORKING YET, but if it were it should
+  show how to make gtk2 and wxPerl work with Ogre. I think the problem is
+  more that the example I copied it from doesn't work, rather than the Perl
+  version per se.
+
+- cameratrack.pl: demo of animation tracks and camera auto-tracking,
+  implements OGRE's "CameraTrack" sample application
+
+- particleFX.pl: pretty particle effects demo, implements OGRE's
+  "ParticleFX" sample application

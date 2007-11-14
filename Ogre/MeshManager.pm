@@ -3,6 +3,10 @@ package Ogre::MeshManager;
 use strict;
 use warnings;
 
+use Ogre::ResourceManager;
+use Ogre::ManualResourceLoader;
+our @ISA = qw(Ogre::ResourceManager Ogre::ManualResourceLoader);
+
 
 1;
 

@@ -3,6 +3,11 @@ package Ogre::MovableObject;
 use strict;
 use warnings;
 
+use Ogre::ShadowCaster;
+use Ogre::AnimableObject;
+our @ISA = qw(Ogre::ShadowCaster Ogre::AnimableObject);
+
+
 
 1;
 
