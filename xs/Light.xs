@@ -1,5 +1,6 @@
 MODULE = Ogre     PACKAGE = Ogre::Light
 
+## xxx: this ends up causing a segfault
 ##Light *
 ##Light::new(name)
 ##    String  name
@@ -16,23 +17,49 @@ Light::setType(type)
 int
 Light::getType()
 
-## this has 2 versions in the C++ API
 void
-Light::setDiffuseColour(red, green, blue)
-    Real  red
-    Real  green
-    Real  blue
+Light::setDiffuseColour(...)
+  CODE:
+    if (items == 2 && sv_isobject(ST(1)) && sv_derived_from(ST(1), "Ogre::Colour")) {
+        ColourValue *colour = (ColourValue *) SvIV((SV *) SvRV(ST(1)));   // TMOGRE_IN
+        THIS->setDiffuseColour(*colour);
+    }
+    else if (items == 4) {
+        THIS->setDiffuseColour((Real)SvNV(ST(1)), (Real)SvNV(ST(2)), (Real)SvNV(ST(3)));
+    }
+    else {
+        croak("Usage: Ogre::Light::setDiffuseColour(THIS, col) or (THIS, r, g, b)\n");
+    }
 
-## const ColourValue & 	getDiffuseColour (void) const
+ColourValue *
+Light::getDiffuseColour()
+  CODE:
+    RETVAL = new ColourValue;
+    *RETVAL = THIS->getDiffuseColour();
+  OUTPUT:
+    RETVAL
 
-## this has 2 versions in the C++ API
 void
-Light::setSpecularColour(red, green, blue)
-    Real  red
-    Real  green
-    Real  blue
+Light::setSpecularColour(...)
+  CODE:
+    if (items == 2 && sv_isobject(ST(1)) && sv_derived_from(ST(1), "Ogre::Colour")) {
+        ColourValue *colour = (ColourValue *) SvIV((SV *) SvRV(ST(1)));   // TMOGRE_IN
+        THIS->setSpecularColour(*colour);
+    }
+    else if (items == 4) {
+        THIS->setSpecularColour((Real)SvNV(ST(1)), (Real)SvNV(ST(2)), (Real)SvNV(ST(3)));
+    }
+    else {
+        croak("Usage: Ogre::Light::setSpecularColour(THIS, col) or (THIS, r, g, b)\n");
+    }
 
-## ColourValue & 	getSpecularColour (void) const
+ColourValue *
+Light::getSpecularColour()
+  CODE:
+    RETVAL = new ColourValue;
+    *RETVAL = THIS->getSpecularColour();
+  OUTPUT:
+    RETVAL
 
 void
 Light::setAttenuation(Real range, Real constant, Real linear, Real quadratic)
@@ -49,23 +76,49 @@ Light::getAttenuationLinear()
 Real
 Light::getAttenuationQuadric()
 
-## this has 2 versions in the C++ API
 void
-Light::setPosition(x, y, z)
-    Real  x
-    Real  y
-    Real  z
+Light::setPosition(...)
+  CODE:
+    if (items == 2 && sv_isobject(ST(1)) && sv_derived_from(ST(1), "Ogre::Vector3")) {
+        Vector3 *vec = (Vector3 *) SvIV((SV *) SvRV(ST(1)));   // TMOGRE_IN
+        THIS->setPosition(*vec);
+    }
+    else if (items == 4) {
+        THIS->setPosition((Real)SvNV(ST(1)), (Real)SvNV(ST(2)), (Real)SvNV(ST(3)));
+    }
+    else {
+        croak("Usage: Ogre::Light::setPosition(THIS, vec) or (THIS, x, y, z)\n");
+    }
 
-## const Vector3 & 	getPosition (void) const
+Vector3 *
+Light::getPosition()
+  CODE:
+    RETVAL = new Vector3;
+    *RETVAL = THIS->getPosition();
+  OUTPUT:
+    RETVAL
 
-## this has 2 versions in the C++ API
 void
-Light::setDirection(x, y, z)
-    Real  x
-    Real  y
-    Real  z
+Light::setDirection(...)
+  CODE:
+    if (items == 2 && sv_isobject(ST(1)) && sv_derived_from(ST(1), "Ogre::Vector3")) {
+        Vector3 *vec = (Vector3 *) SvIV((SV *) SvRV(ST(1)));   // TMOGRE_IN
+        THIS->setDirection(*vec);
+    }
+    else if (items == 4) {
+        THIS->setDirection((Real)SvNV(ST(1)), (Real)SvNV(ST(2)), (Real)SvNV(ST(3)));
+    }
+    else {
+        croak("Usage: Ogre::Light::setDirection(THIS, vec) or (THIS, x, y, z)\n");
+    }
 
-## const Vector3 & 	getDirection (void) const
+Vector3 *
+Light::getDirection()
+  CODE:
+    RETVAL = new Vector3;
+    *RETVAL = THIS->getDirection();
+  OUTPUT:
+    RETVAL
 
 void
 Light::setSpotlightRange(innerAngle, outerAngle, falloff=1.0)
@@ -75,8 +128,21 @@ Light::setSpotlightRange(innerAngle, outerAngle, falloff=1.0)
   C_ARGS:
     *innerAngle, *outerAngle, falloff
 
-## const Radian & 	getSpotlightInnerAngle (void) const
-## const Radian & 	getSpotlightOuterAngle (void) const
+Radian *
+Light::getSpotlightInnerAngle()
+  CODE:
+    RETVAL = new Radian;
+    *RETVAL = THIS->getSpotlightInnerAngle();
+  OUTPUT:
+    RETVAL
+
+Radian *
+Light::getSpotlightOuterAngle()
+  CODE:
+    RETVAL = new Radian;
+    *RETVAL = THIS->getSpotlightOuterAngle();
+  OUTPUT:
+    RETVAL
 
 Real
 Light::getSpotlightFalloff()
@@ -102,14 +168,32 @@ Light::setPowerScale(Real power)
 Real
 Light::getPowerScale()
 
-## const AxisAlignedBox & getBoundingBox()
+AxisAlignedBox *
+Light::getBoundingBox()
+  CODE:
+    RETVAL = new AxisAlignedBox;
+    *RETVAL = THIS->getBoundingBox();
+  OUTPUT:
+    RETVAL
 
 String
 Light::getMovableType()
 
-## const Vector3 & getDerivedPosition()
+Vector3 *
+Light::getDerivedPosition()
+  CODE:
+    RETVAL = new Vector3;
+    *RETVAL = THIS->getDerivedPosition();
+  OUTPUT:
+    RETVAL
 
-## const Vector3 & getDerivedDirection()
+Vector3 *
+Light::getDerivedDirection()
+  CODE:
+    RETVAL = new Vector3;
+    *RETVAL = THIS->getDerivedDirection();
+  OUTPUT:
+    RETVAL
 
 void
 Light::setVisible(bool visible)

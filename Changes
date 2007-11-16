@@ -1,7 +1,21 @@
+0.30 2007-11-16 | skeletalanim.pl
+- added skeletalanim.pl example
+- wrapped more classes, again to get the example working
+- improved Vector3 and Quaternion operator overloading,
+  so now the robot rotates in animate.pl instead of moonwalking
+- fixed a few places where I'd neglected to put the return value
+  of some methods into RETVAL, so segfaults would happen
+- added init-class.pl and strip-api-docs.pl genscripts
+  that I use for generating/initializing new classes
+
 0.29 2007-11-14 | cameratrack.pl, particleFX.pl
 - added cameratrack.pl and particleFX.pl examples
 - wrapped many classes, mainly to make the examples work
 - fixed a tiny bug in Ogre::ExampleFrameListener
+- note: one reason there was a 2-month gap between releases
+  was that I tried to write a script to generate the entire API;
+  the aftermath of that attempt is genscripts/genxsubs.pl,
+  but I've given up on it for now
 
 0.28 2007-09-16 | gtk2-perl and wxPerl
 - added a VERY EXPERIMENTAL feature to allow Ogre's render window to be

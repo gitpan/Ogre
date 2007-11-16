@@ -7,7 +7,7 @@ use Math::Trig;
 
 use lib 't';
 use Ogre::TestBase qw(floats_close_enough);
-use Test::More tests => 12;
+use Test::More tests => 14;
 
 
 BEGIN {
@@ -58,3 +58,9 @@ isa_ok($qvvv, 'Ogre::Quaternion');
 #ok($q0 == $q, '$q0 == $q');
 
 ok($qrv != $q, '$qrv != $q');
+
+
+my $qy = Ogre::Quaternion->new(0,0,1,0);
+my $vq = $qy * $vx;
+isa_ok($vq, 'Ogre::Vector3');
+ok(floats_close_enough($vq->x, -1), "mult q*v: v.x == -1");

@@ -1,11 +1,26 @@
 MODULE = Ogre     PACKAGE = Ogre::Entity
 
-## const MeshPtr & getMesh (void) const
+const Mesh *
+Entity::getMesh()
+  CODE:
+    RETVAL = THIS->getMesh().getPointer();
+  OUTPUT:
+    RETVAL
 
-# there is also an unsigned int version
 SubEntity *
-Entity::getSubEntity(name)
-    String  name
+Entity::getSubEntity(...)
+  CODE:
+    if (looks_like_number(ST(1))) {
+        unsigned int index = (unsigned int)SvUV(ST(1));
+        RETVAL = THIS->getSubEntity(index);
+    }
+    else {
+        char * xstmpchr = (char *) SvPV_nolen(ST(1));
+        String name = xstmpchr;
+        RETVAL = THIS->getSubEntity(name);
+    }
+  OUTPUT:
+    RETVAL
 
 unsigned int
 Entity::getNumSubEntities()
@@ -78,13 +93,25 @@ Entity::attachObjectToBone(boneName, pMovable, offsetOrientation=&Quaternion::ID
   OUTPUT:
     RETVAL
 
-## xxx: also
-##void
-##Entity::detachObjectFromBone(obj)
-##    MovableObject * obj
 MovableObject *
-Entity::detachObjectFromBone(movableName)
-    String  movableName
+Entity::detachObjectFromBone(...)
+  CODE:
+    if (sv_isobject(ST(1)) && sv_derived_from(ST(1), "Ogre::MovableObject")) {
+        MovableObject *obj = (MovableObject *) SvIV((SV *) SvRV(ST(1)));   // TMOGRE_IN
+        THIS->detachObjectFromBone(obj);
+
+        // probably shouldn't do this, but the return value has to be
+        // ignored here, but not below when a String is passed,
+        // so for convenience I just stick the old object in RETVAL
+        RETVAL = obj;
+    }
+    else {
+        char * xstmpchr = (char *) SvPV_nolen(ST(1));
+        String movableName = xstmpchr;
+        RETVAL = THIS->detachObjectFromBone(movableName);
+    }
+  OUTPUT:
+    RETVAL
 
 void
 Entity::detachAllObjectsFromBone()

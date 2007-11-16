@@ -966,4 +966,15 @@ BOOT:
 	newCONSTSUB(stash_Ogre__VertexCacheProfiler, "LRU", newSViv(Ogre::VertexCacheProfiler::LRU));
 
 	////////// GENERATED CONSTANTS END
+
+
+        // special additions....
+        // stash_Ogre__Math is from above
+        newCONSTSUB(stash_Ogre__Math, "POS_INFINITY", newSVnv(Ogre::Math::POS_INFINITY));
+        newCONSTSUB(stash_Ogre__Math, "NEG_INFINITY", newSVnv(Ogre::Math::NEG_INFINITY));
+        newCONSTSUB(stash_Ogre__Math, "PI", newSVnv(Ogre::Math::PI));
+        newCONSTSUB(stash_Ogre__Math, "TWO_PI", newSVnv(Ogre::Math::TWO_PI));
+        newCONSTSUB(stash_Ogre__Math, "HALF_PI", newSVnv(Ogre::Math::HALF_PI));
+        newCONSTSUB(stash_Ogre__Math, "fDeg2Rad", newSVnv(Ogre::Math::fDeg2Rad));
+        newCONSTSUB(stash_Ogre__Math, "fRad2Deg", newSVnv(Ogre::Math::fRad2Deg));
     }

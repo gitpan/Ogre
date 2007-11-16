@@ -34,8 +34,8 @@ SceneNode::createChildSceneNode(...)
         }
         // 1st arg is String
         else {
-            char * xstmpchr_$var = (char *) SvPV_nolen(ST(1));
-            String name = xstmpchr_$var;
+            char * xstmpchr = (char *) SvPV_nolen(ST(1));
+            String name = xstmpchr;
 
             // 1 arg passed
             if (items == 2) {

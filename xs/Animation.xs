@@ -135,15 +135,6 @@ Animation::destroyAllNumericTracks()
 void
 Animation::destroyAllVertexTracks()
 
-## xxx:
-##void
-##Animation::apply(Real timePos, Real weight=1.0, Real scale=1.0f)
-##
-##void
-##Animation::apply(Skeleton *skeleton, Real timePos, Real weight=1.0, Real scale=1.0f)
-##
-##void
-##Animation::apply(Entity *entity, Real timePos, Real weight, bool software, bool hardware)
 void
 Animation::apply(...)
   PREINIT:
@@ -193,10 +184,65 @@ int
 Animation::getRotationInterpolationMode()
 
 ## NodeTrackIterator Animation::getNodeTrackIterator()
-
 ## NumericTrackIterator Animation::getNumericTrackIterator()
-
 ## VertexTrackIterator Animation::getVertexTrackIterator()
+## The docs say these are read-only iterators
+## (Ogre::ConstMapIterator) only to be used quickly
+## then forgotten about, so probably asking for trouble
+## by sticking them in an array ref....
+AV *
+Animation::getNodeTrackAref()
+  CODE:
+    RETVAL = (AV *) sv_2mortal((SV *)newAV());  // AV* have to be made mortal
+
+    Animation::NodeTrackIterator tIt = THIS->getNodeTrackIterator();
+    while (tIt.hasMoreElements()) {
+        NodeAnimationTrack *at = tIt.getNext();
+
+        # make SV* to put on array
+        SV *svat = sv_newmortal();
+	TMOGRE_OUT(svat, at, NodeAnimationTrack);
+
+        av_push(RETVAL, svat);
+    }
+  OUTPUT:
+    RETVAL
+
+AV *
+Animation::getNumericTrackAref()
+  CODE:
+    RETVAL = (AV *) sv_2mortal((SV *)newAV());  // AV* have to be made mortal
+
+    Animation::NumericTrackIterator tIt = THIS->getNumericTrackIterator();
+    while (tIt.hasMoreElements()) {
+        NumericAnimationTrack *at = tIt.getNext();
+
+        # make SV* to put on array
+        SV *svat = sv_newmortal();
+	TMOGRE_OUT(svat, at, NumericAnimationTrack);
+
+        av_push(RETVAL, svat);
+    }
+  OUTPUT:
+    RETVAL
+
+AV *
+Animation::getVertexTrackAref()
+  CODE:
+    RETVAL = (AV *) sv_2mortal((SV *)newAV());  // AV* have to be made mortal
+
+    Animation::VertexTrackIterator tIt = THIS->getVertexTrackIterator();
+    while (tIt.hasMoreElements()) {
+        VertexAnimationTrack *at = tIt.getNext();
+
+        # make SV* to put on array
+        SV *svat = sv_newmortal();
+	TMOGRE_OUT(svat, at, VertexAnimationTrack);
+
+        av_push(RETVAL, svat);
+    }
+  OUTPUT:
+    RETVAL
 
 void
 Animation::optimise(bool discardIdentityNodeTracks=true)

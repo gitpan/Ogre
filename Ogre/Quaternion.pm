@@ -7,6 +7,11 @@ use warnings;
 use overload
   '==' => \&eq_xs,
   '!=' => \&ne_xs,
+  '+' => \&plus_xs,
+  '-' => \&minus_xs,
+  '*' => \&mult_xs,
+  '0+' => sub { $_[0] },
+  'neg' => \&neg_xs,
   ;
 
 

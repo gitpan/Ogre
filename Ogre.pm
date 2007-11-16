@@ -7,9 +7,10 @@ use warnings;
 require DynaLoader;
 our @ISA = qw(DynaLoader);
 
-our $VERSION = '0.29';
+our $VERSION = '0.30';
 
 # use all files under Ogre/ - probably not a good idea
+## BEGIN USES
 use Ogre::AnimableObject;
 use Ogre::AnimableValue;
 use Ogre::Animation;
@@ -27,6 +28,7 @@ use Ogre::ColourValue;
 use Ogre::CompositionPass;
 use Ogre::CompositionTargetPass;
 use Ogre::ConfigFile;
+use Ogre::DataStream;
 use Ogre::Degree;
 use Ogre::EdgeData;
 use Ogre::Entity;
@@ -46,9 +48,11 @@ use Ogre::InstancedGeometry;
 use Ogre::IntersectionSceneQuery;
 use Ogre::KeyFrame;
 use Ogre::Light;
+use Ogre::Log;
 use Ogre::LogManager;
 use Ogre::ManualObject;
 use Ogre::ManualResourceLoader;
+use Ogre::Material;
 use Ogre::MaterialManager;
 use Ogre::Math;
 use Ogre::Matrix3;
@@ -103,6 +107,7 @@ use Ogre::Serializer;
 use Ogre::ShadowCaster;
 use Ogre::Skeleton;
 use Ogre::SkeletonInstance;
+use Ogre::SkeletonManager;
 use Ogre::Sphere;
 use Ogre::SphereSceneQuery;
 use Ogre::StaticGeometry;
@@ -110,6 +115,8 @@ use Ogre::StringInterface;
 use Ogre::SubEntity;
 use Ogre::SubMesh;
 use Ogre::TagPoint;
+use Ogre::Technique;
+use Ogre::Texture;
 use Ogre::TextureManager;
 use Ogre::TextureUnitState;
 use Ogre::TimeIndex;
@@ -118,14 +125,14 @@ use Ogre::Vector2;
 use Ogre::Vector3;
 use Ogre::Vector4;
 use Ogre::VertexAnimationTrack;
-use Ogre::VertexCacheProfiler;
 use Ogre::VertexBufferBinding;
+use Ogre::VertexCacheProfiler;
 use Ogre::VertexData;
 use Ogre::VertexDeclaration;
 use Ogre::VertexElement;
 use Ogre::Viewport;
 use Ogre::WindowEventUtilities;
-
+## END USES
 
 sub dl_load_flags { $^O eq 'darwin' ? 0x00 : 0x01 }
 

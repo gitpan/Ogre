@@ -7,8 +7,8 @@ Mesh::createSubMesh(...)
         RETVAL = THIS->createSubMesh();
     }
     else if (items == 2) {
-        char * xstmpchr_$var = (char *) SvPV_nolen(ST(1));
-        String name = xstmpchr_$var;
+        char * xstmpchr = (char *) SvPV_nolen(ST(1));
+        String name = xstmpchr;
         RETVAL = THIS->createSubMesh(name);
     }
     else {

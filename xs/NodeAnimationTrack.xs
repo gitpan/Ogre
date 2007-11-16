@@ -26,11 +26,16 @@ bool
 NodeAnimationTrack::getUseShortestRotationPath()
 
 # note: C++ API passes in pointer with void return
-KeyFrame *
+# xxx: I used TransformKeyFrame instead of KeyFrame.
+# I hope that is ok... the API says KeyFrame, but a *working*
+# example used TransformKeyFrame, and I was getting segfaults
+# with KeyFrame, so...
+TransformKeyFrame *
 NodeAnimationTrack::getInterpolatedKeyFrame(timeIndex)
-    const TimeIndex * timeIndex
+    const TimeIndex *timeIndex
   PREINIT:
-    KeyFrame * kf;
+    // xxx: I guess this will never be freed...
+    TransformKeyFrame *kf = new TransformKeyFrame(0, 0);
   CODE:
     THIS->getInterpolatedKeyFrame(*timeIndex, kf);
     RETVAL = kf;

@@ -49,3 +49,7 @@ Here are brief descriptions of the examples.
 
 - particleFX.pl: pretty particle effects demo, implements OGRE's
   "ParticleFX" sample application
+
+- skeletalanim.pl: demo of skeletal animation, implements OGRE's
+  "SkeletalAnimation" sample application (very cool with the ladies
+  sneaking around :)

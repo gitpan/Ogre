@@ -1,7 +1,28 @@
 MODULE = Ogre     PACKAGE = Ogre::Ray
 
-## xxx: constructors, destructor
+Ray *
+Ray::new(...)
+  PREINIT:
+    char *usage = "Usage: Ogre::Ray::new(CLASS) or (CLASS, vec, vec)\n";
+  CODE:
+    if (items == 1) {
+        RETVAL = new Ray();
+    }
+    else if (items == 3 && sv_isobject(ST(1)) && sv_derived_from(ST(1), "Ogre::Vector3")
+             && sv_isobject(ST(2)) && sv_derived_from(ST(2), "Ogre::Vector3"))
+    {
+        Vector3 *origin = (Vector3 *) SvIV((SV *) SvRV(ST(1)));   // TMOGRE_IN
+        Vector3 *direction = (Vector3 *) SvIV((SV *) SvRV(ST(2)));   // TMOGRE_IN
+        RETVAL = new Ray(*origin, *direction);
+    }
+    else {
+        croak(usage);
+    }
+  OUTPUT:
+    RETVAL
 
+void
+Ray::DESTROY()
 
 void
 Ray::setOrigin(origin)
@@ -9,7 +30,13 @@ Ray::setOrigin(origin)
   C_ARGS:
     *origin
 
-## const Vector3 & 	getOrigin (void) const
+Vector3 *
+Ray::getOrigin()
+  CODE:
+    RETVAL = new Vector3;
+    *RETVAL = THIS->getOrigin();
+  OUTPUT:
+    RETVAL
 
 void
 Ray::setDirection(dir)
@@ -17,7 +44,13 @@ Ray::setDirection(dir)
   C_ARGS:
     *dir
 
-## const Vector3 & 	getDirection (void) const
+Vector3 *
+Ray::getDirection()
+  CODE:
+    RETVAL = new Vector3;
+    *RETVAL = THIS->getDirection();
+  OUTPUT:
+    RETVAL
 
 ## Vector3 	getPoint (Real t) const
 

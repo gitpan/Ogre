@@ -5,7 +5,7 @@ use warnings;
 
 use lib 't';
 use Ogre::TestBase qw(floats_close_enough);
-use Test::More tests => 44;
+use Test::More tests => 45;
 
 
 BEGIN {
@@ -81,11 +81,10 @@ ok(floats_close_enough($v3x->x, -2), "$test x == -2");
 ok(floats_close_enough($v3x->y, -2), "$test y == -2");
 ok(floats_close_enough($v3x->z, -2), "$test z == -2");
 
-$test = '$v3x == $v3';
-ok($v3x == $v3, "$test");
-$test = '$v3x != $v1';
-ok($v3x != $v1, "$test");
-$test = '$v3x < $v1';
-ok($v3x < $v1, "$test");
-$test = '$v1 > $v3x';
-ok($v1 > $v3x, "$test");
+ok($v3x == $v3, '$v3x == $v3');
+ok($v3x != $v1, '$v3x != $v1');
+ok($v3x < $v1, '$v3x < $v1');
+ok($v1 > $v3x, '$v1 > $v3x');
+
+my $negv3x = - $v3x;
+ok($v3x->x == -$negv3x->x, '- $v3x');

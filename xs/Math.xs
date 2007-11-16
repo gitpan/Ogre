@@ -203,3 +203,8 @@ Math::RealEqual(Real a, Real b)
 
 static Real
 Math::gaussianDistribution(Real x, Real offset=0.0f, Real scale=1.0f)
+
+
+
+### note: there are also Static Public Attributes, like TWO_PI,
+### at the bottom of Ogre.xs

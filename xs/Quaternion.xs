@@ -102,8 +102,67 @@ eq_xs(lobj, robj, swap)
   OUTPUT:
     RETVAL
 
+# +, -
+Quaternion *
+plus_xs(lobj, robj, swap)
+    Quaternion * lobj
+    Quaternion * robj
+    IV        swap
+  ALIAS:
+    minus_xs = 1
+  PREINIT:
+    Quaternion *q = new Quaternion;
+  CODE:
+    switch(ix) {
+        case 0: *q = *lobj + *robj; break;
+        case 1: *q = swap ? (*robj - *lobj) : (*lobj - *robj); break;
+    }
+    RETVAL = q;
+  OUTPUT:
+    RETVAL
 
-# ....
+# * (with Vector3 also)
+SV *
+mult_xs(lobj, robj, swap)
+    Quaternion * lobj
+    SV * robj
+    IV swap
+  CODE:
+    // Vector3 = Quaternion * Vector3
+    if (sv_isobject(ST(2)) && sv_derived_from(ST(2), "Ogre::Vector3")) {
+        Vector3 *rvec = (Vector3 *) SvIV((SV *) SvRV(ST(2)));
+
+        Vector3 *v = new Vector3;
+        *v = *lobj * *rvec;
+        TMOGRE_OUT(RETVAL, "Ogre::Vector3", (void *) v);
+    }
+    // Quaternion = Quaternion * Quaternion
+    else if (sv_isobject(ST(1)) && sv_derived_from(ST(1), "Ogre::Quaternion")) {
+        Quaternion *rquat = (Quaternion *) SvIV((SV *) SvRV(ST(2)));
+
+        Quaternion *q = new Quaternion;
+        *q = swap ? (*rquat * *lobj) : (*lobj * *rquat);
+        TMOGRE_OUT(RETVAL, "Ogre::Quaternion", (void *) q);
+    }
+    else {
+      croak("Quaternion::mult_xs: unknown argument!\n");
+    }
+  OUTPUT:
+    RETVAL
+
+# neg
+Quaternion *
+neg_xs(lobj, robj, swap)
+    Quaternion * lobj
+    SV * robj
+    IV swap
+  PREINIT:
+    Quaternion *q = new Quaternion;
+  CODE:
+    *q = - (*lobj);
+    RETVAL = q;
+  OUTPUT:
+    RETVAL
 
 
 void
@@ -132,6 +191,9 @@ Quaternion::ToAngleAxis(rfAngle, rkAxis)
   C_ARGS:
     *rfAngle, *rkAxis
 
+## I assume these ones are pointers to an array of Vector3??
+## void FromAxes (const Vector3 *akAxis)
+## void ToAxes (Vector3 *akAxis) const
 void
 Quaternion::FromAxes(xAxis, yAxis, zAxis)
     Vector3 * xAxis
@@ -148,7 +210,29 @@ Quaternion::ToAxes(xAxis, yAxis, zAxis)
   C_ARGS:
     *xAxis, *yAxis, *zAxis
 
-# xAxis, yAxis, zAxis...
+Vector3 *
+Quaternion::xAxis()
+  CODE:
+    RETVAL = new Vector3;
+    *RETVAL = THIS->xAxis();
+  OUTPUT:
+    RETVAL
+
+Vector3 *
+Quaternion::yAxis()
+  CODE:
+    RETVAL = new Vector3;
+    *RETVAL = THIS->yAxis();
+  OUTPUT:
+    RETVAL
+
+Vector3 *
+Quaternion::zAxis()
+  CODE:
+    RETVAL = new Vector3;
+    *RETVAL = THIS->zAxis();
+  OUTPUT:
+    RETVAL
 
 Real
 Quaternion::Dot(rkQ)
@@ -162,7 +246,29 @@ Quaternion::Norm()
 Real
 Quaternion::normalise()
 
-# getRoll, getPitch, getYaw...
+Radian *
+Quaternion::getRoll(bool reprojectAxis=true)
+  CODE:
+    RETVAL = new Radian;
+    *RETVAL = THIS->getRoll();
+  OUTPUT:
+    RETVAL
+
+Radian *
+Quaternion::getPitch(bool reprojectAxis=true)
+  CODE:
+    RETVAL = new Radian;
+    *RETVAL = THIS->getPitch();
+  OUTPUT:
+    RETVAL
+
+Radian *
+Quaternion::getYaw(bool reprojectAxis=true)
+  CODE:
+    RETVAL = new Radian;
+    *RETVAL = THIS->getYaw();
+  OUTPUT:
+    RETVAL
 
 bool
 Quaternion::equals(rhs, tolerance)
@@ -170,10 +276,6 @@ Quaternion::equals(rhs, tolerance)
     DegRad * tolerance
   C_ARGS:
     *rhs, *tolerance
-
-
-# ...
-
 
 
 ## xxx: it would be nice to be able to do this: $v->{x} = 20;

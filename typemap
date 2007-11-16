@@ -1,5 +1,6 @@
 TYPEMAP
 
+## BEGIN NORMAL TYPEMAPS
 AnimableObject *	O_ANIMABLEOBJECT
 AnimableValue *	O_ANIMABLEVALUE
 Animation *	O_ANIMATION
@@ -7,24 +8,21 @@ AnimationState *	O_ANIMATIONSTATE
 AnimationStateSet *	O_ANIMATIONSTATESET
 AnimationTrack *	O_ANIMATIONTRACK
 AxisAlignedBox *	O_AXISALIGNEDBOX
-const AxisAlignedBox *	O_AXISALIGNEDBOX
 AxisAlignedBoxSceneQuery *	O_AXISALIGNEDBOXSCENEQUERY
 Billboard *	O_BILLBOARD
-const Billboard *	O_BILLBOARD
 BillboardChain *	O_BILLBOARDCHAIN
 BillboardSet *	O_BILLBOARDSET
 Bone *	O_BONE
 Camera *	O_CAMERA
-const Camera *	O_CAMERA
 ColourValue *	O_COLOURVALUE
-const ColourValue *	O_COLOURVALUE
 ConfigFile *	O_CONFIGFILE
+DataStream *	O_DATASTREAM
 DegRad *	O_DEGRAD
 Degree *	O_DEGREE
 EdgeData *	O_EDGEDATA
 Entity *	O_ENTITY
-Frustum *	O_FRUSTUM
 FrameEvent *	O_FRAMEEVENT
+Frustum *	O_FRUSTUM
 GpuProgram *	O_GPUPROGRAM
 GpuProgramParameters *	O_GPUPROGRAMPARAMETERS
 HardwareBuffer *	O_HARDWAREBUFFER
@@ -33,20 +31,19 @@ HardwareIndexBuffer *	O_HARDWAREINDEXBUFFER
 HardwareOcclusionQuery *	O_HARDWAREOCCLUSIONQUERY
 HardwarePixelBuffer *	O_HARDWAREPIXELBUFFER
 HardwareVertexBuffer *	O_HARDWAREVERTEXBUFFER
-const HardwareVertexBuffer *	O_HARDWAREVERTEXBUFFER
 IndexData *	O_INDEXDATA
 InstancedGeometry *	O_INSTANCEDGEOMETRY
 IntersectionSceneQuery *	O_INTERSECTIONSCENEQUERY
 KeyFrame *	O_KEYFRAME
 Light *	O_LIGHT
-const Light *	O_LIGHT
+Log *	O_LOG
 LogManager *	O_LOGMANAGER
 ManualObject *	O_MANUALOBJECT
 ManualResourceLoader *	O_MANUALRESOURCELOADER
+Material *	O_MATERIAL
 MaterialManager *	O_MATERIALMANAGER
 Matrix3 *	O_MATRIX3
 Matrix4 *	O_MATRIX4
-const Matrix4 *	O_MATRIX4
 Mesh *	O_MESH
 MeshManager *	O_MESHMANAGER
 MeshPtr *	O_MESHPTR
@@ -57,7 +54,6 @@ NodeAnimationTrack *	O_NODEANIMATIONTRACK
 NumericAnimationTrack *	O_NUMERICANIMATIONTRACK
 Overlay *	O_OVERLAY
 OverlayContainer *	O_OVERLAYCONTAINER
-const OverlayElement *	O_OVERLAYELEMENT
 OverlayElement *	O_OVERLAYELEMENT
 OverlayManager *	O_OVERLAYMANAGER
 Particle *	O_PARTICLE
@@ -71,20 +67,19 @@ Plane *	O_PLANE
 PlaneBoundedVolumeListSceneQuery *	O_PLANEBOUNDEDVOLUMELISTSCENEQUERY
 Pose *	O_POSE
 Quaternion *	O_QUATERNION
-const Quaternion *	O_QUATERNION
 Radian *	O_RADIAN
 Ray *	O_RAY
+const Ray *	O_RAY
 RaySceneQuery *	O_RAYSCENEQUERY
 RegionSceneQuery *	O_REGIONSCENEQUERY
-Renderable *	O_RENDERABLE
 RenderOperation *	O_RENDEROPERATION
 RenderQueue *	O_RENDERQUEUE
 RenderSystem *	O_RENDERSYSTEM
 RenderSystemCapabilities *	O_RENDERSYSTEMCAPABILITIES
-const RenderSystemCapabilities *	O_RENDERSYSTEMCAPABILITIES
 RenderTarget *	O_RENDERTARGET
 RenderTexture *	O_RENDERTEXTURE
 RenderWindow *	O_RENDERWINDOW
+Renderable *	O_RENDERABLE
 Resource *	O_RESOURCE
 ResourceGroupManager *	O_RESOURCEGROUPMANAGER
 ResourceManager *	O_RESOURCEMANAGER
@@ -97,6 +92,7 @@ ScriptLoader *	O_SCRIPTLOADER
 ShadowCaster *	O_SHADOWCASTER
 Skeleton *	O_SKELETON
 SkeletonInstance *	O_SKELETONINSTANCE
+SkeletonManager *	O_SKELETONMANAGER
 Sphere *	O_SPHERE
 SphereSceneQuery *	O_SPHERESCENEQUERY
 StaticGeometry *	O_STATICGEOMETRY
@@ -104,23 +100,56 @@ StringInterface *	O_STRINGINTERFACE
 SubEntity *	O_SUBENTITY
 SubMesh *	O_SUBMESH
 TagPoint *	O_TAGPOINT
+Technique *	O_TECHNIQUE
+Texture *	O_TEXTURE
 TextureManager *	O_TEXTUREMANAGER
+TextureUnitState *	O_TEXTUREUNITSTATE
 TimeIndex *	O_TIMEINDEX
-const TimeIndex *	O_TIMEINDEX
 TransformKeyFrame *	O_TRANSFORMKEYFRAME
 Vector2 *	O_VECTOR2
 Vector3 *	O_VECTOR3
-const Vector3 *	O_VECTOR3
 Vector4 *	O_VECTOR4
-const Vector4 *	O_VECTOR4
 VertexAnimationTrack *	O_VERTEXANIMATIONTRACK
 VertexBufferBinding *	O_VERTEXBUFFERBINDING
 VertexData *	O_VERTEXDATA
 VertexDeclaration *	O_VERTEXDECLARATION
 VertexElement *	O_VERTEXELEMENT
-const VertexElement *	O_VERTEXELEMENT
 Viewport *	O_VIEWPORT
 WindowEventListener *	O_WINDOWEVENTLISTENER
+const AnimationStateSet *	O_ANIMATIONSTATESET
+const AnimationTrack *	O_ANIMATIONTRACK
+const AxisAlignedBox *	O_AXISALIGNEDBOX
+const Billboard *	O_BILLBOARD
+const Bone *	O_BONE
+const Camera *	O_CAMERA
+const Camera *	O_CAMERA
+const ColourValue *	O_COLOURVALUE
+const DataStream *	O_DATASTREAM
+const HardwareVertexBuffer *	O_HARDWAREVERTEXBUFFER
+const Light *	O_LIGHT
+const Material *	O_MATERIAL
+const Matrix4 *	O_MATRIX4
+const Mesh *	O_MESH
+const NodeAnimationTrack *	O_NODEANIMATIONTRACK
+const NumericAnimationTrack *	O_NUMERICANIMATIONTRACK
+const OverlayElement *	O_OVERLAYELEMENT
+const Pass *	O_PASS
+const Quaternion *	O_QUATERNION
+const Radian *	O_RADIAN
+const RenderSystemCapabilities *	O_RENDERSYSTEMCAPABILITIES
+const Resource *	O_RESOURCE
+const SkeletonManager *	O_SKELETONMANAGER
+const SubEntity *	O_SUBENTITY
+const SubMesh *	O_SUBMESH
+const Technique *	O_TECHNIQUE
+const Texture *	O_TEXTURE
+const TextureUnitState *	O_TEXTUREUNITSTATE
+const TimeIndex *	O_TIMEINDEX
+const Vector3 *	O_VECTOR3
+const Vector4 *	O_VECTOR4
+const VertexAnimationTrack *	O_VERTEXANIMATIONTRACK
+const VertexElement *	O_VERTEXELEMENT
+## END NORMAL TYPEMAPS
 
 String	STRING
 const String	STRING
@@ -130,6 +159,7 @@ uint8	T_UV
 uint	T_UV
 uchar	T_U_CHAR
 Real	T_REAL
+ResourceHandle	T_UV
 
 
 INPUT
@@ -189,6 +219,9 @@ O_COLOURVALUE
 O_CONFIGFILE
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, ConfigFile)
 
+O_DATASTREAM
+	TMOGRE_IN($arg, $var, $type, $Package, $func_name, DataStream)
+
 O_DEGREE
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, Degree)
 
@@ -243,6 +276,9 @@ O_KEYFRAME
 O_LIGHT
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, Light)
 
+O_LOG
+	TMOGRE_IN($arg, $var, $type, $Package, $func_name, Log)
+
 O_LOGMANAGER
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, LogManager)
 
@@ -251,6 +287,9 @@ O_MANUALOBJECT
 
 O_MANUALRESOURCELOADER
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, ManualResourceLoader)
+
+O_MATERIAL
+	TMOGRE_IN($arg, $var, $type, $Package, $func_name, Material)
 
 O_MATERIALMANAGER
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, MaterialManager)
@@ -402,6 +441,9 @@ O_SKELETON
 O_SKELETONINSTANCE
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, SkeletonInstance)
 
+O_SKELETONMANAGER
+	TMOGRE_IN($arg, $var, $type, $Package, $func_name, SkeletonManager)
+
 O_SPHERE
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, Sphere)
 
@@ -423,8 +465,17 @@ O_SUBMESH
 O_TAGPOINT
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, TagPoint)
 
+O_TECHNIQUE
+	TMOGRE_IN($arg, $var, $type, $Package, $func_name, Technique)
+
+O_TEXTURE
+	TMOGRE_IN($arg, $var, $type, $Package, $func_name, Texture)
+
 O_TEXTUREMANAGER
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, TextureManager)
+
+O_TEXTUREUNITSTATE
+	TMOGRE_IN($arg, $var, $type, $Package, $func_name, TextureUnitState)
 
 O_TIMEINDEX
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, TimeIndex)
@@ -516,6 +567,9 @@ O_COLOURVALUE
 O_CONFIGFILE
 	TMOGRE_OUT($arg, $var, ConfigFile)
 
+O_DATASTREAM
+	TMOGRE_OUT($arg, $var, DataStream)
+
 O_DEGREE
 	TMOGRE_OUT($arg, $var, Degree)
 
@@ -570,6 +624,9 @@ O_KEYFRAME
 O_LIGHT
 	TMOGRE_OUT($arg, $var, Light)
 
+O_LOG
+	TMOGRE_OUT($arg, $var, Log)
+
 O_LOGMANAGER
 	TMOGRE_OUT($arg, $var, LogManager)
 
@@ -578,6 +635,9 @@ O_MANUALOBJECT
 
 O_MANUALRESOURCELOADER
 	TMOGRE_OUT($arg, $var, ManualResourceLoader)
+
+O_MATERIAL
+	TMOGRE_OUT($arg, $var, Material)
 
 O_MATERIALMANAGER
 	TMOGRE_OUT($arg, $var, MaterialManager)
@@ -729,6 +789,9 @@ O_SKELETON
 O_SKELETONINSTANCE
 	TMOGRE_OUT($arg, $var, SkeletonInstance)
 
+O_SKELETONMANAGER
+	TMOGRE_OUT($arg, $var, SkeletonManager)
+
 O_SPHERE
 	TMOGRE_OUT($arg, $var, Sphere)
 
@@ -750,8 +813,17 @@ O_SUBMESH
 O_TAGPOINT
 	TMOGRE_OUT($arg, $var, TagPoint)
 
+O_TECHNIQUE
+	TMOGRE_OUT($arg, $var, Technique)
+
+O_TEXTURE
+	TMOGRE_OUT($arg, $var, Texture)
+
 O_TEXTUREMANAGER
 	TMOGRE_OUT($arg, $var, TextureManager)
+
+O_TEXTUREUNITSTATE
+	TMOGRE_OUT($arg, $var, TextureUnitState)
 
 O_TIMEINDEX
 	TMOGRE_OUT($arg, $var, TimeIndex)

@@ -15,14 +15,27 @@ Camera::setPolygonMode(sd)
 int
 Camera::getPolygonMode()
 
-## xxx: void 	setPosition (const Vector3 &vec)
 void
-Camera::setPosition(x, y, z)
-    Real x
-    Real y
-    Real z
+Camera::setPosition(...)
+  CODE:
+    if (sv_isobject(ST(1)) && sv_derived_from(ST(1), "Ogre::Vector3")) {
+        Vector3 *vec = (Vector3 *) SvIV((SV *) SvRV(ST(1)));   // TMOGRE_IN
+        THIS->setPosition(*vec);
+    }
+    else if (items == 4) {
+        THIS->setPosition((Real)SvNV(ST(1)), (Real)SvNV(ST(2)), (Real)SvNV(ST(3)));
+    }
+    else {
+        croak("Usage: Ogre::Camera::setPosition(THIS, vec) or (THIS, x , y, z)\n");
+    }
 
-## const Vector3 &  Camera::getPosition()
+Vector3 *
+Camera::getPosition()
+  CODE:
+    RETVAL = new Vector3;
+    *RETVAL = THIS->getPosition();
+  OUTPUT:
+    RETVAL
 
 void
 Camera::move(vec)
@@ -36,23 +49,37 @@ Camera::moveRelative(vec)
   C_ARGS:
     *vec
 
-## xxx: void 	setDirection (const Vector3 &vec)
 void
-Camera::setDirection(x, y, z)
-    Real x
-    Real y
-    Real z
+Camera::setDirection(...)
+  CODE:
+    if (sv_isobject(ST(1)) && sv_derived_from(ST(1), "Ogre::Vector3")) {
+        Vector3 *vec = (Vector3 *) SvIV((SV *) SvRV(ST(1)));   // TMOGRE_IN
+        THIS->lookAt(*vec);
+    }
+    else if (items == 4) {
+        THIS->lookAt((Real)SvNV(ST(1)), (Real)SvNV(ST(2)), (Real)SvNV(ST(3)));
+    }
+    else {
+        croak("Usage: Ogre::Camera::setDirection(THIS, vec) or (THIS, x , y, z)\n");
+    }
 
 # Vector3 getDirection()
 # Vector3 getUp()
 # Vector3 getRight()
 
-## xxx: void 	lookAt (const Vector3 &targetPoint)
 void
-Camera::lookAt(x, y, z)
-    Real x
-    Real y
-    Real z
+Camera::lookAt(...)
+  CODE:
+    if (sv_isobject(ST(1)) && sv_derived_from(ST(1), "Ogre::Vector3")) {
+        Vector3 *vec = (Vector3 *) SvIV((SV *) SvRV(ST(1)));   // TMOGRE_IN
+        THIS->lookAt(*vec);
+    }
+    else if (items == 4) {
+        THIS->lookAt((Real)SvNV(ST(1)), (Real)SvNV(ST(2)), (Real)SvNV(ST(3)));
+    }
+    else {
+        croak("Usage: Ogre::Camera::lookAt(THIS, vec) or (THIS, x , y, z)\n");
+    }
 
 void
 Camera::roll(angle)

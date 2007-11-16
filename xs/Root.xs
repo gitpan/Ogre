@@ -39,14 +39,33 @@ Root::restoreConfig()
 bool
 Root::showConfigDialog()
 
-# addRenderSystem, ...
+void
+Root::addRenderSystem(RenderSystem *newRend)
 
-## need to make 2nd arg optional...
-## RenderWindow * initialise(bool autoCreateWindow, const String &windowTitle="OGRE Render Window")
+RenderSystem *
+Root::getRenderSystemByName(String name)
+
+void
+Root::setRenderSystem(RenderSystem *system)
+
+RenderSystem *
+Root::getRenderSystem()
+
 RenderWindow *
-Root::initialise(autoCreateWindow, windowTitle)
+Root::initialise(autoCreateWindow, ...)
     bool    autoCreateWindow
-    String  windowTitle
+  CODE:
+    String windowTitle;
+    if (items == 3) {
+        char * xstmpchr = (char *) SvPV_nolen(ST(2));
+        windowTitle = xstmpchr;
+    }
+    else {
+        windowTitle = "OGRE Render Window";
+    }
+    RETVAL = THIS->initialise(autoCreateWindow, windowTitle);
+  OUTPUT:
+    RETVAL
 
 bool
 Root::isInitialised()
@@ -55,9 +74,30 @@ Root::isInitialised()
 
 ## note: there are 2 variants of this in the C++ API
 SceneManager *
-Root::createSceneManager(typeMask, instanceName)
-    uint16  typeMask
-    String  instanceName
+Root::createSceneManager(...)
+  CODE:
+    String instanceName = StringUtil::BLANK;
+    if (items == 3) {
+        char * xstmpchr_iname = (char *) SvPV_nolen(ST(2));
+        instanceName = xstmpchr_iname;
+    }
+
+    // SceneManager * createSceneManager (SceneTypeMask typeMask, const String &instanceName=StringUtil::BLANK)
+    if (looks_like_number(ST(1))) {
+        SceneTypeMask typeMask = (SceneTypeMask)SvUV(ST(1));
+
+        RETVAL = THIS->createSceneManager(typeMask, instanceName);
+    }
+    // SceneManager * createSceneManager (const String &typeName, const String &instanceName=StringUtil::BLANK)
+    else {
+        char * xstmpchr_tname = (char *) SvPV_nolen(ST(1));
+        String typeName = xstmpchr_tname;
+
+        RETVAL = THIS->createSceneManager(typeName, instanceName);
+    }
+  OUTPUT:
+    RETVAL
+
 
 void
 Root::destroySceneManager(sm)
@@ -102,7 +142,8 @@ Root::renderOneFrame()
 void
 Root::shutdown()
 
-# ResourceLocation, ....
+void
+Root::addResourceLocation(String name, String locType, String groupName=ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, bool recursive=false)
 
 RenderWindow *
 Root::getAutoCreatedWindow()

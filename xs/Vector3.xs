@@ -35,24 +35,6 @@ Vector3::new(...)
 void
 Vector3::DESTROY()
 
-
-##Ogre.c: In function 'void XS_Ogre__Vector3_nil(PerlInterpreter*, CV*)':
-##Ogre.c:11158: error: 'ax' was not declared in this scope
-##Ogre.c: In function 'void boot_Ogre(PerlInterpreter*, CV*)':
-##Ogre.c:11180: error: cannot convert 'sv' to 'SV*' for argument '3' to 'void Perl_sv_setsv_flags(PerlInterpreter*, SV*, SV*, I32)'
-
-## overloaded ops, perldoc perlxs
-##bool
-##equals(lobj, robj, swap)
-##    Vector3 * lobj
-##    Vector3 * robj
-##    IV        swap
-##  OVERLOAD: ==
-##  CODE:
-##    RETVAL = (*lobj == *robj);
-##  OUTPUT:
-##    RETVAL
-
 # ==, !=, <, >
 bool
 eq_xs(lobj, robj, swap)
@@ -73,8 +55,7 @@ eq_xs(lobj, robj, swap)
   OUTPUT:
     RETVAL
 
-# xxx: this is incomplete (no mult by Real, for example)
-# +, -
+# +, -, /   (need Real also)
 Vector3 *
 plus_xs(lobj, robj, swap)
     Vector3 * lobj
@@ -82,20 +63,195 @@ plus_xs(lobj, robj, swap)
     IV        swap
   ALIAS:
     minus_xs = 1
-    mult_xs = 2
-    div_xs = 3
+    div_xs = 2
   PREINIT:
     Vector3 *vec = new Vector3;
   CODE:
     switch(ix) {
         case 0: *vec = *lobj + *robj; break;
         case 1: *vec = swap ? (*robj - *lobj) : (*lobj - *robj); break;
-        case 2: *vec = *lobj * *robj; break;
-        case 3: *vec = swap ? (*robj / *lobj) : (*lobj / *robj); break;
+        case 2: *vec = swap ? (*robj / *lobj) : (*lobj / *robj); break;
     }
     RETVAL = vec;
   OUTPUT:
     RETVAL
+
+# * (handles Quaternion also)
+Vector3 *
+mult_xs(lobj, robj, swap)
+    Vector3 * lobj
+    SV * robj
+    IV swap
+  PREINIT:
+    Vector3 *vec = new Vector3;
+  CODE:
+    if (sv_isobject(robj) && sv_derived_from(robj, "Ogre::Vector3")) {
+        const Vector3 *rhs = (Vector3 *) SvIV((SV *) SvRV(robj));
+        *vec = *lobj * *rhs;
+    }
+    else if (sv_isobject(robj) && sv_derived_from(robj, "Ogre::Quaternion")) {
+        const Quaternion *rhs = (Quaternion *) SvIV((SV *) SvRV(robj));
+        // note reversal
+        *vec = (*rhs) * (*lobj);
+    }
+    else if (looks_like_number(robj)) {
+        Real rhs = (Real)SvNV(robj);
+        *vec = *lobj * rhs;
+    }
+    else {
+        croak("Vector3::mult_xs: unknown argument!\n");
+    }
+    RETVAL = vec;
+  OUTPUT:
+    RETVAL
+
+# neg
+Vector3 *
+neg_xs(lobj, robj, swap)
+    Vector3 * lobj
+    SV * robj
+    IV swap
+  PREINIT:
+    Vector3 *vec = new Vector3;
+  CODE:
+    *vec = - (*lobj);
+    RETVAL = vec;
+  OUTPUT:
+    RETVAL
+
+## xxx: +=, -=, *=, /= (with Real too)
+
+Real
+Vector3::length()
+
+Real
+Vector3::squaredLength()
+
+Real
+Vector3::distance(rhs)
+    Vector3 * rhs
+  C_ARGS:
+    *rhs
+
+Real
+Vector3::squaredDistance(rhs)
+    Vector3 * rhs
+  C_ARGS:
+    *rhs
+
+Real
+Vector3::dotProduct(vec)
+    Vector3 * vec
+  C_ARGS:
+    *vec
+
+Real
+Vector3::absDotProduct(vec)
+    Vector3 * vec
+  C_ARGS:
+    *vec
+
+Real
+Vector3::normalise()
+
+Vector3 *
+Vector3::crossProduct(rkVector)
+    const Vector3 * rkVector
+  CODE:
+    RETVAL = new Vector3;
+    *RETVAL = THIS->crossProduct(*rkVector);
+  OUTPUT:
+    RETVAL
+
+Vector3 *
+Vector3::midPoint(rkVector)
+    const Vector3 * rkVector
+  CODE:
+    RETVAL = new Vector3;
+    *RETVAL = THIS->midPoint(*rkVector);
+  OUTPUT:
+    RETVAL
+
+void
+Vector3::makeFloor(cmp)
+    Vector3 * cmp
+  C_ARGS:
+    *cmp
+
+void
+Vector3::makeCeil(cmp)
+    Vector3 * cmp
+  C_ARGS:
+    *cmp
+
+Vector3 *
+Vector3::perpendicular()
+  CODE:
+    RETVAL = new Vector3;
+    *RETVAL = THIS->perpendicular();
+  OUTPUT:
+    RETVAL
+
+Vector3 *
+Vector3::randomDeviant(angle, up=&Vector3::ZERO)
+    DegRad * angle
+    const Vector3 * up
+  CODE:
+    RETVAL = new Vector3;
+    *RETVAL = THIS->randomDeviant(*angle, *up);
+  OUTPUT:
+    RETVAL
+
+Quaternion *
+Vector3::getRotationTo(dest, fallbackAxis=&Vector3::ZERO)
+    const Vector3 * dest
+    const Vector3 * fallbackAxis
+  CODE:
+    RETVAL = new Quaternion;
+    *RETVAL = THIS->getRotationTo(*dest, *fallbackAxis);
+  OUTPUT:
+    RETVAL
+
+bool
+Vector3::isZeroLength()
+
+Vector3 *
+Vector3::normalisedCopy()
+  CODE:
+    RETVAL = new Vector3;
+    *RETVAL = THIS->normalisedCopy();
+  OUTPUT:
+    RETVAL
+
+Vector3 *
+Vector3::reflect(normal)
+    const Vector3 * normal
+  CODE:
+    RETVAL = new Vector3;
+    *RETVAL = THIS->reflect(*normal);
+  OUTPUT:
+    RETVAL
+
+bool
+Vector3::positionEquals(rhs, tolerance=0.001)
+    Vector3 * rhs
+    Real  tolerance
+  C_ARGS:
+    *rhs, tolerance
+
+bool
+Vector3::positionCloses(rhs, tolerance=0.001)
+    Vector3 * rhs
+    Real  tolerance
+  C_ARGS:
+    *rhs, tolerance
+
+bool
+Vector3::directionEquals(rhs, tolerance)
+    Vector3 * rhs
+    DegRad * tolerance
+  C_ARGS:
+    *rhs, *tolerance
 
 
 ## xxx: it would be nice to be able to do this: $v->{x} = 20;
@@ -140,76 +296,3 @@ Vector3::setZ(z)
     Real  z
   CODE:
     (*THIS).z = z;
-
-Real
-Vector3::length()
-
-Real
-Vector3::squaredLength()
-
-Real
-Vector3::distance(rhs)
-    Vector3 * rhs
-  C_ARGS:
-    *rhs
-
-Real
-Vector3::squaredDistance(rhs)
-    Vector3 * rhs
-  C_ARGS:
-    *rhs
-
-Real
-Vector3::dotProduct(vec)
-    Vector3 * vec
-  C_ARGS:
-    *vec
-
-Real
-Vector3::absDotProduct(vec)
-    Vector3 * vec
-  C_ARGS:
-    *vec
-
-Real
-Vector3::normalise()
-
-# ...
-
-void
-Vector3::makeFloor(cmp)
-    Vector3 * cmp
-  C_ARGS:
-    *cmp
-
-void
-Vector3::makeCeil(cmp)
-    Vector3 * cmp
-  C_ARGS:
-    *cmp
-
-# ...
-
-bool
-Vector3::isZeroLength()
-
-bool
-Vector3::positionEquals(rhs, tolerance=0.001)
-    Vector3 * rhs
-    Real  tolerance
-  C_ARGS:
-    *rhs, tolerance
-
-bool
-Vector3::positionCloses(rhs, tolerance=0.001)
-    Vector3 * rhs
-    Real  tolerance
-  C_ARGS:
-    *rhs, tolerance
-
-bool
-Vector3::directionEquals(rhs, tolerance)
-    Vector3 * rhs
-    Radian * tolerance
-  C_ARGS:
-    *rhs, *tolerance

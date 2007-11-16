@@ -2,9 +2,13 @@ MODULE = Ogre     PACKAGE = Ogre::Frustum
 
 
 void
-Frustum::setAspectRatio(ratio)
-    Real ratio
+Frustum::setNearClipDistance(Real nearDist)
 
 void
-Frustum::setNearClipDistance(nearDist)
-    Real nearDist
+Frustum::setFarClipDistance(Real farDist)
+
+void
+Frustum::setAspectRatio(Real ratio)
+
+Real
+Frustum::getAspectRatio()

@@ -6,7 +6,13 @@ TransformKeyFrame::setTranslate(trans)
   C_ARGS:
     *trans
 
-## const Vector3 & TransformKeyFrame::getTranslate()
+Vector3 *
+TransformKeyFrame::getTranslate()
+  CODE:
+    RETVAL = new Vector3;
+    *RETVAL = THIS->getTranslate();
+  OUTPUT:
+    RETVAL
 
 void
 TransformKeyFrame::setScale(scale)
@@ -14,7 +20,13 @@ TransformKeyFrame::setScale(scale)
   C_ARGS:
     *scale
 
-## const Vector3 & TransformKeyFrame::getScale()
+Vector3 *
+TransformKeyFrame::getScale()
+  CODE:
+    RETVAL = new Vector3;
+    *RETVAL = THIS->getScale();
+  OUTPUT:
+    RETVAL
 
 void
 TransformKeyFrame::setRotation(rot)
@@ -22,5 +34,10 @@ TransformKeyFrame::setRotation(rot)
   C_ARGS:
     *rot
 
-## const Quaternion & TransformKeyFrame::getRotation()
-
+Quaternion *
+TransformKeyFrame::getRotation()
+  CODE:
+    RETVAL = new Quaternion;
+    *RETVAL = THIS->getRotation();
+  OUTPUT:
+    RETVAL

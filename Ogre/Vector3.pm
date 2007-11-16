@@ -13,6 +13,8 @@ use overload
   '-' => \&minus_xs,
   '*' => \&mult_xs,
   '/' => \&div_xs,
+  '0+' => sub { $_[0] },
+  'neg' => \&neg_xs,
   ;
 
 

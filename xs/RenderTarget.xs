@@ -33,7 +33,7 @@ RenderTarget::getMetrics(OUTLIST unsigned int width, OUTLIST unsigned int height
 #  CODE:
 #    // xxx: I doubt this works...
 #    FrameStats *stats;
-#    *stats = THIS->getStatistics);
+#    *stats = THIS->getStatistics();
 #    RETVAL = stats;
 #  OUTPUT:
 #    RETVAL

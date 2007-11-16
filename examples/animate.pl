@@ -21,7 +21,7 @@ BEGIN {
 use Ogre::ExampleFrameListener;
 @MoveDemoListener::ISA = qw(Ogre::ExampleFrameListener);
 
-use Ogre 0.25;
+use Ogre 0.30;
 use Ogre::Quaternion;
 use Ogre::Vector3;
 
@@ -87,11 +87,7 @@ sub frameStarted {
 
         # if we'd overshoot the target, jump to it instead
         if ($self->{mDistance} <= 0) {
-            # xxx: I need to wrap the other variations of `setPosition' ....
-            # $self->{mNode}->setPosition($self->{mDestination});
-            $self->{mNode}->setPosition($self->{mDestination}->x,
-                                        $self->{mDestination}->y,
-                                        $self->{mDestination}->z);
+            $self->{mNode}->setPosition($self->{mDestination});
             $self->{mDirection} = $ZERO;
 
             # since we're at the destination, setup for next point
@@ -101,20 +97,16 @@ sub frameStarted {
             }
             else {
                 # rotate the robot
-
-                # XXX: need to implement this
-
-                my $src = $self->{mNode}->getOrientation();     # * $UNIT_X;
-                #my $quat = $src->getRotationTo($self->{mDirection});
-                #$self->{mNode}->rotate($quat);
+                my $orient = $self->{mNode}->getOrientation;
+                # xxx: this caused it to crash, somehow because of the ReadOnly.... :/
+                # my $src = $orient * $UNIT_X;
+                my $src = $orient * $xvec;
+                my $quat = $src->getRotationTo($self->{mDirection});
+                $self->{mNode}->rotate($quat);
             }
         }
         else {
-            # xxx: I need to wrap the other variations of `translate'
-            # $self->{mNode}->translate($self->{mDirection} * $move);
-            $self->{mNode}->translate($self->{mDirection}->x * $move,
-                                      $self->{mDirection}->y * $move,
-                                      $self->{mDirection}->z * $move);
+             $self->{mNode}->translate($self->{mDirection} * $move);
         }
     }
 
@@ -138,7 +130,7 @@ use warnings;
 use Ogre::ExampleApplication;
 @MoveDemoApplication::ISA = qw(Ogre::ExampleApplication);
 
-use Ogre 0.25;
+use Ogre 0.30;
 use Ogre::Degree;
 use Ogre::ColourValue;
 use Ogre::Vector3;
