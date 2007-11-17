@@ -22,60 +22,63 @@ RaySceneQuery::getSortByDistance()
 unsigned short
 RaySceneQuery::getMaxResults()
 
-#### xxx: void RaySceneQuery::execute(RaySceneQueryListener *listener)
-#### RaySceneQueryResult & RaySceneQuery::execute()
-#### note: see ConfigFile::getSections
+## xxx: there is a second version
+##   void RaySceneQuery::execute(RaySceneQueryListener *listener)
+## but Listeners are for later.
+## The following implements this:
+##   RaySceneQueryResult & RaySceneQuery::execute()
+## Note: see ConfigFile::getSections for a similar example.
+## The results here are returned in an aref, each of whose
+## items is a hashref whose keys are: distance, movable,
+## and worldFragment.
 ##SV *
 ##RaySceneQuery::execute()
 ##  CODE:
-##    AV *result = (AV *) sv_2mortal((SV *) newAV());
-##
+##    warn("(.)(.)\n");
 ##    RaySceneQueryResult& qryResult = THIS->execute();
-##    RaySceneQueryResult::iterator it = qryResult.begin();
-##    while (it.hasMoreElements()) {
-##        RaySceneQueryResultEntry entry = it.getNext();
-##
-##        // go from C++ to Perl SV*
-##        SV *svdistance = sv_newmortal(),
-##           *svmovable = sv_newmortal(),
-##           *svworldFragment = sv_newmortal();
-##        if (svdistance)
-##            sv_setnv(svdistance, (Real)entry->distance);
-##        else
-##            svdistance = &PL_sv_undef;
-##        if (svmovable)
-##            TMOGRE_OUT(svmovable, entry->movable, MovableObject);
-##        else
-##            svmovable = &PL_sv_undef;
-##
-##        xxx: SceneQuery::WorldFragment is a struct
-##
-##        if (svworldFragment)
-##            TMOGRE_OUT(svworldFragment, entry->worldFragment, SceneQuery::WorldFragment);
-##        else
-##            svworldFragment = &PL_sv_undef;
-##
-##        // put the SV* into a hash
-##        HV *hventry = (HV *) sv_2mortal((SV *) newHV());
-##        hv_store(hventry, "distance", 8, svdistance, 0);
-##        hv_store(hventry, "movable", 7, svmovable, 0);
-##        hv_store(hventry, "worldFragment", 13, svworldFragment, 0);
-##
-##        // push the hash onto the array
-##        av_push(result, newRV((SV *) hventry));
-##    }
-##
-##    // return the array ref
-##    RETVAL = newRV((SV *) result);
+##    warn("(o)(o)\n");
+##    RETVAL = perlOGRE_RSQ2aref(qryResult);
+##    warn("(*)(*)\n");
 ##  OUTPUT:
 ##    RETVAL
 
-##RaySceneQueryResult &
-##RaySceneQuery::getLastResults()
+SV *
+RaySceneQuery::execute()
+  CODE:
+    RaySceneQueryResult& qres = THIS->execute();
+    RETVAL = perlOGRE_RSQ2aref(qres);
+  OUTPUT:
+    RETVAL
+
+## Note: same deal as above
+## RaySceneQueryResult & RaySceneQuery::getLastResults()
+SV *
+RaySceneQuery::getLastResults()
+  CODE:
+    RaySceneQueryResult& qres = THIS->getLastResults();
+    RETVAL = perlOGRE_RSQ2aref(qres);
+  OUTPUT:
+    RETVAL
 
 void
 RaySceneQuery::clearResults()
 
-## xxx: bool RaySceneQuery::queryResult(SceneQuery::WorldFragment *fragment, Real distance)
+## bool RaySceneQuery::queryResult(SceneQuery::WorldFragment *fragment, Real distance)
+## bool RaySceneQuery::queryResult(MovableObject *obj, Real distance)
 bool
-RaySceneQuery::queryResult(MovableObject *obj, Real distance)
+RaySceneQuery::queryResult(...)
+  CODE:
+    Real distance = (Real)SvNV(ST(2));
+    if (sv_isobject(ST(1)) && sv_derived_from(ST(1), "Ogre::SceneQuery::WorldFragment")) {
+        SceneQuery::WorldFragment *fragment = (SceneQuery::WorldFragment *) SvIV((SV *) SvRV(ST(1)));   // TMOGRE_IN
+        RETVAL = THIS->queryResult(fragment, distance);
+    }
+    else if (sv_isobject(ST(1)) && sv_derived_from(ST(1), "Ogre::MovableObject")) {
+        MovableObject *obj = (MovableObject *) SvIV((SV *) SvRV(ST(1)));   // TMOGRE_IN
+        RETVAL = THIS->queryResult(obj, distance);
+    }
+    else {
+        croak("Usage: Ogre::RaySceneQuery::queryResult(THIS, WorldFragment, dist) or (THIS, MovableObject, dist)\n");
+    }
+  OUTPUT:
+    RETVAL

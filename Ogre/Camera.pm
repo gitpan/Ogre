@@ -29,28 +29,6 @@ B<Note:> this Perl binding is currently I<experimental> and subject to API chang
 
 =head1 INSTANCE METHODS
 
-=head2 $obj->setPosition($x, $y, $z)
-
-I<Parameter types>
-
-=over
-
-=item $x : Real
-
-=item $y : Real
-
-=item $z : Real
-
-=back
-
-I<Returns>
-
-=over
-
-=item void
-
-=back
-
 =head2 $obj->getSceneManager()
 
 I<Returns>
@@ -61,47 +39,23 @@ I<Returns>
 
 =back
 
-=head2 $obj->getViewport()
+=head2 $obj->getName()
 
 I<Returns>
 
 =over
 
-=item Viewport *
+=item String
 
 =back
 
-=head2 $obj->getParentSceneNode()
-
-I<Returns>
-
-=over
-
-=item SceneNode *
-
-=back
-
-=head2 $obj->getParentNode()
-
-I<Returns>
-
-=over
-
-=item Node *
-
-=back
-
-=head2 $obj->lookAt($x, $y, $z)
+=head2 $obj->setPolygonMode($sd)
 
 I<Parameter types>
 
 =over
 
-=item $x : Real
-
-=item $y : Real
-
-=item $z : Real
+=item $sd : int
 
 =back
 
@@ -113,13 +67,23 @@ I<Returns>
 
 =back
 
-=head2 $obj->setAspectRatio($ratio)
+=head2 $obj->getPolygonMode()
+
+I<Returns>
+
+=over
+
+=item int
+
+=back
+
+=head2 $obj->setPosition(...)
 
 I<Parameter types>
 
 =over
 
-=item $ratio : Real
+=item ... : this varies... (sorry, look in the .xs file)
 
 =back
 
@@ -131,13 +95,23 @@ I<Returns>
 
 =back
 
-=head2 $obj->setNearClipDistance($nearDist)
+=head2 $obj->getPosition()
+
+I<Returns>
+
+=over
+
+=item Vector3 *
+
+=back
+
+=head2 $obj->move($vec)
 
 I<Parameter types>
 
 =over
 
-=item $nearDist : Real
+=item $vec : Vector3 *
 
 =back
 
@@ -167,13 +141,31 @@ I<Returns>
 
 =back
 
-=head2 $obj->move($vec)
+=head2 $obj->setDirection(...)
 
 I<Parameter types>
 
 =over
 
-=item $vec : Vector3 *
+=item ... : this varies... (sorry, look in the .xs file)
+
+=back
+
+I<Returns>
+
+=over
+
+=item void
+
+=back
+
+=head2 $obj->lookAt(...)
+
+I<Parameter types>
+
+=over
+
+=item ... : this varies... (sorry, look in the .xs file)
 
 =back
 
@@ -295,17 +287,27 @@ I<Returns>
 
 =back
 
-=head2 $obj->setDirection($x, $y, $z)
+=head2 $obj->getMovableType()
+
+I<Returns>
+
+=over
+
+=item String
+
+=back
+
+=head2 $obj->setAutoTracking($enabled, $target=0, $offset=&Vector3::ZERO)
 
 I<Parameter types>
 
 =over
 
-=item $x : Real
+=item $enabled : bool
 
-=item $y : Real
+=item $target=0 : SceneNode *
 
-=item $z : Real
+=item $offset=&Vector3::ZERO : const Vector3 *
 
 =back
 
@@ -314,6 +316,212 @@ I<Returns>
 =over
 
 =item void
+
+=back
+
+=head2 $obj->setLodBias($Real factor=1.0)
+
+I<Parameter types>
+
+=over
+
+=item $Real factor=1.0 : (no info available)
+
+=back
+
+I<Returns>
+
+=over
+
+=item void
+
+=back
+
+=head2 $obj->getLodBias()
+
+I<Returns>
+
+=over
+
+=item Real
+
+=back
+
+=head2 $obj->setWindow($Real Left, $Real Top, $Real Right, $Real Bottom)
+
+I<Parameter types>
+
+=over
+
+=item $Real Left : (no info available)
+
+=item $Real Top : (no info available)
+
+=item $Real Right : (no info available)
+
+=item $Real Bottom : (no info available)
+
+=back
+
+I<Returns>
+
+=over
+
+=item void
+
+=back
+
+=head2 $obj->resetWindow()
+
+I<Returns>
+
+=over
+
+=item void
+
+=back
+
+=head2 $obj->isWindowSet()
+
+I<Returns>
+
+=over
+
+=item bool
+
+=back
+
+=head2 $obj->getBoundingRadius()
+
+I<Returns>
+
+=over
+
+=item Real
+
+=back
+
+=head2 $obj->getAutoTrackTarget()
+
+I<Returns>
+
+=over
+
+=item SceneNode *
+
+=back
+
+=head2 $obj->getViewport()
+
+I<Returns>
+
+=over
+
+=item Viewport *
+
+=back
+
+=head2 $obj->setAutoAspectRatio($bool autoratio)
+
+I<Parameter types>
+
+=over
+
+=item $bool autoratio : (no info available)
+
+=back
+
+I<Returns>
+
+=over
+
+=item void
+
+=back
+
+=head2 $obj->getAutoAspectRatio()
+
+I<Returns>
+
+=over
+
+=item bool
+
+=back
+
+=head2 $obj->setCullingFrustum($frustum)
+
+I<Parameter types>
+
+=over
+
+=item $frustum : Frustum *
+
+=back
+
+I<Returns>
+
+=over
+
+=item void
+
+=back
+
+=head2 $obj->getCullingFrustum()
+
+I<Returns>
+
+=over
+
+=item Frustum *
+
+=back
+
+=head2 $obj->getNearClipDistance()
+
+I<Returns>
+
+=over
+
+=item Real
+
+=back
+
+=head2 $obj->getFarClipDistance()
+
+I<Returns>
+
+=over
+
+=item Real
+
+=back
+
+=head2 $obj->setUseRenderingDistance($bool use)
+
+I<Parameter types>
+
+=over
+
+=item $bool use : (no info available)
+
+=back
+
+I<Returns>
+
+=over
+
+=item void
+
+=back
+
+=head2 $obj->getUseRenderingDistance()
+
+I<Returns>
+
+=over
+
+=item bool
 
 =back
 

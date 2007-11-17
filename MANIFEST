@@ -99,6 +99,7 @@ Ogre/Root.pm
 Ogre/SceneManager.pm
 Ogre/SceneNode.pm
 Ogre/SceneQuery.pm
+Ogre/SceneQuery/WorldFragment.pm
 Ogre/ScriptLoader.pm
 Ogre/Serializer.pm
 Ogre/ShadowCaster.pm
@@ -286,3 +287,4 @@ xs/VertexDeclaration.xs
 xs/VertexElement.xs
 xs/Viewport.xs
 xs/WindowEventUtilities.xs
+xs/WorldFragment.xs

@@ -70,91 +70,15 @@ This is an operator overload method; don't call it yourself.
 
 This is an operator overload method; don't call it yourself.
 
+=head2 \&mult_xs
+
+This is an operator overload method; don't call it yourself.
+
+=head2 \&neg_xs
+
+This is an operator overload method; don't call it yourself.
+
 =head1 INSTANCE METHODS
-
-=head2 $obj->x()
-
-I<Returns>
-
-=over
-
-=item Real
-
-=back
-
-=head2 $obj->y()
-
-I<Returns>
-
-=over
-
-=item Real
-
-=back
-
-=head2 $obj->z()
-
-I<Returns>
-
-=over
-
-=item Real
-
-=back
-
-=head2 $obj->setX($x)
-
-I<Parameter types>
-
-=over
-
-=item $x : Real
-
-=back
-
-I<Returns>
-
-=over
-
-=item void
-
-=back
-
-=head2 $obj->setY($y)
-
-I<Parameter types>
-
-=over
-
-=item $y : Real
-
-=back
-
-I<Returns>
-
-=over
-
-=item void
-
-=back
-
-=head2 $obj->setZ($z)
-
-I<Parameter types>
-
-=over
-
-=item $z : Real
-
-=back
-
-I<Returns>
-
-=over
-
-=item void
-
-=back
 
 =head2 $obj->length()
 
@@ -258,6 +182,42 @@ I<Returns>
 
 =back
 
+=head2 $obj->crossProduct($rkVector)
+
+I<Parameter types>
+
+=over
+
+=item $rkVector : const Vector3 *
+
+=back
+
+I<Returns>
+
+=over
+
+=item Vector3 *
+
+=back
+
+=head2 $obj->midPoint($rkVector)
+
+I<Parameter types>
+
+=over
+
+=item $rkVector : const Vector3 *
+
+=back
+
+I<Returns>
+
+=over
+
+=item Vector3 *
+
+=back
+
 =head2 $obj->makeFloor($cmp)
 
 I<Parameter types>
@@ -294,6 +254,56 @@ I<Returns>
 
 =back
 
+=head2 $obj->perpendicular()
+
+I<Returns>
+
+=over
+
+=item Vector3 *
+
+=back
+
+=head2 $obj->randomDeviant($angle, $up=&Vector3::ZERO)
+
+I<Parameter types>
+
+=over
+
+=item $angle : Degree (or Radian) *
+
+=item $up=&Vector3::ZERO : const Vector3 *
+
+=back
+
+I<Returns>
+
+=over
+
+=item Vector3 *
+
+=back
+
+=head2 $obj->getRotationTo($dest, $fallbackAxis=&Vector3::ZERO)
+
+I<Parameter types>
+
+=over
+
+=item $dest : const Vector3 *
+
+=item $fallbackAxis=&Vector3::ZERO : const Vector3 *
+
+=back
+
+I<Returns>
+
+=over
+
+=item Quaternion *
+
+=back
+
 =head2 $obj->isZeroLength()
 
 I<Returns>
@@ -301,6 +311,34 @@ I<Returns>
 =over
 
 =item bool
+
+=back
+
+=head2 $obj->normalisedCopy()
+
+I<Returns>
+
+=over
+
+=item Vector3 *
+
+=back
+
+=head2 $obj->reflect($normal)
+
+I<Parameter types>
+
+=over
+
+=item $normal : const Vector3 *
+
+=back
+
+I<Returns>
+
+=over
+
+=item Vector3 *
 
 =back
 
@@ -352,7 +390,7 @@ I<Parameter types>
 
 =item $rhs : Vector3 *
 
-=item $tolerance : Radian *
+=item $tolerance : Degree (or Radian) *
 
 =back
 
@@ -361,6 +399,90 @@ I<Returns>
 =over
 
 =item bool
+
+=back
+
+=head2 $obj->x()
+
+I<Returns>
+
+=over
+
+=item Real
+
+=back
+
+=head2 $obj->y()
+
+I<Returns>
+
+=over
+
+=item Real
+
+=back
+
+=head2 $obj->z()
+
+I<Returns>
+
+=over
+
+=item Real
+
+=back
+
+=head2 $obj->setX($x)
+
+I<Parameter types>
+
+=over
+
+=item $x : Real
+
+=back
+
+I<Returns>
+
+=over
+
+=item void
+
+=back
+
+=head2 $obj->setY($y)
+
+I<Parameter types>
+
+=over
+
+=item $y : Real
+
+=back
+
+I<Returns>
+
+=over
+
+=item void
+
+=back
+
+=head2 $obj->setZ($z)
+
+I<Parameter types>
+
+=over
+
+=item $z : Real
+
+=back
+
+I<Returns>
+
+=over
+
+=item void
 
 =back
 

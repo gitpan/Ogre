@@ -38,13 +38,43 @@ I<Returns>
 
 =head1 INSTANCE METHODS
 
-=head2 $obj->setDefaultNumMipmaps($num)
+=head2 $obj->load($String name, $String group, $int texType=TEX_TYPE_2D, $int numMipmaps=MIP_DEFAULT, $Real gamma=1.0f, $bool isAlpha=false, $int desiredFormat=PF_UNKNOWN)
 
 I<Parameter types>
 
 =over
 
-=item $num : size_t
+=item $String name : (no info available)
+
+=item $String group : (no info available)
+
+=item $int texType=TEX_TYPE_2D : (no info available)
+
+=item $int numMipmaps=MIP_DEFAULT : (no info available)
+
+=item $Real gamma=1.0f : (no info available)
+
+=item $bool isAlpha=false : (no info available)
+
+=item $int desiredFormat=PF_UNKNOWN : (no info available)
+
+=back
+
+I<Returns>
+
+=over
+
+=item Texture *
+
+=back
+
+=head2 $obj->setDefaultNumMipmaps($size_t num)
+
+I<Parameter types>
+
+=over
+
+=item $size_t num : (no info available)
 
 =back
 

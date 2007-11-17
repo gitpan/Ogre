@@ -69,6 +69,34 @@ This method is called automatically; don't call it yourself.
 
 =head1 INSTANCE METHODS
 
+=head2 $obj->getDistance($rkPoint)
+
+I<Parameter types>
+
+=over
+
+=item $rkPoint : Vector3 *
+
+=back
+
+I<Returns>
+
+=over
+
+=item Real
+
+=back
+
+=head2 $obj->normalise()
+
+I<Returns>
+
+=over
+
+=item Real
+
+=back
+
 =head2 $obj->d()
 
 I<Returns>
@@ -122,34 +150,6 @@ I<Returns>
 =over
 
 =item void
-
-=back
-
-=head2 $obj->getDistance($rkPoint)
-
-I<Parameter types>
-
-=over
-
-=item $rkPoint : Vector3 *
-
-=back
-
-I<Returns>
-
-=over
-
-=item Real
-
-=back
-
-=head2 $obj->normalise()
-
-I<Returns>
-
-=over
-
-=item Real
 
 =back
 

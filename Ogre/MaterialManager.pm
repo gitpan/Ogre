@@ -38,6 +38,30 @@ I<Returns>
 
 =head1 INSTANCE METHODS
 
+=head2 $obj->load($String name, $String group, $bool isManual=false, $ManualResourceLoader *loader=0)
+
+I<Parameter types>
+
+=over
+
+=item $String name : (no info available)
+
+=item $String group : (no info available)
+
+=item $bool isManual=false : (no info available)
+
+=item $ManualResourceLoader *loader=0 : (no info available)
+
+=back
+
+I<Returns>
+
+=over
+
+=item Material *
+
+=back
+
 =head2 $obj->setDefaultTextureFiltering($fo)
 
 I<Parameter types>

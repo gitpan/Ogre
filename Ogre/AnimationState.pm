@@ -46,13 +46,13 @@ I<Returns>
 
 =back
 
-=head2 $obj->setTimePosition($timePos)
+=head2 $obj->setTimePosition($Real timePos)
 
 I<Parameter types>
 
 =over
 
-=item $timePos : Real
+=item $Real timePos : (no info available)
 
 =back
 
@@ -74,13 +74,13 @@ I<Returns>
 
 =back
 
-=head2 $obj->setLength($len)
+=head2 $obj->setLength($Real len)
 
 I<Parameter types>
 
 =over
 
-=item $len : Real
+=item $Real len : (no info available)
 
 =back
 
@@ -102,13 +102,13 @@ I<Returns>
 
 =back
 
-=head2 $obj->setWeight($weight)
+=head2 $obj->setWeight($Real weight)
 
 I<Parameter types>
 
 =over
 
-=item $weight : Real
+=item $Real weight : (no info available)
 
 =back
 
@@ -120,13 +120,13 @@ I<Returns>
 
 =back
 
-=head2 $obj->addTime($offset)
+=head2 $obj->addTime($Real offset)
 
 I<Parameter types>
 
 =over
 
-=item $offset : Real
+=item $Real offset : (no info available)
 
 =back
 
@@ -158,13 +158,13 @@ I<Returns>
 
 =back
 
-=head2 $obj->setEnabled($enabled)
+=head2 $obj->setEnabled($bool enabled)
 
 I<Parameter types>
 
 =over
 
-=item $enabled : bool
+=item $bool enabled : (no info available)
 
 =back
 
@@ -186,13 +186,13 @@ I<Returns>
 
 =back
 
-=head2 $obj->setLoop($loop)
+=head2 $obj->setLoop($bool loop)
 
 I<Parameter types>
 
 =over
 
-=item $loop : bool
+=item $bool loop : (no info available)
 
 =back
 

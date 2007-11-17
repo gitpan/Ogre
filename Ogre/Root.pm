@@ -80,7 +80,71 @@ I<Returns>
 
 =back
 
-=head2 $obj->initialise($autoCreateWindow, $windowTitle)
+=head2 $obj->addRenderSystem($RenderSystem *newRend)
+
+I<Parameter types>
+
+=over
+
+=item $RenderSystem *newRend : (no info available)
+
+=back
+
+I<Returns>
+
+=over
+
+=item void
+
+=back
+
+=head2 $obj->getRenderSystemByName($String name)
+
+I<Parameter types>
+
+=over
+
+=item $String name : (no info available)
+
+=back
+
+I<Returns>
+
+=over
+
+=item RenderSystem *
+
+=back
+
+=head2 $obj->setRenderSystem($RenderSystem *system)
+
+I<Parameter types>
+
+=over
+
+=item $RenderSystem *system : (no info available)
+
+=back
+
+I<Returns>
+
+=over
+
+=item void
+
+=back
+
+=head2 $obj->getRenderSystem()
+
+I<Returns>
+
+=over
+
+=item RenderSystem *
+
+=back
+
+=head2 $obj->initialise($autoCreateWindow, ...)
 
 I<Parameter types>
 
@@ -88,7 +152,7 @@ I<Parameter types>
 
 =item $autoCreateWindow : bool
 
-=item $windowTitle : String
+=item ... : this varies... (sorry, look in the .xs file)
 
 =back
 
@@ -110,15 +174,13 @@ I<Returns>
 
 =back
 
-=head2 $obj->createSceneManager($typeMask, $instanceName)
+=head2 $obj->createSceneManager(...)
 
 I<Parameter types>
 
 =over
 
-=item $typeMask : uint16
-
-=item $instanceName : String
+=item ... : this varies... (sorry, look in the .xs file)
 
 =back
 
@@ -271,6 +333,30 @@ I<Returns>
 =back
 
 =head2 $obj->shutdown()
+
+I<Returns>
+
+=over
+
+=item void
+
+=back
+
+=head2 $obj->addResourceLocation($String name, $String locType, $String groupName=ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, $bool recursive=false)
+
+I<Parameter types>
+
+=over
+
+=item $String name : (no info available)
+
+=item $String locType : (no info available)
+
+=item $String groupName=ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME : (no info available)
+
+=item $bool recursive=false : (no info available)
+
+=back
 
 I<Returns>
 

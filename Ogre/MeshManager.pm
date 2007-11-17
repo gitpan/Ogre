@@ -42,7 +42,17 @@ I<Returns>
 
 =head1 INSTANCE METHODS
 
-=head2 $obj->createPlane($name, $groupName, $plane, $width, $height, $xsegments, $ysegments, $normals, $numTexCoordSets, $uTile, $vTile, $upVector)
+=head2 $obj->()
+
+I<Returns>
+
+=over
+
+=item Mesh *
+
+=back
+
+=head2 $obj->createManual($name, $groupName, $loader=0)
 
 I<Parameter types>
 
@@ -52,25 +62,7 @@ I<Parameter types>
 
 =item $groupName : String
 
-=item $plane : Plane *
-
-=item $width : Real
-
-=item $height : Real
-
-=item $xsegments : int
-
-=item $ysegments : int
-
-=item $normals : bool
-
-=item $numTexCoordSets : int
-
-=item $uTile : Real
-
-=item $vTile : Real
-
-=item $upVector : Vector3 *
+=item $loader=0 : ManualResourceLoader *
 
 =back
 
@@ -78,7 +70,111 @@ I<Returns>
 
 =over
 
-=item MeshPtr *
+=item Mesh *
+
+=back
+
+=head2 $obj->()
+
+I<Returns>
+
+=over
+
+=item Mesh *
+
+=back
+
+=head2 $obj->()
+
+I<Returns>
+
+=over
+
+=item Mesh *
+
+=back
+
+=head2 $obj->()
+
+I<Returns>
+
+=over
+
+=item Mesh *
+
+=back
+
+=head2 $obj->setPrepareAllMeshesForShadowVolumes($bool enable)
+
+I<Parameter types>
+
+=over
+
+=item $bool enable : (no info available)
+
+=back
+
+I<Returns>
+
+=over
+
+=item void
+
+=back
+
+=head2 $obj->getPrepareAllMeshesForShadowVolumes()
+
+I<Returns>
+
+=over
+
+=item bool
+
+=back
+
+=head2 $obj->getBoundsPaddingFactor()
+
+I<Returns>
+
+=over
+
+=item Real
+
+=back
+
+=head2 $obj->setBoundsPaddingFactor($Real paddingFactor)
+
+I<Parameter types>
+
+=over
+
+=item $Real paddingFactor : (no info available)
+
+=back
+
+I<Returns>
+
+=over
+
+=item void
+
+=back
+
+=head2 $obj->loadResource($res)
+
+I<Parameter types>
+
+=over
+
+=item $res : Resource *
+
+=back
+
+I<Returns>
+
+=over
+
+=item void
 
 =back
 

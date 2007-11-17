@@ -47,13 +47,13 @@ B<Note:> this Perl binding is currently I<experimental> and subject to API chang
 
 =head1 CLASS METHODS
 
-=head2 Ogre::Node->queueNeedUpdate($n)
+=head2 Ogre::Node->queueNeedUpdate($Node *n)
 
 I<Parameter types>
 
 =over
 
-=item $n : Node *
+=item $Node *n : (no info available)
 
 =back
 
@@ -76,110 +76,6 @@ I<Returns>
 =back
 
 =head1 INSTANCE METHODS
-
-=head2 $obj->roll($angle, $relativeTo=Node::TS_LOCAL)
-
-I<Parameter types>
-
-=over
-
-=item $angle : Degree (or Radian) *
-
-=item $relativeTo=Node::TS_LOCAL : int
-
-=back
-
-I<Returns>
-
-=over
-
-=item void
-
-=back
-
-=head2 $obj->pitch($angle, $relativeTo=Node::TS_LOCAL)
-
-I<Parameter types>
-
-=over
-
-=item $angle : Degree (or Radian) *
-
-=item $relativeTo=Node::TS_LOCAL : int
-
-=back
-
-I<Returns>
-
-=over
-
-=item void
-
-=back
-
-=head2 $obj->yaw($angle, $relativeTo=Node::TS_LOCAL)
-
-I<Parameter types>
-
-=over
-
-=item $angle : Degree (or Radian) *
-
-=item $relativeTo=Node::TS_LOCAL : int
-
-=back
-
-I<Returns>
-
-=over
-
-=item void
-
-=back
-
-=head2 $obj->scale($x, $y, $z)
-
-I<Parameter types>
-
-=over
-
-=item $x : Real
-
-=item $y : Real
-
-=item $z : Real
-
-=back
-
-I<Returns>
-
-=over
-
-=item void
-
-=back
-
-=head2 $obj->rotate($axis, $angle, $relativeTo=Node::TS_LOCAL)
-
-I<Parameter types>
-
-=over
-
-=item $axis : Vector3 *
-
-=item $angle : Degree (or Radian) *
-
-=item $relativeTo=Node::TS_LOCAL : int
-
-=back
-
-I<Returns>
-
-=over
-
-=item void
-
-=back
 
 =head2 $obj->getName()
 
@@ -211,19 +107,13 @@ I<Returns>
 
 =back
 
-=head2 $obj->setOrientation($w, $x, $y, $z)
+=head2 $obj->setOrientation(...)
 
 I<Parameter types>
 
 =over
 
-=item $w : Real
-
-=item $x : Real
-
-=item $y : Real
-
-=item $z : Real
+=item ... : this varies... (sorry, look in the .xs file)
 
 =back
 
@@ -245,17 +135,13 @@ I<Returns>
 
 =back
 
-=head2 $obj->setPosition($x, $y, $z)
+=head2 $obj->setPosition(...)
 
 I<Parameter types>
 
 =over
 
-=item $x : Real
-
-=item $y : Real
-
-=item $z : Real
+=item ... : this varies... (sorry, look in the .xs file)
 
 =back
 
@@ -277,17 +163,13 @@ I<Returns>
 
 =back
 
-=head2 $obj->setScale($x, $y, $z)
+=head2 $obj->setScale(...)
 
 I<Parameter types>
 
 =over
 
-=item $x : Real
-
-=item $y : Real
-
-=item $z : Real
+=item ... : this varies... (sorry, look in the .xs file)
 
 =back
 
@@ -299,13 +181,23 @@ I<Returns>
 
 =back
 
-=head2 $obj->setInheritOrientation($inherit)
+=head2 $obj->getScale()
+
+I<Returns>
+
+=over
+
+=item Vector3 *
+
+=back
+
+=head2 $obj->setInheritOrientation($bool inherit)
 
 I<Parameter types>
 
 =over
 
-=item $inherit : bool
+=item $bool inherit : (no info available)
 
 =back
 
@@ -327,13 +219,13 @@ I<Returns>
 
 =back
 
-=head2 $obj->setInheritScale($inherit)
+=head2 $obj->setInheritScale($bool inherit)
 
 I<Parameter types>
 
 =over
 
-=item $inherit : bool
+=item $bool inherit : (no info available)
 
 =back
 
@@ -355,19 +247,13 @@ I<Returns>
 
 =back
 
-=head2 $obj->translate($x, $y, $z, $relativeTo=Node::TS_PARENT)
+=head2 $obj->scale(...)
 
 I<Parameter types>
 
 =over
 
-=item $x : Real
-
-=item $y : Real
-
-=item $z : Real
-
-=item $relativeTo=Node::TS_PARENT : int
+=item ... : this varies... (sorry, look in the .xs file)
 
 =back
 
@@ -376,6 +262,130 @@ I<Returns>
 =over
 
 =item void
+
+=back
+
+=head2 $obj->translate(...)
+
+I<Parameter types>
+
+=over
+
+=item ... : this varies... (sorry, look in the .xs file)
+
+=back
+
+I<Returns>
+
+=over
+
+=item void
+
+=back
+
+=head2 $obj->roll($DegRad *angle, $int relativeTo=Node::TS_LOCAL)
+
+I<Parameter types>
+
+=over
+
+=item $DegRad *angle : (no info available)
+
+=item $int relativeTo=Node::TS_LOCAL : (no info available)
+
+=back
+
+I<Returns>
+
+=over
+
+=item void
+
+=back
+
+=head2 $obj->pitch($DegRad *angle, $int relativeTo=Node::TS_LOCAL)
+
+I<Parameter types>
+
+=over
+
+=item $DegRad *angle : (no info available)
+
+=item $int relativeTo=Node::TS_LOCAL : (no info available)
+
+=back
+
+I<Returns>
+
+=over
+
+=item void
+
+=back
+
+=head2 $obj->yaw($DegRad *angle, $int relativeTo=Node::TS_LOCAL)
+
+I<Parameter types>
+
+=over
+
+=item $DegRad *angle : (no info available)
+
+=item $int relativeTo=Node::TS_LOCAL : (no info available)
+
+=back
+
+I<Returns>
+
+=over
+
+=item void
+
+=back
+
+=head2 $obj->rotate(...)
+
+I<Parameter types>
+
+=over
+
+=item ... : this varies... (sorry, look in the .xs file)
+
+=back
+
+I<Returns>
+
+=over
+
+=item void
+
+=back
+
+=head2 $obj->getLocalAxes()
+
+I<Returns>
+
+=over
+
+=item Matrix3 *
+
+=back
+
+=head2 $obj->createChild(...)
+
+I<Parameter types>
+
+=over
+
+=item ... : this varies... (sorry, look in the .xs file)
+
+=back
+
+I<Returns>
+
+=over
+
+=item Node *
 
 =back
 
@@ -407,13 +417,13 @@ I<Returns>
 
 =back
 
-=head2 $obj->getChild($name)
+=head2 $obj->getChild(...)
 
 I<Parameter types>
 
 =over
 
-=item $name : String
+=item ... : this varies... (sorry, look in the .xs file)
 
 =back
 
@@ -425,13 +435,51 @@ I<Returns>
 
 =back
 
-=head2 $obj->removeChild($name)
+=head2 $obj->removeChild(...)
 
 I<Parameter types>
 
 =over
 
-=item $name : String
+=item ... : this varies... (sorry, look in the .xs file)
+
+=back
+
+I<Returns>
+
+=over
+
+=item Node *
+
+=back
+
+=head2 $obj->removeAllChildren()
+
+I<Returns>
+
+=over
+
+=item void
+
+=back
+
+=head2 $obj->getMaterial()
+
+I<Returns>
+
+=over
+
+=item Material *
+
+=back
+
+=head2 $obj->getRenderOperation($OUTLIST RenderOperation *op)
+
+I<Parameter types>
+
+=over
+
+=item $OUTLIST RenderOperation *op : (no info available)
 
 =back
 
@@ -443,7 +491,141 @@ I<Returns>
 
 =back
 
-=head2 $obj->removeAllChildren()
+=head2 $obj->getWorldOrientation()
+
+I<Returns>
+
+=over
+
+=item Quaternion *
+
+=back
+
+=head2 $obj->getWorldPosition()
+
+I<Returns>
+
+=over
+
+=item Vector3 *
+
+=back
+
+=head2 $obj->setInitialState()
+
+I<Returns>
+
+=over
+
+=item void
+
+=back
+
+=head2 $obj->resetToInitialState()
+
+I<Returns>
+
+=over
+
+=item void
+
+=back
+
+=head2 $obj->getInitialPosition()
+
+I<Returns>
+
+=over
+
+=item Vector3 *
+
+=back
+
+=head2 $obj->getInitialOrientation()
+
+I<Returns>
+
+=over
+
+=item Quaternion *
+
+=back
+
+=head2 $obj->getInitialScale()
+
+I<Returns>
+
+=over
+
+=item Vector3 *
+
+=back
+
+=head2 $obj->getSquaredViewDepth($const Camera *cam)
+
+I<Parameter types>
+
+=over
+
+=item $const Camera *cam : (no info available)
+
+=back
+
+I<Returns>
+
+=over
+
+=item Real
+
+=back
+
+=head2 $obj->needUpdate($bool forceParentUpdate=false)
+
+I<Parameter types>
+
+=over
+
+=item $bool forceParentUpdate=false : (no info available)
+
+=back
+
+I<Returns>
+
+=over
+
+=item void
+
+=back
+
+=head2 $obj->requestUpdate($Node *child, $bool forceParentUpdate=false)
+
+I<Parameter types>
+
+=over
+
+=item $Node *child : (no info available)
+
+=item $bool forceParentUpdate=false : (no info available)
+
+=back
+
+I<Returns>
+
+=over
+
+=item void
+
+=back
+
+=head2 $obj->cancelUpdate($Node *child)
+
+I<Parameter types>
+
+=over
+
+=item $Node *child : (no info available)
+
+=back
 
 I<Returns>
 

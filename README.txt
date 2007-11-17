@@ -1,4 +1,4 @@
-Perl-Ogre version 0.30
+Perl-Ogre version 0.31
 ======================
 
 This is a Perl binding for OGRE, Object-Oriented Graphics Rendering Engine,

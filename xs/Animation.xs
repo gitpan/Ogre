@@ -199,8 +199,8 @@ Animation::getNodeTrackAref()
     while (tIt.hasMoreElements()) {
         NodeAnimationTrack *at = tIt.getNext();
 
-        # make SV* to put on array
-        SV *svat = sv_newmortal();
+        # make SV* to put on array (note: not mortal)
+        SV *svat = newSV(0);
 	TMOGRE_OUT(svat, at, NodeAnimationTrack);
 
         av_push(RETVAL, svat);

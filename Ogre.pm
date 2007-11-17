@@ -7,7 +7,7 @@ use warnings;
 require DynaLoader;
 our @ISA = qw(DynaLoader);
 
-our $VERSION = '0.30';
+our $VERSION = '0.31';
 
 # use all files under Ogre/ - probably not a good idea
 ## BEGIN USES
@@ -102,6 +102,7 @@ use Ogre::Root;
 use Ogre::SceneManager;
 use Ogre::SceneNode;
 use Ogre::SceneQuery;
+use Ogre::SceneQuery::WorldFragment;
 use Ogre::ScriptLoader;
 use Ogre::Serializer;
 use Ogre::ShadowCaster;
@@ -629,16 +630,303 @@ Ogre - Perl binding for the OGRE C++ graphics library
 =head1 SYNOPSIS
 
   use Ogre;
-  # for now, see examples/README.txt
+  # see examples/README.txt
 
 =head1 DESCRIPTION
 
-For now, see README.txt.
+For more details, see F<README.txt>.
+
+For documentation on specific classes, see the perldoc for the class.
+There is a L<list below|/"CLASSES"> of classes currently wrapped.
+The documentation for each class is somewhat minimal. In the DESCRIPTION
+section there will be a link to the corresponding C++ API documentation
+on the OGRE website. The documentation of methods uses C++ types to describe
+its parameters and return values, so some translation to Perl is generally
+required.
+
+Not all methods are currently wrapped, although there are enough to run
+the examples, which isn't bad. But expect to find that your favorite method
+isn't wrapped yet. I'm working on completely wrapping the methods, but it's
+still not there. One particular "category" of methods not yet wrapped is those
+that return a C++ reference, rather than a pointer (one exception is Node::getPosition).
+Methods that return fundamental types, like bool or int, are usually wrapped,
+provided their arguments aren't too weird. There are also some overloaded
+C++ methods (i.e. different argument parameter types but the same method name)
+that have only one version of that method implemented; I have to work on
+how to handle that.
+
+See F<TODO.txt> for more things that aren't done yet.
+
+=head1 CLASSES
+
+This is the list of classes that are at least partially wrapped.
+
+=for comment CLASS LIST BEGIN
+
+=over
+
+=item L<Ogre::AnimableObject>
+
+=item L<Ogre::AnimableValue>
+
+=item L<Ogre::Animation>
+
+=item L<Ogre::AnimationObject>
+
+=item L<Ogre::AnimationState>
+
+=item L<Ogre::AnimationStateSet>
+
+=item L<Ogre::AnimationTrack>
+
+=item L<Ogre::AxisAlignedBox>
+
+=item L<Ogre::AxisAlignedBoxSceneQuery>
+
+=item L<Ogre::Billboard>
+
+=item L<Ogre::BillboardChain>
+
+=item L<Ogre::BillboardSet>
+
+=item L<Ogre::Bone>
+
+=item L<Ogre::Camera>
+
+=item L<Ogre::ColourValue>
+
+=item L<Ogre::CompositionPass>
+
+=item L<Ogre::CompositionTargetPass>
+
+=item L<Ogre::ConfigFile>
+
+=item L<Ogre::DataStream>
+
+=item L<Ogre::Degree>
+
+=item L<Ogre::EdgeData>
+
+=item L<Ogre::Entity>
+
+=item L<Ogre::ExampleApplication>
+
+=item L<Ogre::ExampleFrameListener>
+
+=item L<Ogre::Exception>
+
+=item L<Ogre::FrameEvent>
+
+=item L<Ogre::FrameStats>
+
+=item L<Ogre::Frustum>
+
+=item L<Ogre::GpuProgram>
+
+=item L<Ogre::GpuProgramParameters>
+
+=item L<Ogre::HardwareBuffer>
+
+=item L<Ogre::HardwareBufferManager>
+
+=item L<Ogre::HardwareIndexBuffer>
+
+=item L<Ogre::HardwarePixelBuffer>
+
+=item L<Ogre::HardwareVertexBuffer>
+
+=item L<Ogre::Image>
+
+=item L<Ogre::IndexData>
+
+=item L<Ogre::InstancedGeometry>
+
+=item L<Ogre::IntersectionSceneQuery>
+
+=item L<Ogre::KeyFrame>
+
+=item L<Ogre::Light>
+
+=item L<Ogre::Log>
+
+=item L<Ogre::LogManager>
+
+=item L<Ogre::ManualObject>
+
+=item L<Ogre::ManualResourceLoader>
+
+=item L<Ogre::Material>
+
+=item L<Ogre::MaterialManager>
+
+=item L<Ogre::Math>
+
+=item L<Ogre::Matrix3>
+
+=item L<Ogre::Matrix4>
+
+=item L<Ogre::Mesh>
+
+=item L<Ogre::MeshManager>
+
+=item L<Ogre::MeshPtr>
+
+=item L<Ogre::MovableObject>
+
+=item L<Ogre::MultiRenderTarget>
+
+=item L<Ogre::Node>
+
+=item L<Ogre::NodeAnimationTrack>
+
+=item L<Ogre::NumericAnimationTrack>
+
+=item L<Ogre::Overlay>
+
+=item L<Ogre::OverlayContainer>
+
+=item L<Ogre::OverlayElement>
+
+=item L<Ogre::OverlayManager>
+
+=item L<Ogre::Particle>
+
+=item L<Ogre::ParticleAffector>
+
+=item L<Ogre::ParticleEmitter>
+
+=item L<Ogre::ParticleSystem>
+
+=item L<Ogre::ParticleSystemRenderer>
+
+=item L<Ogre::Pass>
+
+=item L<Ogre::PatchMesh>
+
+=item L<Ogre::PatchSurface>
+
+=item L<Ogre::Plane>
+
+=item L<Ogre::PlaneBoundedVolumeListSceneQuery>
+
+=item L<Ogre::Pose>
+
+=item L<Ogre::ProgressiveMesh>
+
+=item L<Ogre::Quaternion>
+
+=item L<Ogre::QueuedRenderableCollection>
+
+=item L<Ogre::Radian>
+
+=item L<Ogre::Ray>
+
+=item L<Ogre::RaySceneQuery>
+
+=item L<Ogre::RegionSceneQuery>
+
+=item L<Ogre::Renderable>
+
+=item L<Ogre::RenderOperation>
+
+=item L<Ogre::RenderQueue>
+
+=item L<Ogre::RenderSystem>
+
+=item L<Ogre::RenderSystemCapabilities>
+
+=item L<Ogre::RenderTarget>
+
+=item L<Ogre::RenderTexture>
+
+=item L<Ogre::RenderWindow>
+
+=item L<Ogre::Resource>
+
+=item L<Ogre::ResourceGroupManager>
+
+=item L<Ogre::ResourceManager>
+
+=item L<Ogre::RibbonTrail>
+
+=item L<Ogre::Root>
+
+=item L<Ogre::SceneManager>
+
+=item L<Ogre::SceneNode>
+
+=item L<Ogre::SceneQuery>
+
+=item L<Ogre::ScriptLoader>
+
+=item L<Ogre::Serializer>
+
+=item L<Ogre::ShadowCaster>
+
+=item L<Ogre::Skeleton>
+
+=item L<Ogre::SkeletonInstance>
+
+=item L<Ogre::SkeletonManager>
+
+=item L<Ogre::Sphere>
+
+=item L<Ogre::SphereSceneQuery>
+
+=item L<Ogre::StaticGeometry>
+
+=item L<Ogre::StringInterface>
+
+=item L<Ogre::SubEntity>
+
+=item L<Ogre::SubMesh>
+
+=item L<Ogre::TagPoint>
+
+=item L<Ogre::Technique>
+
+=item L<Ogre::Texture>
+
+=item L<Ogre::TextureManager>
+
+=item L<Ogre::TextureUnitState>
+
+=item L<Ogre::TimeIndex>
+
+=item L<Ogre::TransformKeyFrame>
+
+=item L<Ogre::Vector2>
+
+=item L<Ogre::Vector3>
+
+=item L<Ogre::Vector4>
+
+=item L<Ogre::VertexAnimationTrack>
+
+=item L<Ogre::VertexBufferBinding>
+
+=item L<Ogre::VertexCacheProfiler>
+
+=item L<Ogre::VertexData>
+
+=item L<Ogre::VertexDeclaration>
+
+=item L<Ogre::VertexElement>
+
+=item L<Ogre::Viewport>
+
+=item L<Ogre::WindowEventUtilities>
+
+=item L<Ogre::WorldFragment>
+
+=back
+
+=for comment CLASS LIST END
 
 =head1 AUTHOR
 
 Scott Lanning E<lt>slanning@cpan.orgE<gt>
 
-For licensing info, see README.txt .
+For licensing info, see F<README.txt>.
 
 =cut

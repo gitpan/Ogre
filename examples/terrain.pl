@@ -21,10 +21,10 @@ sub new {
     my $super = $pkg->SUPER::new($win, $cam);
     my $self = bless $super, $pkg;
 
-    $self->{mMoveSpeed} = 50;
-
     # this is the global raySceneQuery in the C++ app
     $self->{mRaySceneQuery} = $rsq;
+
+    $self->{mMoveSpeed} = 50;
 
     # this is the static Ray in the C++ app
     $self->{mUpdateRay} = Ogre::Ray->new();
@@ -43,11 +43,19 @@ sub frameStarted {
 
     $self->{mUpdateRay}->setOrigin($self->{mCamera}->getPosition);
     $self->{mUpdateRay}->setDirection($self->{mDOWN});
-
     $self->{mRaySceneQuery}->setRay($self->{mUpdateRay});
 
-    # .....
+    my $qryResult = $self->{mRaySceneQuery}->execute();
 
+    foreach my $entry (@$qryResult) {
+        next unless defined $entry->{worldFragment};
+
+        my $cam = $self->{mCamera};
+        my $campos = $cam->getPosition;
+
+        my $ground_y = $entry->{worldFragment}->singleIntersection->y;
+        $cam->setPosition($campos->x, $ground_y + 10, $campos->z);
+    }
 
     return 1;
 }
@@ -133,7 +141,7 @@ sub createScene {
 
     my $plane = Ogre::Plane->new();
     $plane->setD(5000);
-    $plane->setNormal(Ogre::Vector3->new(0, -1, 0));
+    $plane->setNormal(- Ogre::Vector3->new(0, 1, 0));
 
     my $cam = $self->{mCamera};
     $cam->setPosition(707, 2500, 528);

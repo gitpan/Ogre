@@ -26,6 +26,55 @@ using namespace std;
 using namespace Ogre;
 
 
+// helper functions
+
+// this is used twice in RaySceneQuery.xs
+SV * perlOGRE_RSQ2aref(RaySceneQueryResult& qres) {
+    AV *res_av = (AV *) sv_2mortal((SV *) newAV());
+
+    RaySceneQueryResult::const_iterator it;
+    RaySceneQueryResult::const_iterator itEnd = qres.end();
+
+    for (it = qres.begin(); it != itEnd; ++it) {
+        // go from C++ to Perl SV*
+        // note: for some reason, these SV* shouldn't be mortalized
+        SV *distance_sv = newSV(0),
+           *movable_sv = newSV(0),
+           *worldFragment_sv = newSV(0);
+
+        sv_setnv(distance_sv, (Real) (it->distance));
+
+        if (it->movable) {
+            MovableObject *mop = it->movable;
+            TMOGRE_OUT(movable_sv, mop, MovableObject);
+        }
+        else {
+            movable_sv = &PL_sv_undef;
+        }
+
+        if (it->worldFragment) {
+            WorldFragment *wfp = it->worldFragment;
+            TMOGRE_OUT(worldFragment_sv, wfp, SceneQuery::WorldFragment);
+        }
+        else {
+            worldFragment_sv = &PL_sv_undef;
+        }
+
+        // put the SV* into a hash
+        HV *entry_hv = (HV *) sv_2mortal((SV *) newHV());
+        hv_store(entry_hv, "distance", 8, distance_sv, 0);
+        hv_store(entry_hv, "movable", 7, movable_sv, 0);
+        hv_store(entry_hv, "worldFragment", 13, worldFragment_sv, 0);
+
+        // push the hash onto the array
+        av_push(res_av, newRV((SV *) entry_hv));
+    }
+
+    // return the array ref
+    return newRV((SV *)res_av);
+}
+
+
 MODULE = Ogre		PACKAGE = Ogre
 
 PROTOTYPES: ENABLE

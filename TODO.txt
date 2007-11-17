@@ -1,7 +1,7 @@
 Lots of stuff left to do....
 
-- No methods that return objects (instead of pointers)
-  have been wrapped. It's because I'm not sure if I handle
+- A lot of methods that return objects (instead of pointers)
+  haven't been wrapped. It's because I'm not sure if I handle
   them right. For example, this method of SceneNode
 
     const Vector3 &getPosition (void) const
@@ -11,23 +11,15 @@ Lots of stuff left to do....
   Vector3 *
   SceneNode::getPosition()
     CODE:
-      Vector3 *vec = new Vector3;
-      *vec = THIS->getPosition();
-      RETVAL = vec;
+      RETVAL = new Vector3;
+      *RETVAL = THIS->getPosition();
     OUTPUT:
       RETVAL
 
-  Does that leak memory?
-- Many methods are currently implemented awkwardly,
-  some requiring more arguments than the C++ API even requires.
-  XSUB arguments can have default values, but I had trouble getting
-  some types of args to work (like strings weren't working,
-  but maybe that's fixable -- the problem was that you only have
-  assignment with an equals sign (=) available, while some data types
-  might not be assignable like that).
+  Does that leak memory? I'd guess so.
 - Another problem is polymorphic methods, where the same method
   can have different call signatures (e.g. pass in either a Vector3
-  or three Reals). For now I've simply been chosing one,
+  or three Reals). Very tedious to implement in XS.
   but it'd be better if all the different ways would work.
   I guess it could be done in Perl, just it would be annoying.
   (Say you have three different XSUBs, then in the Perl module
@@ -35,7 +27,7 @@ Lots of stuff left to do....
    passed in. But having three different XSUBs, now you have to
    also implement the CODE and OUTPUT section for each one...
    Doing this hundreds of times gets tedious.)
-- Some operator overloading hasn't been implemented yet.
+  Maybe I can make a few utility functions.
 - There's a problem similar to operator overloading: Vector3 has
   'x', 'y', and 'z' "public attributes", which would ideally be
   exposed in Perl like $v->{x} = 23, etc., but I don't see how
@@ -43,14 +35,11 @@ Lots of stuff left to do....
   not hashes. Any ideas?
   I guess I could make the pointers be referenced from the hash
   instead of being the object itself.
-- Tests....
-- More examples (that's the fun part :)
-- Zillions of classes and methods to wrap. For now, I've just been
-  wrapping what's necessary to make the examples. According to
-  the API docs, there are 541 classes; I'm not sure how many of
-  those are actually useful to wrap, though. Things like Ogre::Singleton<T>
-  or Ogre::SharedPtr<T> probably don't make sense to wrap...
 - All the modules are loaded from Ogre.pm and Ogre.xs, and the number
   of modules is increasing.... Need to look at getting them to load
   only when used.
 - Get Wx and Gtk2 support working better, also look at SDL.
+
+- want to add ability to subclass ControllerValue<Real> / ControllerFunction,
+  so that e.g. the Lighting sample app can be done; should be similar
+  to the Listener stuff

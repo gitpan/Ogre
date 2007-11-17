@@ -47,13 +47,23 @@ B<Note:> this Perl binding is currently I<experimental> and subject to API chang
 
 =head1 INSTANCE METHODS
 
-=head2 $obj->getSubEntity($name)
+=head2 $obj->getMesh()
+
+I<Returns>
+
+=over
+
+=item const Mesh *
+
+=back
+
+=head2 $obj->getSubEntity(...)
 
 I<Parameter types>
 
 =over
 
-=item $name : String
+=item ... : this varies... (sorry, look in the .xs file)
 
 =back
 
@@ -100,6 +110,24 @@ I<Parameter types>
 =over
 
 =item $name : String
+
+=back
+
+I<Returns>
+
+=over
+
+=item void
+
+=back
+
+=head2 $obj->setRenderQueueGroup($uint8 queueID)
+
+I<Parameter types>
+
+=over
+
+=item $uint8 queueID : (no info available)
 
 =back
 
@@ -267,13 +295,75 @@ I<Returns>
 
 =back
 
-=head2 $obj->setCastShadows($enabled)
+=head2 $obj->attachObjectToBone($boneName, $pMovable, $offsetOrientation=&Quaternion::IDENTITY, $offsetPosition=&Vector3::ZERO)
 
 I<Parameter types>
 
 =over
 
-=item $enabled : bool
+=item $boneName : String
+
+=item $pMovable : MovableObject *
+
+=item $offsetOrientation=&Quaternion::IDENTITY : const Quaternion *
+
+=item $offsetPosition=&Vector3::ZERO : const Vector3 *
+
+=back
+
+I<Returns>
+
+=over
+
+=item TagPoint *
+
+=back
+
+=head2 $obj->detachObjectFromBone(...)
+
+I<Parameter types>
+
+=over
+
+=item ... : this varies... (sorry, look in the .xs file)
+
+=back
+
+I<Returns>
+
+=over
+
+=item MovableObject *
+
+=back
+
+=head2 $obj->detachAllObjectsFromBone()
+
+I<Returns>
+
+=over
+
+=item void
+
+=back
+
+=head2 $obj->getBoundingRadius()
+
+I<Returns>
+
+=over
+
+=item Real
+
+=back
+
+=head2 $obj->setNormaliseNormals($bool normalise)
+
+I<Parameter types>
+
+=over
+
+=item $bool normalise : (no info available)
 
 =back
 
@@ -285,13 +375,243 @@ I<Returns>
 
 =back
 
-=head2 $obj->getCastShadows()
+=head2 $obj->getNormaliseNormals()
 
 I<Returns>
 
 =over
 
 =item bool
+
+=back
+
+=head2 $obj->getEdgeList()
+
+I<Returns>
+
+=over
+
+=item EdgeData *
+
+=back
+
+=head2 $obj->hasEdgeList()
+
+I<Returns>
+
+=over
+
+=item bool
+
+=back
+
+=head2 $obj->hasSkeleton()
+
+I<Returns>
+
+=over
+
+=item bool
+
+=back
+
+=head2 $obj->getSkeleton()
+
+I<Returns>
+
+=over
+
+=item SkeletonInstance *
+
+=back
+
+=head2 $obj->isHardwareAnimationEnabled()
+
+I<Returns>
+
+=over
+
+=item bool
+
+=back
+
+=head2 $obj->getSoftwareAnimationRequests()
+
+I<Returns>
+
+=over
+
+=item int
+
+=back
+
+=head2 $obj->getSoftwareAnimationNormalsRequests()
+
+I<Returns>
+
+=over
+
+=item int
+
+=back
+
+=head2 $obj->addSoftwareAnimationRequest($bool normalsAlso)
+
+I<Parameter types>
+
+=over
+
+=item $bool normalsAlso : (no info available)
+
+=back
+
+I<Returns>
+
+=over
+
+=item void
+
+=back
+
+=head2 $obj->removeSoftwareAnimationRequest($bool normalsAlso)
+
+I<Parameter types>
+
+=over
+
+=item $bool normalsAlso : (no info available)
+
+=back
+
+I<Returns>
+
+=over
+
+=item void
+
+=back
+
+=head2 $obj->shareSkeletonInstanceWith($entity)
+
+I<Parameter types>
+
+=over
+
+=item $entity : Entity *
+
+=back
+
+I<Returns>
+
+=over
+
+=item void
+
+=back
+
+=head2 $obj->hasVertexAnimation()
+
+I<Returns>
+
+=over
+
+=item bool
+
+=back
+
+=head2 $obj->stopSharingSkeletonInstance()
+
+I<Returns>
+
+=over
+
+=item void
+
+=back
+
+=head2 $obj->sharesSkeletonInstance()
+
+I<Returns>
+
+=over
+
+=item bool
+
+=back
+
+=head2 $obj->refreshAvailableAnimationState()
+
+I<Returns>
+
+=over
+
+=item void
+
+=back
+
+=head2 $obj->getTypeFlags()
+
+I<Returns>
+
+=over
+
+=item uint32
+
+=back
+
+=head2 $obj->getVertexDataForBinding()
+
+I<Returns>
+
+=over
+
+=item VertexData *
+
+=back
+
+=head2 $obj->chooseVertexDataForBinding($bool hasVertexAnim)
+
+I<Parameter types>
+
+=over
+
+=item $bool hasVertexAnim : (no info available)
+
+=back
+
+I<Returns>
+
+=over
+
+=item int
+
+=back
+
+=head2 $obj->isInitialised()
+
+I<Returns>
+
+=over
+
+=item bool
+
+=back
+
+=head2 $obj->backgroundLoadingComplete($res)
+
+I<Parameter types>
+
+=over
+
+=item $res : Resource *
+
+=back
+
+I<Returns>
+
+=over
+
+=item void
 
 =back
 

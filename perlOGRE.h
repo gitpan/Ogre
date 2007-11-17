@@ -12,7 +12,7 @@
 if (sv_isobject(arg) && sv_derived_from(arg, "Ogre::" #pkg)) { \
 		var = (type) SvIV((SV *) SvRV(arg)); \
 	} else { \
-		croak(#package "::" #func "():" #var " is not an Ogre::" #pkg " object\n"); \
+		croak(#package "::" #func "(): " #var " is not an Ogre::" #pkg " object\n"); \
 	}
 
 // typedef for handling Degree or Radian input parameters
@@ -28,8 +28,12 @@ Radian rad_ ## var; \
 		rad_ ## var = * degptr_ ## var; \
 		var = &rad_ ## var; \
 	} else { \
-		croak(#package "::" #func "():" #var " is not a Degree or Radian object\n"); \
+		croak(#package "::" #func "(): " #var " is not a Degree or Radian object\n"); \
 	}
+
+
+// typedefs for deeply nested classes
+typedef Ogre::SceneQuery::WorldFragment WorldFragment;
 
 
 // for C++

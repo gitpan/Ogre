@@ -63,6 +63,18 @@ This method is called automatically; don't call it yourself.
 
 This is an operator overload method; don't call it yourself.
 
+=head2 \&plus_xs
+
+This is an operator overload method; don't call it yourself.
+
+=head2 \&mult_xs
+
+This is an operator overload method; don't call it yourself.
+
+=head2 \&neg_xs
+
+This is an operator overload method; don't call it yourself.
+
 =head1 INSTANCE METHODS
 
 =head2 $obj->FromRotationMatrix($kRot)
@@ -185,6 +197,36 @@ I<Returns>
 
 =back
 
+=head2 $obj->xAxis()
+
+I<Returns>
+
+=over
+
+=item Vector3 *
+
+=back
+
+=head2 $obj->yAxis()
+
+I<Returns>
+
+=over
+
+=item Vector3 *
+
+=back
+
+=head2 $obj->zAxis()
+
+I<Returns>
+
+=over
+
+=item Vector3 *
+
+=back
+
 =head2 $obj->Dot($rkQ)
 
 I<Parameter types>
@@ -220,6 +262,60 @@ I<Returns>
 =over
 
 =item Real
+
+=back
+
+=head2 $obj->getRoll($bool reprojectAxis=true)
+
+I<Parameter types>
+
+=over
+
+=item $bool reprojectAxis=true : (no info available)
+
+=back
+
+I<Returns>
+
+=over
+
+=item Radian *
+
+=back
+
+=head2 $obj->getPitch($bool reprojectAxis=true)
+
+I<Parameter types>
+
+=over
+
+=item $bool reprojectAxis=true : (no info available)
+
+=back
+
+I<Returns>
+
+=over
+
+=item Radian *
+
+=back
+
+=head2 $obj->getYaw($bool reprojectAxis=true)
+
+I<Parameter types>
+
+=over
+
+=item $bool reprojectAxis=true : (no info available)
+
+=back
+
+I<Returns>
+
+=over
+
+=item Radian *
 
 =back
 

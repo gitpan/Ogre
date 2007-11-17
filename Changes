@@ -1,3 +1,10 @@
+0.31 2007-11-17 | terrain.pl
+- added terrain.pl example
+- wrapped RaySceneQuery class, among others
+- updated docs (note: I need to update the gendocs.pl script,
+  so there are some weird things like "$bool enabled" instead
+  of "bool $enabled")
+
 0.30 2007-11-16 | skeletalanim.pl
 - added skeletalanim.pl example
 - wrapped more classes, again to get the example working

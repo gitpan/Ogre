@@ -80,6 +80,7 @@ RenderTarget *	O_RENDERTARGET
 RenderTexture *	O_RENDERTEXTURE
 RenderWindow *	O_RENDERWINDOW
 Renderable *	O_RENDERABLE
+const Renderable *	O_RENDERABLE
 Resource *	O_RESOURCE
 ResourceGroupManager *	O_RESOURCEGROUPMANAGER
 ResourceManager *	O_RESOURCEMANAGER
@@ -160,6 +161,8 @@ uint	T_UV
 uchar	T_U_CHAR
 Real	T_REAL
 ResourceHandle	T_UV
+WorldFragment *	S_WORLDFRAGMENT
+const WorldFragment *	S_WORLDFRAGMENT
 
 
 INPUT
@@ -170,6 +173,9 @@ STRING
 
 T_REAL
 	$var = (Real)SvNV($arg);
+
+S_WORLDFRAGMENT
+	TMOGRE_IN($arg, $var, $type, $Package, $func_name, SceneQuery::WorldFragment)
 
 O_DEGRAD
 	TMOGRE_DEGRAD_IN($arg, $var, $Package, $func_name)
@@ -521,6 +527,9 @@ STRING
 
 T_REAL
 	sv_setnv($arg, (Real)$var);
+
+S_WORLDFRAGMENT
+	TMOGRE_OUT($arg, $var, SceneQuery::WorldFragment)
 
 O_ANIMABLEOBJECT
 	TMOGRE_OUT($arg, $var, AnimableObject)

@@ -50,6 +50,10 @@ Here are brief descriptions of the examples.
 - particleFX.pl: pretty particle effects demo, implements OGRE's
   "ParticleFX" sample application
 
-- skeletalanim.pl: demo of skeletal animation, implements OGRE's
-  "SkeletalAnimation" sample application (very cool with the ladies
-  sneaking around :)
+- skeletalanim.pl: implements OGRE's "SkeletalAnimation" sample application
+  (very cool with the ladies sneaking around :)
+
+- terrain.pl: implementing OGRE's "Terrain" sample app, this demos
+  using RaySceneQuery to maintain the camera at a fixed distance
+  above a terrain (if you've played "Medieval: Total War", it's like
+  moving the camera over the 3D-battle terrains).
