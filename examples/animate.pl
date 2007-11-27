@@ -80,6 +80,7 @@ sub frameStarted {
             $self->setAnimationLoop('Walk');
         }
     }
+
     # the robot's moving now
     else {
         my $move = $self->{mWalkSpeed} * $evt->timeSinceLastFrame;

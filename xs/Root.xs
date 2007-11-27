@@ -1,5 +1,8 @@
 MODULE = Ogre     PACKAGE = Ogre::Root
 
+static Root *
+Root::getSingletonPtr()
+
 Root *
 Root::new(...)
   CODE:
@@ -122,13 +125,13 @@ void
 Root::addFrameListener(perlListener)
     SV * perlListener
   CODE:
-    pogreListenerManager.addFrameListener(perlListener, THIS);
+    pogreCallbackManager.addFrameListener(perlListener, THIS);
 
 void
 Root::removeFrameListener(perlListener)
     SV * perlListener
   CODE:
-    pogreListenerManager.removeFrameListener(perlListener, THIS);
+    pogreCallbackManager.removeFrameListener(perlListener, THIS);
 
 void
 Root::queueEndRendering()

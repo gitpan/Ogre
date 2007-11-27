@@ -1,5 +1,5 @@
-#ifndef _PERLOGRE_LISTENERMANAGER_H_
-#define _PERLOGRE_LISTENERMANAGER_H_
+#ifndef _PERLOGRE_CALLBACKMANAGER_H_
+#define _PERLOGRE_CALLBACKMANAGER_H_
 
 /*
   In OGRE, there can be multiple FrameListeners added by Root->addFrameListener,
@@ -7,7 +7,6 @@
   to Root->removeFrameListener. Since we're implementing FrameListeners
   in Perl, we have to instantiate the C++ object to be passed to
   Root->addFrameListener.
-
 */
 
 #include <map>
@@ -17,7 +16,7 @@
 
 using namespace std;
 
-class PerlOGREListenerManager
+class PerlOGRECallbackManager
 {
  private:
     // Perl pkgname mapped to single C++ FrameListener
@@ -32,8 +31,8 @@ class PerlOGREListenerManager
     WinEvtListenerWindowMMap mWinEvtListenerWindowMMap;
 
  public:
-    PerlOGREListenerManager();
-    ~PerlOGREListenerManager();
+    PerlOGRECallbackManager();
+    ~PerlOGRECallbackManager();
 
     void addFrameListener(SV *pobj, Ogre::Root *root);
     void removeFrameListener(SV *pobj, Ogre::Root *root);
@@ -43,4 +42,4 @@ class PerlOGREListenerManager
 };
 
 
-#endif  /* define _PERLOGRE_LISTENERMANAGER_H_ */
+#endif  /* define _PERLOGRE_CALLBACKMANAGER_H_ */

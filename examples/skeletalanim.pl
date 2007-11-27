@@ -179,17 +179,13 @@ sub createScene {
     }
 
 
-    # xxx: I get several errors like this here:
-    # "Attempt to free unreferenced scalar: SV 0x838eb9c,
-    #  Perl interpreter: 0x8152008 at ./skeletalanimation.pl line 182."
-    # I think it's coming from getNodeTrackAref above.
     my $rotInc = Ogre::Math->TWO_PI / $self->{appconf}{NUM_JAIQUAS};
     my $rot = 0.0;
 
     my $ent;
 
     for (my $i = 0; $i < $self->{appconf}{NUM_JAIQUAS}; $i++) {
-        my $q = Ogre::Quaternion->new();
+        my $q = Ogre::Quaternion->new();    # quaternion ==> rotation
         $q->FromAngleAxis(Ogre::Radian->new($rot), Ogre::Vector3->new(0, 1, 0));
         $self->{appconf}{mOrientations}->[$i] = $q;
         $self->{appconf}{mBasePositions}->[$i] = $q * Ogre::Vector3->new(0, 0, -20);
@@ -202,7 +198,7 @@ sub createScene {
 
         $self->{appconf}{mAnimState}->[$i] = $ent->getAnimationState("Sneak");
         $self->{appconf}{mAnimState}->[$i]->setEnabled(1);
-        $self->{appconf}{mAnimState}->[$i]->setLoop(0);   # manual loop since translationn involved
+        $self->{appconf}{mAnimState}->[$i]->setLoop(0);   # manual loop since translation involved
         $self->{appconf}{mAnimationSpeed}->[$i] = Ogre::Math->RangeRandom(0.5, 1.5);
 
         $rot += $rotInc;

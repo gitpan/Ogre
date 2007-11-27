@@ -644,8 +644,11 @@ SceneManager::destroyInstancedGeometry(name)
 void
 SceneManager::destroyAllInstancedGeometry()
 
-# xxx: skipping params arg for now...
-# MovableObject *createMovableObject(const String &name, const String &typeName, const NameValuePairList *params=0)
+## xxx: skipping params arg for now...
+## not sure if this works even, in C++ you end up casting to a specific type,
+## but those have their own methods like createRibbonTrail, etc.,
+## so use those instead.
+## MovableObject *createMovableObject(const String &name, const String &typeName, const NameValuePairList *params=0)
 MovableObject *
 SceneManager::createMovableObject(name, typeName)
     String  name

@@ -1,15 +1,26 @@
 MODULE = Ogre     PACKAGE = Ogre::BillboardSet
 
-
-BillboardSet *
-BillboardSet::new(name, poolSize=20, externalDataSource=false)
-    String  name
-    unsigned int  poolSize
-    bool  externalDataSource
-
-void
-BillboardSet::DESTROY()
-
+## I finally figured out why DESTROY methods
+## cause segfaults; for objects like this (a MovableObject)
+## that are managed by SceneManager,
+## there is a method destroyAllMovableObjects being called,
+## and this was implicitly calling "delete THIS" here
+## before that. But if I destroyBillboardSet here, basically it seems
+## to get destroyed as soon as the Perl object goes out of scope,
+## which is rarely what we want... So you have to just create
+## these through SceneManager instead of using ->new.
+##BillboardSet *
+##BillboardSet::new(name, poolSize=20, externalDataSource=false)
+##    String  name
+##    unsigned int  poolSize
+##    bool  externalDataSource
+##
+##void
+##BillboardSet::DESTROY()
+##  CODE:
+##    SceneManager *sm = THIS->_getManager();
+##    if (sm)
+##      sm->destroyBillboardSet(THIS);
 
 ## xxx: Billboard * BillboardSet::createBillboard(const Vector3 &position, const ColourValue &colour=ColourValue::White)
 Billboard *

@@ -1,7 +1,7 @@
 #ifndef _PERLOGRE_WINDOWEVENTLISTENER_H_
 #define _PERLOGRE_WINDOWEVENTLISTENER_H_
 
-#include "PerlOGREListener.h"
+#include "PerlOGRECallback.h"
 
 using namespace std;
 
@@ -9,7 +9,7 @@ using namespace std;
 // so it can be passed to WindowEventUtilities::addWindowEventListener
 // but still allowing implementing the callbacks from Perl
 
-class PerlOGREWindowEventListener : public PerlOGREListener, public Ogre::WindowEventListener
+class PerlOGREWindowEventListener : public PerlOGRECallback, public Ogre::WindowEventListener
 {
  public:
     PerlOGREWindowEventListener(SV *pobj);

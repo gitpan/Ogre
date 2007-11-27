@@ -4,6 +4,7 @@ TYPEMAP
 AnimableObject *	O_ANIMABLEOBJECT
 AnimableValue *	O_ANIMABLEVALUE
 Animation *	O_ANIMATION
+AnimationControllerFunction *	O_ANIMATIONCONTROLLERFUNCTION
 AnimationState *	O_ANIMATIONSTATE
 AnimationStateSet *	O_ANIMATIONSTATESET
 AnimationTrack *	O_ANIMATIONTRACK
@@ -16,6 +17,10 @@ Bone *	O_BONE
 Camera *	O_CAMERA
 ColourValue *	O_COLOURVALUE
 ConfigFile *	O_CONFIGFILE
+ControllerFunctionReal *	O_CONTROLLERFUNCTIONREAL
+ControllerManager *	O_CONTROLLERMANAGER
+ControllerReal *	O_CONTROLLERREAL
+ControllerValueReal *	O_CONTROLLERVALUEREAL
 DataStream *	O_DATASTREAM
 DegRad *	O_DEGRAD
 Degree *	O_DEGREE
@@ -62,6 +67,7 @@ ParticleEmitter *	O_PARTICLEEMITTER
 ParticleSystem *	O_PARTICLESYSTEM
 ParticleSystemRenderer *	O_PARTICLESYSTEMRENDERER
 Pass *	O_PASS
+PassthroughControllerFunction *	O_PASSTHROUGHCONTROLLERFUNCTION
 PatchMesh *	O_PATCHMESH
 Plane *	O_PLANE
 PlaneBoundedVolumeListSceneQuery *	O_PLANEBOUNDEDVOLUMELISTSCENEQUERY
@@ -69,7 +75,6 @@ Pose *	O_POSE
 Quaternion *	O_QUATERNION
 Radian *	O_RADIAN
 Ray *	O_RAY
-const Ray *	O_RAY
 RaySceneQuery *	O_RAYSCENEQUERY
 RegionSceneQuery *	O_REGIONSCENEQUERY
 RenderOperation *	O_RENDEROPERATION
@@ -80,12 +85,12 @@ RenderTarget *	O_RENDERTARGET
 RenderTexture *	O_RENDERTEXTURE
 RenderWindow *	O_RENDERWINDOW
 Renderable *	O_RENDERABLE
-const Renderable *	O_RENDERABLE
 Resource *	O_RESOURCE
 ResourceGroupManager *	O_RESOURCEGROUPMANAGER
 ResourceManager *	O_RESOURCEMANAGER
 RibbonTrail *	O_RIBBONTRAIL
 Root *	O_ROOT
+ScaleControllerFunction *	O_SCALECONTROLLERFUNCTION
 SceneManager *	O_SCENEMANAGER
 SceneNode *	O_SCENENODE
 SceneQuery *	O_SCENEQUERY
@@ -116,7 +121,9 @@ VertexData *	O_VERTEXDATA
 VertexDeclaration *	O_VERTEXDECLARATION
 VertexElement *	O_VERTEXELEMENT
 Viewport *	O_VIEWPORT
+WaveformControllerFunction *	O_WAVEFORMCONTROLLERFUNCTION
 WindowEventListener *	O_WINDOWEVENTLISTENER
+const AnimationControllerFunction *	O_ANIMATIONCONTROLLERFUNCTION
 const AnimationStateSet *	O_ANIMATIONSTATESET
 const AnimationTrack *	O_ANIMATIONTRACK
 const AxisAlignedBox *	O_AXISALIGNEDBOX
@@ -125,20 +132,29 @@ const Bone *	O_BONE
 const Camera *	O_CAMERA
 const Camera *	O_CAMERA
 const ColourValue *	O_COLOURVALUE
+const ControllerFunctionReal *	O_CONTROLLERFUNCTIONREAL
+const ControllerManager *	O_CONTROLLERMANAGER
+const ControllerReal *	O_CONTROLLERREAL
+const ControllerValueReal *	O_CONTROLLERVALUEREAL
 const DataStream *	O_DATASTREAM
 const HardwareVertexBuffer *	O_HARDWAREVERTEXBUFFER
 const Light *	O_LIGHT
 const Material *	O_MATERIAL
 const Matrix4 *	O_MATRIX4
 const Mesh *	O_MESH
+const Node *	O_NODE
 const NodeAnimationTrack *	O_NODEANIMATIONTRACK
 const NumericAnimationTrack *	O_NUMERICANIMATIONTRACK
 const OverlayElement *	O_OVERLAYELEMENT
 const Pass *	O_PASS
+const PassthroughControllerFunction *	O_PASSTHROUGHCONTROLLERFUNCTION
 const Quaternion *	O_QUATERNION
 const Radian *	O_RADIAN
+const Ray *	O_RAY
 const RenderSystemCapabilities *	O_RENDERSYSTEMCAPABILITIES
+const Renderable *	O_RENDERABLE
 const Resource *	O_RESOURCE
+const ScaleControllerFunction *	O_SCALECONTROLLERFUNCTION
 const SkeletonManager *	O_SKELETONMANAGER
 const SubEntity *	O_SUBENTITY
 const SubMesh *	O_SUBMESH
@@ -150,6 +166,7 @@ const Vector3 *	O_VECTOR3
 const Vector4 *	O_VECTOR4
 const VertexAnimationTrack *	O_VERTEXANIMATIONTRACK
 const VertexElement *	O_VERTEXELEMENT
+const WaveformControllerFunction *	O_WAVEFORMCONTROLLERFUNCTION
 ## END NORMAL TYPEMAPS
 
 String	STRING
@@ -163,6 +180,7 @@ Real	T_REAL
 ResourceHandle	T_UV
 WorldFragment *	S_WORLDFRAGMENT
 const WorldFragment *	S_WORLDFRAGMENT
+NameValuePairList	T_MAPSTRSTR
 
 
 INPUT
@@ -174,11 +192,31 @@ STRING
 T_REAL
 	$var = (Real)SvNV($arg);
 
+## set a NameValuePairList from a hashref input
+## this is not working yet, or at least not used anywhere
+T_MAPSTRSTR
+	const char *key;
+	I32 klen;
+	SV *hval;
+	HV *paramsHash = (HV *)SvRV($arg);
+	hv_iterinit(paramsHash);
+	while ((hval = hv_iternextsv(paramsHash, (char **)&key, &klen))) {
+		// xxx: not sure if this checking is sufficient
+		if (SvPOK(hval))
+			$var[key] = SvPV(hval, klen);
+	}
+
 S_WORLDFRAGMENT
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, SceneQuery::WorldFragment)
 
 O_DEGRAD
 	TMOGRE_DEGRAD_IN($arg, $var, $Package, $func_name)
+
+O_CONTROLLERFUNCTIONREAL
+	TMOGRE_CONTFUNC_IN($arg, $var)
+
+O_CONTROLLERVALUEREAL
+	TMOGRE_CONTVAL_IN($arg, $var)
 
 O_ANIMABLEOBJECT
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, AnimableObject)
@@ -188,6 +226,9 @@ O_ANIMABLEVALUE
 
 O_ANIMATION
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, Animation)
+
+O_ANIMATIONCONTROLLERFUNCTION
+	TMOGRE_IN($arg, $var, $type, $Package, $func_name, AnimationControllerFunction)
 
 O_ANIMATIONSTATE
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, AnimationState)
@@ -224,6 +265,12 @@ O_COLOURVALUE
 
 O_CONFIGFILE
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, ConfigFile)
+
+O_CONTROLLERMANAGER
+	TMOGRE_IN($arg, $var, $type, $Package, $func_name, ControllerManager)
+
+O_CONTROLLERREAL
+	TMOGRE_IN($arg, $var, $type, $Package, $func_name, ControllerReal)
 
 O_DATASTREAM
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, DataStream)
@@ -360,6 +407,9 @@ O_PARTICLESYSTEMRENDERER
 O_PASS
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, Pass)
 
+O_PASSTHROUGHCONTROLLERFUNCTION
+	TMOGRE_IN($arg, $var, $type, $Package, $func_name, PassthroughControllerFunction)
+
 O_PATCHMESH
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, PatchMesh)
 
@@ -425,6 +475,9 @@ O_RIBBONTRAIL
 
 O_ROOT
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, Root)
+
+O_SCALECONTROLLERFUNCTION
+	TMOGRE_IN($arg, $var, $type, $Package, $func_name, ScaleControllerFunction)
 
 O_SCENEMANAGER
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, SceneManager)
@@ -516,6 +569,9 @@ O_VERTEXELEMENT
 O_VIEWPORT
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, Viewport)
 
+O_WAVEFORMCONTROLLERFUNCTION
+	TMOGRE_IN($arg, $var, $type, $Package, $func_name, WaveformControllerFunction)
+
 O_WINDOWEVENTLISTENER
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, WindowEventListener)
 
@@ -539,6 +595,9 @@ O_ANIMABLEVALUE
 
 O_ANIMATION
 	TMOGRE_OUT($arg, $var, Animation)
+
+O_ANIMATIONCONTROLLERFUNCTION
+	TMOGRE_OUT($arg, $var, AnimationControllerFunction)
 
 O_ANIMATIONSTATE
 	TMOGRE_OUT($arg, $var, AnimationState)
@@ -575,6 +634,18 @@ O_COLOURVALUE
 
 O_CONFIGFILE
 	TMOGRE_OUT($arg, $var, ConfigFile)
+
+O_CONTROLLERMANAGER
+	TMOGRE_OUT($arg, $var, ControllerManager)
+
+O_CONTROLLERREAL
+	TMOGRE_OUT($arg, $var, ControllerReal)
+
+O_CONTROLLERFUNCTIONREAL
+	TMOGRE_OUT($arg, $var, ControllerFunctionReal)
+
+O_CONTROLLERVALUEREAL
+	TMOGRE_OUT($arg, $var, ControllerValueReal)
 
 O_DATASTREAM
 	TMOGRE_OUT($arg, $var, DataStream)
@@ -711,6 +782,9 @@ O_PARTICLESYSTEMRENDERER
 O_PASS
 	TMOGRE_OUT($arg, $var, Pass)
 
+O_PASSTHROUGHCONTROLLERFUNCTION
+	TMOGRE_OUT($arg, $var, PassthroughControllerFunction)
+
 O_PATCHMESH
 	TMOGRE_OUT($arg, $var, PatchMesh)
 
@@ -776,6 +850,9 @@ O_RIBBONTRAIL
 
 O_ROOT
 	TMOGRE_OUT($arg, $var, Root)
+
+O_SCALECONTROLLERFUNCTION
+	TMOGRE_OUT($arg, $var, ScaleControllerFunction)
 
 O_SCENEMANAGER
 	TMOGRE_OUT($arg, $var, SceneManager)
@@ -866,6 +943,9 @@ O_VERTEXELEMENT
 
 O_VIEWPORT
 	TMOGRE_OUT($arg, $var, Viewport)
+
+O_WAVEFORMCONTROLLERFUNCTION
+	TMOGRE_OUT($arg, $var, WaveformControllerFunction)
 
 O_WINDOWEVENTLISTENER
 	TMOGRE_OUT($arg, $var, WindowEventListener)

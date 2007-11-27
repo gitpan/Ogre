@@ -57,3 +57,7 @@ Here are brief descriptions of the examples.
   using RaySceneQuery to maintain the camera at a fixed distance
   above a terrain (if you've played "Medieval: Total War", it's like
   moving the camera over the 3D-battle terrains).
+
+- lighting.pl: OGRE's "Lighting" sample app, shows how to use ControllerValue
+  and ControllerFunction interfaces, as well as using RibbonTrails
+  and animations (note: this is still incomplete, though it works fine)

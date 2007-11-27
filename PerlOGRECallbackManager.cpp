@@ -1,14 +1,14 @@
-#include "PerlOGREListenerManager.h"
+#include "PerlOGRECallbackManager.h"
 #include <string>
 
 using namespace std;
 
 
-PerlOGREListenerManager::PerlOGREListenerManager()
+PerlOGRECallbackManager::PerlOGRECallbackManager()
 {
 }
 
-PerlOGREListenerManager::~PerlOGREListenerManager()
+PerlOGRECallbackManager::~PerlOGRECallbackManager()
 {
     // clean up addFrameListener
     for (FrameListenerMap::iterator it = mFrameListenerMap.begin(); it != mFrameListenerMap.end(); ++it) {
@@ -24,7 +24,7 @@ PerlOGREListenerManager::~PerlOGREListenerManager()
     mWinEvtListenerMap.clear();
 }
 
-void PerlOGREListenerManager::addFrameListener(SV *pobj, Ogre::Root *root)
+void PerlOGRECallbackManager::addFrameListener(SV *pobj, Ogre::Root *root)
 {
     if (sv_isobject(pobj)) {
         PerlOGREFrameListener *fl = new PerlOGREFrameListener(pobj);
@@ -49,7 +49,7 @@ void PerlOGREListenerManager::addFrameListener(SV *pobj, Ogre::Root *root)
     }
 }
 
-void PerlOGREListenerManager::removeFrameListener(SV *pobj, Ogre::Root *root)
+void PerlOGRECallbackManager::removeFrameListener(SV *pobj, Ogre::Root *root)
 {
     // get package name from object
     HV *stash = SvSTASH(SvRV(pobj));
@@ -69,7 +69,7 @@ void PerlOGREListenerManager::removeFrameListener(SV *pobj, Ogre::Root *root)
     }
 }
 
-void PerlOGREListenerManager::addWindowEventListener(SV *pobj, Ogre::RenderWindow *win)
+void PerlOGRECallbackManager::addWindowEventListener(SV *pobj, Ogre::RenderWindow *win)
 {
     if (sv_isobject(pobj)) {
         PerlOGREWindowEventListener *wel = new PerlOGREWindowEventListener(pobj);
@@ -111,7 +111,7 @@ void PerlOGREListenerManager::addWindowEventListener(SV *pobj, Ogre::RenderWindo
     }
 }
 
-void PerlOGREListenerManager::removeWindowEventListener(SV *pobj, Ogre::RenderWindow *win)
+void PerlOGRECallbackManager::removeWindowEventListener(SV *pobj, Ogre::RenderWindow *win)
 {
     HV *stash = SvSTASH(SvRV(pobj));
     string pkgname(HvNAME(stash));

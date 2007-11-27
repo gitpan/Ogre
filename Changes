@@ -1,3 +1,13 @@
+0.32 2007-11-25 | lighting.pl
+- added lighting.pl example
+- implemented Controller<Real>, ControllerValue<Real>, ControllerFunction<Real>
+  for use with lighting example; note that Controller<Real> is called ControllerReal
+  in the Perl binding
+- fixed a little bug with setDiffuseColour/setSpecularColour of Ogre::Light
+- (internal) renamed PerlOGREListener.h to PerlOGRECallback.h, etc. (generalized from
+  listener to any callback class in Perl, in particular to handle
+  ControllerValue and ControllerFunction)
+
 0.31 2007-11-17 | terrain.pl
 - added terrain.pl example
 - wrapped RaySceneQuery class, among others

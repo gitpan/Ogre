@@ -1,5 +1,7 @@
 MODULE = Ogre     PACKAGE = Ogre::Entity
 
+## note: if constructor/destructor ever added, refer to BillboardSet.xs
+
 const Mesh *
 Entity::getMesh()
   CODE:

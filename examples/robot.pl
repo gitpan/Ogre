@@ -121,20 +121,16 @@ sub setupScene {
     $cam->lookAt(0, 0, 0);
     $cam->setNearClipDistance(5);
 
-    # xxx: annoying, in the C++ API all args after $cam are optional
     my $vp = $root->getAutoCreatedWindow()->addViewport($cam, 0, 0, 0, 1, 1);
-    # xxx: annoying, C++ API has all values optional for ColourValue
     $vp->setBackgroundColour(Ogre::ColourValue->new(0.5, 0.5, 0.5, 1));
 
     $cam->setAspectRatio($vp->getActualWidth / $vp->getActualHeight);
-
     $mgr->setAmbientLight(Ogre::ColourValue->new(0.8, 0.7, 0.6, 1));
+
     my $ent1 = $mgr->createEntity('Robot', 'robot.mesh');
     my $node1 = $mgr->getRootSceneNode()->createChildSceneNode('RobotNode');
     $node1->attachObject($ent1);
 
-    # xxx: annoying, C++ API has "relativeTo" value optional
-    # xxx: also have to use Degree instead of Radian
     $node1->yaw(Ogre::Degree->new(-90), TS_LOCAL);
     $node1->roll(Ogre::Degree->new(-45), TS_LOCAL);
     $node1->pitch(Ogre::Degree->new(-30), TS_LOCAL);

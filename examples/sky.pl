@@ -66,13 +66,13 @@ sub createScene {
     # select which scene you want to show
     my $sky = 'dome';
 
-    # (note: unfortunately for now all the args are required to these setSky* methods)
     if ($sky eq 'box') {
         $mgr->setSkyBox(1, "Examples/SpaceSkyBox", 5000, 0,
                         Ogre::Quaternion->new(1, 0, 0, 0),
                         DEFAULT_RESOURCE_GROUP_NAME
                     );
     }
+
     elsif ($sky eq 'dome') {
         $mgr->setSkyDome(1, "Examples/CloudySky", 5, 8, 4000, 1,
                          Ogre::Quaternion->new(1, 0, 0, 0),
@@ -80,6 +80,7 @@ sub createScene {
                          DEFAULT_RESOURCE_GROUP_NAME
                      );
     }
+
     elsif ($sky eq 'plane') {
         my $plane = Ogre::Plane->new();
         # Note: Ogre::Plane->new(Ogre::Vector3->new(0, -1, 0), 10)

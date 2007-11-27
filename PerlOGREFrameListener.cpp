@@ -5,7 +5,7 @@
 // that (maybe) has frameStarted and/or frameEnded methods
 
 PerlOGREFrameListener::PerlOGREFrameListener(SV *pobj)
-    : PerlOGREListener(pobj)
+    : PerlOGRECallback(pobj)
 {
     mCanMap["frameStarted"] = perlCallbackCan("frameStarted");
     mCanMap["frameEnded"] = perlCallbackCan("frameEnded");

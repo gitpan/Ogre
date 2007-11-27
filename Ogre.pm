@@ -7,13 +7,14 @@ use warnings;
 require DynaLoader;
 our @ISA = qw(DynaLoader);
 
-our $VERSION = '0.31';
+our $VERSION = '0.32';
 
 # use all files under Ogre/ - probably not a good idea
 ## BEGIN USES
 use Ogre::AnimableObject;
 use Ogre::AnimableValue;
 use Ogre::Animation;
+use Ogre::AnimationControllerFunction;
 use Ogre::AnimationState;
 use Ogre::AnimationStateSet;
 use Ogre::AnimationTrack;
@@ -28,6 +29,8 @@ use Ogre::ColourValue;
 use Ogre::CompositionPass;
 use Ogre::CompositionTargetPass;
 use Ogre::ConfigFile;
+use Ogre::ControllerManager;
+use Ogre::ControllerReal;
 use Ogre::DataStream;
 use Ogre::Degree;
 use Ogre::EdgeData;
@@ -75,6 +78,7 @@ use Ogre::ParticleEmitter;
 use Ogre::ParticleSystem;
 use Ogre::ParticleSystemRenderer;
 use Ogre::Pass;
+use Ogre::PassthroughControllerFunction;
 use Ogre::PatchMesh;
 use Ogre::PatchSurface;
 use Ogre::Plane;
@@ -99,10 +103,11 @@ use Ogre::ResourceGroupManager;
 use Ogre::ResourceManager;
 use Ogre::RibbonTrail;
 use Ogre::Root;
+use Ogre::ScaleControllerFunction;
 use Ogre::SceneManager;
 use Ogre::SceneNode;
-use Ogre::SceneQuery;
 use Ogre::SceneQuery::WorldFragment;
+use Ogre::SceneQuery;
 use Ogre::ScriptLoader;
 use Ogre::Serializer;
 use Ogre::ShadowCaster;
@@ -132,6 +137,7 @@ use Ogre::VertexData;
 use Ogre::VertexDeclaration;
 use Ogre::VertexElement;
 use Ogre::Viewport;
+use Ogre::WaveformControllerFunction;
 use Ogre::WindowEventUtilities;
 ## END USES
 

@@ -5,7 +5,7 @@
 // that (maybe) has implemented (some of) the WindowEventListener methods
 
 PerlOGREWindowEventListener::PerlOGREWindowEventListener(SV *pobj)
-    : PerlOGREListener(pobj)
+    : PerlOGRECallback(pobj)
 {
     mCanMap["windowMoved"] = perlCallbackCan("windowMoved");
     mCanMap["windowResized"] = perlCallbackCan("windowResized");

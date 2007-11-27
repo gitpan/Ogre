@@ -1,7 +1,7 @@
 #ifndef _PERLOGRE_FRAMELISTENER_H_
 #define _PERLOGRE_FRAMELISTENER_H_
 
-#include "PerlOGREListener.h"
+#include "PerlOGRECallback.h"
 
 using namespace std;
 
@@ -9,7 +9,7 @@ using namespace std;
 // so it can be passed to Root->addFrameListener
 // but still allowing implementing the callbacks from Perl
 
-class PerlOGREFrameListener : public PerlOGREListener, public Ogre::FrameListener
+class PerlOGREFrameListener : public PerlOGRECallback, public Ogre::FrameListener
 {
  public:
     PerlOGREFrameListener(SV *pobj);

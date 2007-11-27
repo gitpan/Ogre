@@ -1,12 +1,24 @@
 MODULE = Ogre     PACKAGE = Ogre::Light
 
-## xxx: this ends up causing a segfault
+## I finally figured out why DESTROY methods
+## cause segfaults; for objects like this (a MovableObject)
+## that are managed by SceneManager,
+## there is a method destroyAllMovableObjects being called,
+## and this was implicitly calling "delete THIS" here
+## before that. But if I destroyLight here, basically it seems
+## to get destroyed as soon as the Perl object goes out of scope,
+## which is rarely what we want... So you have to just create
+## these through SceneManager instead of using ->new.
 ##Light *
 ##Light::new(name)
 ##    String  name
 ##
 ##void
 ##Light::DESTROY()
+##  CODE:
+##    SceneManager *sm = THIS->_getManager();
+##    if (sm)
+##      sm->destroyLight(THIS);
 
 void
 Light::setType(type)
@@ -20,7 +32,7 @@ Light::getType()
 void
 Light::setDiffuseColour(...)
   CODE:
-    if (items == 2 && sv_isobject(ST(1)) && sv_derived_from(ST(1), "Ogre::Colour")) {
+    if (items == 2 && sv_isobject(ST(1)) && sv_derived_from(ST(1), "Ogre::ColourValue")) {
         ColourValue *colour = (ColourValue *) SvIV((SV *) SvRV(ST(1)));   // TMOGRE_IN
         THIS->setDiffuseColour(*colour);
     }
@@ -42,7 +54,7 @@ Light::getDiffuseColour()
 void
 Light::setSpecularColour(...)
   CODE:
-    if (items == 2 && sv_isobject(ST(1)) && sv_derived_from(ST(1), "Ogre::Colour")) {
+    if (items == 2 && sv_isobject(ST(1)) && sv_derived_from(ST(1), "Ogre::ColourValue")) {
         ColourValue *colour = (ColourValue *) SvIV((SV *) SvRV(ST(1)));   // TMOGRE_IN
         THIS->setSpecularColour(*colour);
     }

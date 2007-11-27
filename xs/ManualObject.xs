@@ -1,5 +1,8 @@
 MODULE = Ogre     PACKAGE = Ogre::ManualObject
 
+## note: if constructor/destructor ever added, refer to BillboardSet.xs
+
+
 void
 ManualObject::clear()
 

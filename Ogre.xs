@@ -2,14 +2,15 @@
 #include <string>
 
 #include "perlOGRE.h"
-#include "PerlOGREListenerManager.h"
+#include "PerlOGRECallbackManager.h"
 #include "PerlOGREFrameListener.h"
 #include "PerlOGREWindowEventListener.h"
 
+#include "PerlOGREControllerFunction.h"
+#include "PerlOGREControllerValue.h"
 
-// This object manages FrameListeners,
-// see xs/Root.xs addFrameListener/removeFrameListener
-PerlOGREListenerManager pogreListenerManager;
+// This object manages FrameListeners, WindowEventListeners...
+PerlOGRECallbackManager pogreCallbackManager;
 
 
 // This allows using a wxPerl or Gtk2 window

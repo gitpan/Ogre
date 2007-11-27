@@ -5,6 +5,18 @@
 #include <Ogre.h>
 
 
+// typedefs for deeply nested classes
+typedef Ogre::SceneQuery::WorldFragment WorldFragment;
+
+// typedef for handling Degree or Radian input parameters
+typedef Ogre::Radian DegRad;
+
+// typedefs for controllers, especially input params
+typedef Ogre::Controller<Ogre::Real> ControllerReal;
+typedef Ogre::ControllerValue<Ogre::Real> ControllerValueReal;
+typedef Ogre::ControllerFunction<Ogre::Real> ControllerFunctionReal;
+
+
 // macros for typemap
 // xxx: let me know if you have a better way to do this...
 #define TMOGRE_OUT(arg, var, pkg) sv_setref_pv(arg, "Ogre::" #pkg, (void *) var);
@@ -15,9 +27,7 @@ if (sv_isobject(arg) && sv_derived_from(arg, "Ogre::" #pkg)) { \
 		croak(#package "::" #func "(): " #var " is not an Ogre::" #pkg " object\n"); \
 	}
 
-// typedef for handling Degree or Radian input parameters
-typedef Ogre::Radian DegRad;
-
+// handle both Degree and Radian args as Radian
 #define TMOGRE_DEGRAD_IN(arg, var, package, func) \
 Radian rad_ ## var; \
 	if (sv_isobject(arg) && sv_derived_from(arg, "Ogre::Radian")) { \
@@ -31,9 +41,22 @@ Radian rad_ ## var; \
 		croak(#package "::" #func "(): " #var " is not a Degree or Radian object\n"); \
 	}
 
+// handle ControllerValue input args
+#define TMOGRE_CONTVAL_IN(arg, var) \
+if (sv_isa(arg, "Ogre::ControllerValueReal")) { \
+		var = (ControllerValueReal *) SvIV((SV *) SvRV(arg)); \
+	} else { \
+		var = new PerlOGREControllerValue(arg); \
+	}
 
-// typedefs for deeply nested classes
-typedef Ogre::SceneQuery::WorldFragment WorldFragment;
+// handle ControllerFunction input args
+#define TMOGRE_CONTFUNC_IN(arg, var) \
+if (sv_isa(arg, "Ogre::ControllerFunctionReal")) { \
+		var = (ControllerFunctionReal *) SvIV((SV *) SvRV(arg)); \
+	} else { \
+		var = new PerlOGREControllerFunction(arg); \
+	}
+
 
 
 // for C++

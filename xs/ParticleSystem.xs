@@ -1,5 +1,6 @@
 MODULE = Ogre     PACKAGE = Ogre::ParticleSystem
 
+## note: if constructor/destructor ever added, refer to BillboardSet.xs
 
 static void
 ParticleSystem::setDefaultIterationInterval(Real iterationInterval)
