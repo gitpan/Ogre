@@ -133,11 +133,9 @@ sub windowResized {
     my ($self, $win) = @_;
 
     my ($width, $height) = $win->getMetrics();
-
     my $mousestate = $self->{mMouse}->getMouseState();
 
     # note: in C++ this would be like  mousestate.width = width;
-    # (XXX: maybe should make it more perlish)
     $mousestate->setWidth($width);
     $mousestate->setHeight($height);
 }

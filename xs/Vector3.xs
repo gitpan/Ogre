@@ -37,14 +37,14 @@ Vector3::DESTROY()
 
 # ==, !=, <, >
 bool
-eq_xs(lobj, robj, swap)
+vec3_eq_xs(lobj, robj, swap)
     Vector3 * lobj
     Vector3 * robj
     IV        swap
   ALIAS:
-    ne_xs = 1
-    lt_xs = 2
-    gt_xs = 3
+    vec3_ne_xs = 1
+    vec3_lt_xs = 2
+    vec3_gt_xs = 3
   CODE:
     switch(ix) {
         case 0: RETVAL = (*lobj == *robj); break;
@@ -57,13 +57,13 @@ eq_xs(lobj, robj, swap)
 
 # +, -, /   (need Real also)
 Vector3 *
-plus_xs(lobj, robj, swap)
+vec3_plus_xs(lobj, robj, swap)
     Vector3 * lobj
     Vector3 * robj
     IV        swap
   ALIAS:
-    minus_xs = 1
-    div_xs = 2
+    vec3_minus_xs = 1
+    vec3_div_xs = 2
   PREINIT:
     Vector3 *vec = new Vector3;
   CODE:
@@ -78,7 +78,7 @@ plus_xs(lobj, robj, swap)
 
 # * (handles Quaternion also)
 Vector3 *
-mult_xs(lobj, robj, swap)
+vec3_mult_xs(lobj, robj, swap)
     Vector3 * lobj
     SV * robj
     IV swap
@@ -91,8 +91,13 @@ mult_xs(lobj, robj, swap)
     }
     else if (sv_isobject(robj) && sv_derived_from(robj, "Ogre::Quaternion")) {
         const Quaternion *rhs = (Quaternion *) SvIV((SV *) SvRV(robj));
-        // note reversal
-        *vec = (*rhs) * (*lobj);
+        // note reversal - only Q * V is allowed, so args must be reversed
+        if (swap) {
+            *vec = (*rhs) * (*lobj);
+        }
+        else {
+            croak("Vector3::mult_xs: reversed args (Quaternion must precede Vector3\n");
+        }
     }
     else if (looks_like_number(robj)) {
         Real rhs = (Real)SvNV(robj);
@@ -107,7 +112,7 @@ mult_xs(lobj, robj, swap)
 
 # neg
 Vector3 *
-neg_xs(lobj, robj, swap)
+vec3_neg_xs(lobj, robj, swap)
     Vector3 * lobj
     SV * robj
     IV swap

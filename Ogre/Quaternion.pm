@@ -1,17 +1,17 @@
-package Ogre::Quaterion;
+package Ogre::Quaternion;
 
 use strict;
 use warnings;
 
 # xxx: this should be in XS, but I can't get it to work
 use overload
-  '==' => \&eq_xs,
-  '!=' => \&ne_xs,
-  '+' => \&plus_xs,
-  '-' => \&minus_xs,
-  '*' => \&mult_xs,
+  '==' => \&quat_eq_xs,
+  '!=' => \&quat_ne_xs,
+  '+' => \&quat_plus_xs,
+  '-' => \&quat_minus_xs,
+  '*' => \&quat_mult_xs,
   '0+' => sub { $_[0] },
-  'neg' => \&neg_xs,
+  'neg' => \&quat_neg_xs,
   ;
 
 

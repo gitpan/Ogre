@@ -7,8 +7,7 @@ String
 Camera::getName()
 
 void
-Camera::setPolygonMode(sd)
-    int  sd
+Camera::setPolygonMode(int sd)
   C_ARGS:
     (PolygonMode)sd
 
@@ -38,15 +37,13 @@ Camera::getPosition()
     RETVAL
 
 void
-Camera::move(vec)
-    Vector3 * vec
+Camera::move(Vector3 *vec)
   C_ARGS:
     *vec
 
 void
-Camera::moveRelative(vec)
-    Vector3 * vec
-  C_ARGS:
+Camera::moveRelative(Vector3 *vec)
+     C_ARGS:
     *vec
 
 void
@@ -99,25 +96,35 @@ Camera::pitch(angle)
   C_ARGS:
     *angle
 
-## xxx: void 	rotate (const Vector3 &axis, const Radian &angle)
 void
-Camera::rotate(q)
-    Quaternion * q
-  C_ARGS:
-    *q
+Camera::rotate(...)
+  CODE:
+    if (items == 2 && sv_isobject(ST(1)) && sv_derived_from(ST(1), "Ogre::Quaternion")) {
+        Quaternion *q = (Quaternion *) SvIV((SV *) SvRV(ST(1)));   // TMOGRE_IN
+        THIS->rotate(*q);
+    }
+    else if (items == 3 && sv_isobject(ST(1)) && sv_derived_from(ST(1), "Ogre::Vector3")
+             && sv_isobject(ST(2)) && sv_derived_from(ST(2), "Ogre::DegRad"))
+    {
+        const Vector3 *vec = (Vector3 *) SvIV((SV *) SvRV(ST(1)));   // TMOGRE_IN
+        DegRad *angle;
+        TMOGRE_DEGRAD_IN(ST(2), angle, Ogre::Camera, rotate);
+
+        THIS->rotate(*vec, *angle);
+    }
+    else {
+        croak("Usage: Ogre::Camera::rotate(THIS, quat) or (THIS, vec, degrad)\n");
+    }
 
 void
-Camera::setFixedYawAxis(useFixed, fixedAxis)
-    bool  useFixed
-    Vector3 * fixedAxis
+Camera::setFixedYawAxis(bool useFixed, Vector3 *fixedAxis)
   C_ARGS:
     useFixed, *fixedAxis
 
-# const Quaternion &  Camera::getOrientation()
+## const Quaternion &  Camera::getOrientation()
 
 void
-Camera::setOrientation(q)
-    Quaternion * q
+Camera::setOrientation(Quaternion *q)
   C_ARGS:
     *q
 
@@ -136,10 +143,7 @@ String
 Camera::getMovableType()
 
 void
-Camera::setAutoTracking(enabled, target=0, offset=&Vector3::ZERO)
-    bool  enabled
-    SceneNode * target
-    const Vector3 * offset
+Camera::setAutoTracking(bool enabled, SceneNode *target=0, const Vector3 *offset=&Vector3::ZERO)
   C_ARGS:
     enabled, target, *offset
 
@@ -149,7 +153,13 @@ Camera::setLodBias(Real factor=1.0)
 Real
 Camera::getLodBias()
 
-## xxx:  Ray  Camera::getCameraToViewportRay(Real screenx, Real screeny)
+Ray *
+Camera::getCameraToViewportRay(Real screenx, Real screeny)
+  CODE:
+    RETVAL = new Ray;
+    *RETVAL = THIS->getCameraToViewportRay(screenx, screeny);
+  OUTPUT:
+    RETVAL
 
 void
 Camera::setWindow(Real Left, Real Top, Real Right, Real Bottom)
@@ -219,4 +229,3 @@ Camera::setUseRenderingDistance(bool use)
 
 bool
 Camera::getUseRenderingDistance()
-

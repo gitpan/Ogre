@@ -3,14 +3,14 @@ MODULE = Ogre     PACKAGE = Ogre::OverlayElement
 void
 OverlayElement::initialise()
 
+String
+OverlayElement::getName()
+
 void
 OverlayElement::show()
 
 void
 OverlayElement::hide()
-
-String
-OverlayElement::getName()
 
 bool
 OverlayElement::isVisible()
@@ -19,43 +19,34 @@ bool
 OverlayElement::isEnabled()
 
 void
-OverlayElement::setEnabled(b)
-    bool  b
+OverlayElement::setEnabled(bool b)
 
 void
-OverlayElement::setDimensions(width, height)
-    Real  width
-    Real  height
+OverlayElement::setDimensions(Real width, Real height)
 
 void
-OverlayElement::setPosition(left, top)
-    Real  left
-    Real  top
+OverlayElement::setPosition(Real left, Real top)
 
 void
-OverlayElement::setWidth(width)
-    Real  width
-
-void
-OverlayElement::setHeight(height)
-    Real  height
-
-void
-OverlayElement::setLeft(left)
-    Real  left
-
-void
-OverlayElement::setTop(top)
-    Real  top
+OverlayElement::setWidth(Real width)
 
 Real
 OverlayElement::getWidth()
 
+void
+OverlayElement::setHeight(Real height)
+
 Real
 OverlayElement::getHeight()
 
+void
+OverlayElement::setLeft(Real left)
+
 Real
 OverlayElement::getLeft()
+
+void
+OverlayElement::setTop(Real top)
 
 Real
 OverlayElement::getTop()
@@ -64,8 +55,15 @@ String
 OverlayElement::getMaterialName()
 
 void
-OverlayElement::setMaterialName(matName)
-    String  matName
+OverlayElement::setMaterialName(String matName)
+
+## const MaterialPtr & 	getMaterial (void) 
+
+## void 	getWorldTransforms (Matrix4 *xform)
+
+## const Quaternion & 	getWorldOrientation (void)
+
+## const Vector3 & 	getWorldPosition (void)
 
 String
 OverlayElement::getTypeName()
@@ -75,12 +73,11 @@ OverlayElement::getTypeName()
 ## but the code I see in the examples just uses String,
 ## and UTFString converts back and forth with String automatically,
 ## and it is easier so thats what I used.
+void
+OverlayElement::setCaption(String text)
+
 String
 OverlayElement::getCaption()
-
-void
-OverlayElement::setCaption(text)
-    String  text
 
 void
 OverlayElement::setColour(col)
@@ -88,17 +85,38 @@ OverlayElement::setColour(col)
   C_ARGS:
     *col
 
-## getColour
+## const ColourValue & 	getColour (void) const
+
+
+void
+OverlayElement::setMetricsMode(int gmm)
+  C_ARGS:
+    (GuiMetricsMode)gmm
+
+int
+OverlayElement::getMetricsMode()
+
+void
+OverlayElement::setHorizontalAlignment(int gha)
+  C_ARGS:
+    (GuiHorizontalAlignment)gha
+
+int
+OverlayElement::getHorizontalAlignment()
+
+void
+OverlayElement::setVerticalAlignment(int gva)
+  C_ARGS:
+    (GuiVerticalAlignment)gva
+
+int
+OverlayElement::getVerticalAlignment()
 
 bool
-OverlayElement::contains(x, y)
-    Real  x
-    Real  y
+OverlayElement::contains(Real x, Real y)
 
 OverlayElement *
-OverlayElement::findElementAt(x, y)
-    Real  x
-    Real  y
+OverlayElement::findElementAt(Real x, Real y)
 
 bool
 OverlayElement::isContainer()
@@ -108,6 +126,9 @@ OverlayElement::isKeyEnabled()
 
 bool
 OverlayElement::isCloneable()
+
+void
+OverlayElement::setCloneable(bool c)
 
 OverlayContainer *
 OverlayElement::getParent()
@@ -119,6 +140,8 @@ Real
 OverlayElement::getSquaredViewDepth(cam)
     Camera * cam
 
+## const LightList & 	getLights (void) const
+
 void
 OverlayElement::copyFromTemplate(templateOverlay)
     OverlayElement * templateOverlay
@@ -129,6 +152,3 @@ OverlayElement::clone(instanceName)
 
 const OverlayElement *
 OverlayElement::getSourceTemplate()
-
-
-## ....

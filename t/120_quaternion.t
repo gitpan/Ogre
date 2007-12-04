@@ -60,7 +60,7 @@ isa_ok($qvvv, 'Ogre::Quaternion');
 ok($qrv != $q, '$qrv != $q');
 
 
-my $qy = Ogre::Quaternion->new(0,0,1,0);
+my $qy = Ogre::Quaternion->new(0,0,0,1);
 my $vq = $qy * $vx;
 isa_ok($vq, 'Ogre::Vector3');
 ok(floats_close_enough($vq->x, -1), "mult q*v: v.x == -1");

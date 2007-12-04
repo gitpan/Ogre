@@ -5,16 +5,16 @@ use warnings;
 
 # xxx: this should be in XS, but I can't get it to work
 use overload
-  '==' => \&eq_xs,
-  '!=' => \&ne_xs,
-  '<' => \&lt_xs,
-  '>' => \&gt_xs,
-  '+' => \&plus_xs,
-  '-' => \&minus_xs,
-  '*' => \&mult_xs,
-  '/' => \&div_xs,
+  '==' => \&vec3_eq_xs,
+  '!=' => \&vec3_ne_xs,
+  '<' => \&vec3_lt_xs,
+  '>' => \&vec3_gt_xs,
+  '+' => \&vec3_plus_xs,
+  '-' => \&vec3_minus_xs,
+  '*' => \&vec3_mult_xs,
+  '/' => \&vec3_div_xs,
   '0+' => sub { $_[0] },
-  'neg' => \&neg_xs,
+  'neg' => \&vec3_neg_xs,
   ;
 
 

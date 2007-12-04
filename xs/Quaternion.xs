@@ -88,12 +88,12 @@ Quaternion::DESTROY()
 
 # ==, !=
 bool
-eq_xs(lobj, robj, swap)
-    Vector3 * lobj
-    Vector3 * robj
+quat_eq_xs(lobj, robj, swap)
+    Quaternion * lobj
+    Quaternion * robj
     IV        swap
   ALIAS:
-    ne_xs = 1
+    quat_ne_xs = 1
   CODE:
     switch(ix) {
         case 0: RETVAL = (*lobj == *robj); break;
@@ -104,12 +104,12 @@ eq_xs(lobj, robj, swap)
 
 # +, -
 Quaternion *
-plus_xs(lobj, robj, swap)
+quat_plus_xs(lobj, robj, swap)
     Quaternion * lobj
     Quaternion * robj
     IV        swap
   ALIAS:
-    minus_xs = 1
+    quat_minus_xs = 1
   PREINIT:
     Quaternion *q = new Quaternion;
   CODE:
@@ -123,36 +123,38 @@ plus_xs(lobj, robj, swap)
 
 # * (with Vector3 also)
 SV *
-mult_xs(lobj, robj, swap)
+quat_mult_xs(lobj, robj, swap)
     Quaternion * lobj
     SV * robj
     IV swap
   CODE:
+    RETVAL = newSV(0);
+
     // Vector3 = Quaternion * Vector3
-    if (sv_isobject(ST(2)) && sv_derived_from(ST(2), "Ogre::Vector3")) {
-        Vector3 *rvec = (Vector3 *) SvIV((SV *) SvRV(ST(2)));
+    if (sv_isobject(robj) && sv_derived_from(robj, "Ogre::Vector3")) {
+        Vector3 *rvec = (Vector3 *) SvIV((SV *) SvRV(robj));
 
         Vector3 *v = new Vector3;
         *v = *lobj * *rvec;
-        TMOGRE_OUT(RETVAL, "Ogre::Vector3", (void *) v);
+        TMOGRE_OUT(RETVAL, v, Vector3);
     }
     // Quaternion = Quaternion * Quaternion
-    else if (sv_isobject(ST(1)) && sv_derived_from(ST(1), "Ogre::Quaternion")) {
-        Quaternion *rquat = (Quaternion *) SvIV((SV *) SvRV(ST(2)));
+    else if (sv_isobject(robj) && sv_derived_from(robj, "Ogre::Quaternion")) {
+        Quaternion *rquat = (Quaternion *) SvIV((SV *) SvRV(robj));
 
         Quaternion *q = new Quaternion;
         *q = swap ? (*rquat * *lobj) : (*lobj * *rquat);
-        TMOGRE_OUT(RETVAL, "Ogre::Quaternion", (void *) q);
+        TMOGRE_OUT(RETVAL, q, Quaternion);
     }
     else {
-      croak("Quaternion::mult_xs: unknown argument!\n");
+      croak("Quaternion::quat_mult_xs: unknown argument!\n");
     }
   OUTPUT:
     RETVAL
 
 # neg
 Quaternion *
-neg_xs(lobj, robj, swap)
+quat_neg_xs(lobj, robj, swap)
     Quaternion * lobj
     SV * robj
     IV swap

@@ -1,4 +1,13 @@
-0.32 2007-11-25 | lighting.pl
+0.33 2007-12-04 | Ogre::BetaGUI
+- new (separate) CPAN module Ogre::BetaGUI; see it and its itute2.pl example
+  demonstrating a mouse cursor
+- added createOverlayContainer method to OverlayManager.xs;
+  this Perl-specific method is equivalent to createOverlayElement
+  but returns an OverlayContainer (static_cast) instead
+- fixed Quaternion operator overloading
+- added Vector2 constructor/destructor, tests
+
+0.32 2007-11-26 | lighting.pl
 - added lighting.pl example
 - implemented Controller<Real>, ControllerValue<Real>, ControllerFunction<Real>
   for use with lighting example; note that Controller<Real> is called ControllerReal

@@ -1,8 +1,5 @@
 MODULE = Ogre     PACKAGE = Ogre::OverlayContainer
 
-bool
-OverlayContainer::isContainer()
-
 void
 OverlayContainer::addChild(elem)
     OverlayElement * elem
@@ -21,9 +18,27 @@ OverlayElement *
 OverlayContainer::getChild(name)
      String  name
 
+void
+OverlayContainer::initialise()
+
+##  ChildIterator 	getChildIterator (void)
+## ChildContainerIterator 	getChildContainerIterator (void)
+
+bool
+OverlayContainer::isContainer()
+
 bool
 OverlayContainer::isChildrenProcessEvents()
 
 void
 OverlayContainer::setChildrenProcessEvents(val)
     bool  val
+
+OverlayElement *
+OverlayContainer::findElementAt(Real x, Real y)
+
+void
+OverlayContainer::copyFromTemplate(OverlayElement *templateOverlay)
+
+OverlayElement *
+OverlayContainer::clone(String instanceName)

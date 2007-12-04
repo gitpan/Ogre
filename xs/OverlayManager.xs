@@ -37,6 +37,20 @@ OverlayManager::createOverlayElement(typeName, instanceName, isTemplate=false)
     String  instanceName
     bool    isTemplate
 
+## note: added to Perl, same as createOverlayElement
+## but with a static_cast<OverlayContainer*>
+## (xxx: probably also need TextAreaOverlayElement,
+##  PanelOverlayElement, BorderPanelOverlayElement)
+OverlayContainer *
+OverlayManager::createOverlayContainer(typeName, instanceName, isTemplate=false)
+    String  typeName
+    String  instanceName
+    bool    isTemplate
+  CODE:
+    RETVAL = static_cast<OverlayContainer*>(THIS->createOverlayElement(typeName, instanceName, isTemplate));
+  OUTPUT:
+    RETVAL
+
 OverlayElement *
 OverlayManager::getOverlayElement(name, isTemplate=false)
     String  name
