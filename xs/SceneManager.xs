@@ -441,14 +441,18 @@ SceneManager::createSphereQuery(sphere, mask=0xFFFFFFFF)
   C_ARGS:
     *sphere, mask
 
-## xxx: std::vector<PlaneBoundedVolume>
 ## PlaneBoundedVolumeListSceneQuery * createPlaneBoundedVolumeQuery (const PlaneBoundedVolumeList &volumes, unsigned long mask=0xFFFFFFFF)
-##PlaneBoundedVolumeListSceneQuery *
-##SceneManager::createPlaneBoundedVolumeQuery(volumes, mask=0xFFFFFFFF)
-##    PlaneBoundedVolumeList * volumes
-##    unsigned long  mask
-##  C_ARGS:
-##    *volumes, mask
+## note: pass an aref instead of PlaneBoundedVolumeList
+## xxx: this could be a little better, letting volumes be optional
+PlaneBoundedVolumeListSceneQuery *
+SceneManager::createPlaneBoundedVolumeQuery(SV *volumes_sv, unsigned long mask=0xFFFFFFFF)
+  CODE:
+    PlaneBoundedVolumeList *volumes = perlOGRE_aref2PBVL(volumes_sv,
+                                                         "Ogre::SceneManager::createPlaneBoundedVolumeQuery");
+    RETVAL = THIS->createPlaneBoundedVolumeQuery(*volumes, mask);
+    delete volumes;
+  OUTPUT:
+    RETVAL
 
 RaySceneQuery *
 SceneManager::createRayQuery(ray, mask=0xFFFFFFFF)

@@ -1,11 +1,11 @@
-Perl-Ogre version 0.32
-======================
+Perl-Ogre
+=========
 
 This is a Perl binding for OGRE, Object-Oriented Graphics Rendering Engine,
 a C++ library found at http://www.ogre3d.org/ .
 
-The wrapping is currently incomplete, but we're now able to run
-OGRE's "Basic Tutorial" 3 and 5 in Perl (see examples/README.txt).
+The wrapping is currently incomplete, but there are several interesting
+examples working now (see examples/README.txt).
 See TODO.txt for the things I'd like to do. Suggest more things
 (preferably submitted with patches) if you like.
 
@@ -17,7 +17,7 @@ is currently supported (it's the version I have installed), so you need
 to install that either by building from source or by installing
 a package. If you use Ubuntu, I have some notes below that might help.
 
-1.4.4 will probably work also, just I haven't tried it.
+Later 1.4.x versions will probably work also, just I haven't tried them.
 
 Makefile.PL uses pkg-config to get information about the libraries and header
 files needed to build against OGRE, so you should be able to do this:
@@ -31,6 +31,11 @@ The last one should say at least 1.4.3.
 The C++ compiler used by default is `g++`, but you can specify a different
 C++ compiler by setting the CXX environmental variable. Anything more,
 and you'll have to hack at Makefile.PL.
+
+I have the impression that OGRE doesn't install pkg-config on Windows
+(though nobody ever answers when I ask...), so this package will probably
+not currently work on Windows. I'd like it to, but I don't use Windows.
+Please let me know how if you get it working.
 
 
 OPTIONAL
@@ -85,34 +90,11 @@ If so, please let me know.
 
 INSTALLING OGRE UNDER UBUNTU
 
-As of the time of writing this (Aug 20, 2007), the current release
-of Ubuntu, Feisty Fawn, has a package for version 1.2.5 of OGRE,
-whereas this Perl module require version 1.4.3. There are a couple of ways
-to go about installing 1.4.3.
-
-First of all, be sure to uninstall any previous version of Ogre that
-you have installed. Otherwise, you might run into this problem:
-http://www.ogre3d.org/phpBB2/viewtopic.php?t=30497&view=next&sid=ce193664e1d3d7c4af509e6f4e2718c6
-
-After that's out of the way, you can do one of the following:
-
-1) upgrade early to the next version of Ubuntu, Gutsy Gibbon,
-which is not yet released officially. This version has a package for
-version 1.4.3, and this is how I did it on my particular system.
-(DISCLAIMER: I take no responsibility for your system if it breaks.
-In fact, I wouldn't recommend this approach, as I've had some
-instabilities in my system.) :
-
-  -- upgrading from feisty to gutsy
-  # cp /etc/apt/sources.list{,-feisty}
-  # sed -ie 's/feisty/gutsy/g' /etc/apt/sources.list
+As of Feisty Fawn, there is a package for OGRE 1.4.3,
+so that can be easily installed.
 
   # apt-get update
-  # apt-get dist-upgrade
-  (this might take a few iterations, and there can be bugs;
-   it will also take a very long time (1.5 hrs for me))
 
-  -- installing ogre, et al
   # apt-get install libogre-dev libogre14
   # apt-get install nvidia-cg-toolkit 
 
@@ -124,14 +106,11 @@ instabilities in my system.) :
 Note: these package names are as of when I installed them.
 The names might change.
 
-2) backport the package from Gutsy Gibbon to Feisty Fawn.
-Good luck with that. (Let me know how it's done, especially
-if you are simply able to install the package as is.)
 
-3) create your own package by building from source. Check out:
-http://www.ogre3d.org/wiki/index.php/FromSourceUbuntu
+You can also create your own package by building from source.
+Check out: http://www.ogre3d.org/wiki/index.php/FromSourceUbuntu
 Seems like it should be pretty easy using `make checkinstall`.
-Again, good luck with that.
+Good luck with that.
 
 
 COPYRIGHT AND LICENCE

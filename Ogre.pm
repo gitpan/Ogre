@@ -7,7 +7,7 @@ use warnings;
 require DynaLoader;
 our @ISA = qw(DynaLoader);
 
-our $VERSION = '0.33';
+our $VERSION = '0.34';
 
 # use all files under Ogre/ - probably not a good idea
 ## BEGIN USES
@@ -53,6 +53,7 @@ use Ogre::KeyFrame;
 use Ogre::Light;
 use Ogre::Log;
 use Ogre::LogManager;
+use Ogre::ManualObject::ManualObjectSection;
 use Ogre::ManualObject;
 use Ogre::ManualResourceLoader;
 use Ogre::Material;
@@ -82,6 +83,7 @@ use Ogre::PassthroughControllerFunction;
 use Ogre::PatchMesh;
 use Ogre::PatchSurface;
 use Ogre::Plane;
+use Ogre::PlaneBoundedVolume;
 use Ogre::PlaneBoundedVolumeListSceneQuery;
 use Ogre::Pose;
 use Ogre::ProgressiveMesh;

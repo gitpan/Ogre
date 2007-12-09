@@ -7,6 +7,8 @@
 
 // typedefs for deeply nested classes
 typedef Ogre::SceneQuery::WorldFragment WorldFragment;
+typedef Ogre::ManualObject::ManualObjectSection ManualObjectSection;
+
 
 // typedef for handling Degree or Radian input parameters
 typedef Ogre::Radian DegRad;

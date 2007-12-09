@@ -73,7 +73,7 @@ sub varied_args {
     );
 
     # Check if optional Perl modules are installed.
-    my $OIS_REQ_VERSION = 0.03;
+    my $OIS_REQ_VERSION = 0.04;
     unless (eval { require OIS && $OIS::VERSION >= $OIS_REQ_VERSION }) {
         my $msg = "\nNote: the Perl module OIS >= $OIS_REQ_VERSION is not installed,\n"
           . "so you won't be able to run some examples\n"

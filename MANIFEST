@@ -50,6 +50,7 @@ Ogre/Light.pm
 Ogre/Log.pm
 Ogre/LogManager.pm
 Ogre/ManualObject.pm
+Ogre/ManualObject/ManualObjectSection.pm
 Ogre/ManualResourceLoader.pm
 Ogre/Material.pm
 Ogre/MaterialManager.pm
@@ -78,6 +79,7 @@ Ogre/PassthroughControllerFunction.pm
 Ogre/PatchMesh.pm
 Ogre/PatchSurface.pm
 Ogre/Plane.pm
+Ogre/PlaneBoundedVolume.pm
 Ogre/PlaneBoundedVolumeListSceneQuery.pm
 Ogre/Pose.pm
 Ogre/ProgressiveMesh.pm
@@ -225,6 +227,7 @@ xs/Light.xs
 xs/Log.xs
 xs/LogManager.xs
 xs/ManualObject.xs
+xs/ManualObjectSection.xs
 xs/ManualResourceLoader.xs
 xs/Material.xs
 xs/MaterialManager.xs
@@ -253,6 +256,7 @@ xs/Pass.xs
 xs/PassthroughControllerFunction.xs
 xs/PatchMesh.xs
 xs/Plane.xs
+xs/PlaneBoundedVolume.xs
 xs/PlaneBoundedVolumeListSceneQuery.xs
 xs/Pose.xs
 xs/Quaternion.xs

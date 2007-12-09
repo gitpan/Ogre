@@ -1,5 +1,7 @@
 #include <Ogre.h>
 #include <string>
+#include <set>
+#include <vector>
 
 #include "perlOGRE.h"
 #include "PerlOGRECallbackManager.h"
@@ -27,10 +29,14 @@ using namespace std;
 using namespace Ogre;
 
 
-// helper functions
+// helper functions - should move these to another file
 
 // this is used twice in RaySceneQuery.xs
-SV * perlOGRE_RSQ2aref(RaySceneQueryResult& qres) {
+// Note: see ConfigFile::getSections for a similar example.
+// The results here are returned in an aref, each of whose
+// items is a hashref whose keys are: distance, movable,
+// and worldFragment.
+SV * perlOGRE_RaySQ2aref(RaySceneQueryResult& qres) {
     AV *res_av = (AV *) sv_2mortal((SV *) newAV());
 
     RaySceneQueryResult::const_iterator it;
@@ -74,6 +80,64 @@ SV * perlOGRE_RSQ2aref(RaySceneQueryResult& qres) {
     // return the array ref
     return newRV((SV *)res_av);
 }
+
+// this is used in RegionSceneQuery
+// A bit different than above. The results here are returned in a hashref
+// whose keys are: movables and worldFragments. Those are array refs:
+// movables = MovableObject*, worldFragments = SceneQuery::WorldFragment*
+SV * perlOGRE_SQ2href(SceneQueryResult& qres) {
+    // the hashref to return
+    HV *res_hv = (HV *) sv_2mortal((SV *) newHV());
+
+    // the movables aref
+    SceneQueryResultMovableList::iterator m_itr;
+    AV *movables_av = (AV *) sv_2mortal((SV *) newAV());
+    for (m_itr = qres.movables.begin(); m_itr != qres.movables.end(); m_itr++) {
+        SV *mov_sv = newSV(0);
+        TMOGRE_OUT(mov_sv, *m_itr, MovableObject);
+
+        av_push(movables_av, mov_sv);
+    }
+    hv_store(res_hv, "movables", 8, (SV *) newRV((SV *) movables_av), 0);
+
+    // the worldFragments aref
+    SceneQueryResultWorldFragmentList::iterator wf_itr;
+    AV *worldFragments_av = (AV *) sv_2mortal((SV *) newAV());
+    for (wf_itr = qres.worldFragments.begin(); wf_itr != qres.worldFragments.end(); wf_itr++) {
+        SV *wf_sv = newSV(0);
+        TMOGRE_OUT(wf_sv, *wf_itr, SceneQuery::WorldFragment);
+
+        av_push(worldFragments_av, wf_sv);
+    }
+    hv_store(res_hv, "worldFragments", 14, (SV *) newRV((SV *) worldFragments_av), 0);
+
+    // return the hash ref
+    return newRV((SV *)res_hv);
+}
+
+// note: caller must delete the pointer
+PlaneBoundedVolumeList * perlOGRE_aref2PBVL(SV *volumes_sv, const char *caller) {
+    if ((!SvROK(volumes_sv)) || (SvTYPE(SvRV(volumes_sv)) != SVt_PVAV)) {
+        croak(caller, ": volumes arg must be an array ref\n");
+    }
+
+    // turn aref into PlaneBoundedVolumeList
+    PlaneBoundedVolumeList *volumes = new PlaneBoundedVolumeList;
+    I32 numvolumes = av_len((AV *) SvRV(volumes_sv));
+    for (int n = 0; n <= numvolumes; n++) {
+        SV *pbv_sv = *av_fetch((AV *)SvRV(volumes_sv), n, 0);
+        if (sv_isobject(pbv_sv) && sv_derived_from(pbv_sv, "Ogre::PlaneBoundedVolume")) {
+            PlaneBoundedVolume *vol = (PlaneBoundedVolume *) SvIV((SV *) SvRV(pbv_sv));
+            volumes->push_back(*vol);
+        }
+        else {
+            croak("Usage: ", caller, ": array ref must contain only Ogre::PlaneBoundedVolume objects\n");
+        }
+    }
+
+    return volumes;
+}
+
 
 
 MODULE = Ogre		PACKAGE = Ogre

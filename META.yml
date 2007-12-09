@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:                Ogre
-version:             0.33
+version:             0.34
 abstract:            Perl binding for the OGRE C++ graphics library
 license:             ~
 generated_by:        ExtUtils::MakeMaker version 6.36

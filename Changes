@@ -1,3 +1,13 @@
+0.34 2007-12-09 | scene query enhancements
+- wrapped SceneQuery, ManualObject, and AxisAlignedBox methods
+  (for Ogre::BetaGUI itute3.pl and itute4.pl examples)
+  note: for ManualObject, still not the constructor/destructor,
+  though it can be created through SceneManager
+- wrapped createPlaneBoundedVolumeQuery in SceneManager,
+  which takes an array ref of PlaneBoundedVolume* instead of
+  a PlaneBoundedVolumeList (which is a std::vector)
+- added more support for RegionSceneQuery and its subclasses
+
 0.33 2007-12-04 | Ogre::BetaGUI
 - new (separate) CPAN module Ogre::BetaGUI; see it and its itute2.pl example
   demonstrating a mouse cursor

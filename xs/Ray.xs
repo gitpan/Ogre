@@ -24,6 +24,8 @@ Ray::new(...)
 void
 Ray::DESTROY()
 
+## Vector3 	operator * (Real t) const
+
 void
 Ray::setOrigin(origin)
     Vector3 * origin
@@ -52,9 +54,13 @@ Ray::getDirection()
   OUTPUT:
     RETVAL
 
-## Vector3 	getPoint (Real t) const
-
-## Vector3 	operator * (Real t) const
+Vector3 *
+Ray::getPoint(Real t)
+  CODE:
+    RETVAL = new Vector3;
+    *RETVAL = THIS->getPoint(t);
+  OUTPUT:
+    RETVAL
 
 ##std::pair< bool, Real > 	intersects ( Plane &p) 
 ##std::pair< bool, Real > 	intersects ( PlaneBoundedVolume &p) 

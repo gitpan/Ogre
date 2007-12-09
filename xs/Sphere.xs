@@ -1,7 +1,7 @@
 MODULE = Ogre     PACKAGE = Ogre::Sphere
 
-## xxx: constructors, destructor
-
+## xxx: constructors, destructor, then tests thereof
+## do intersects below
 
 Real
 Sphere::getRadius()

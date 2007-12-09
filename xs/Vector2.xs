@@ -37,6 +37,89 @@ Vector2::new(...)
 void
 Vector2::DESTROY()
 
+## xxx: need to check assignment operator
+
+# ==, !=, <, >
+bool
+vec2_eq_xs(lobj, robj, swap)
+    Vector2 * lobj
+    Vector2 * robj
+    IV        swap
+  ALIAS:
+    vec2_ne_xs = 1
+    vec2_lt_xs = 2
+    vec2_gt_xs = 3
+  CODE:
+    switch(ix) {
+        case 0: RETVAL = (*lobj == *robj); break;
+        case 1: RETVAL = (*lobj != *robj); break;
+        case 2: RETVAL = (*lobj < *robj); break;
+        case 3: RETVAL = (*lobj > *robj); break;
+    }
+  OUTPUT:
+    RETVAL
+
+# +, -, /   (need Real also)
+Vector2 *
+vec2_plus_xs(lobj, robj, swap)
+    Vector2 * lobj
+    Vector2 * robj
+    IV        swap
+  ALIAS:
+    vec2_minus_xs = 1
+    vec2_div_xs = 2
+  PREINIT:
+    Vector2 *vec = new Vector2;
+  CODE:
+    switch(ix) {
+        case 0: *vec = *lobj + *robj; break;
+        case 1: *vec = swap ? (*robj - *lobj) : (*lobj - *robj); break;
+        case 2: *vec = swap ? (*robj / *lobj) : (*lobj / *robj); break;
+    }
+    RETVAL = vec;
+  OUTPUT:
+    RETVAL
+
+# *
+Vector2 *
+vec2_mult_xs(lobj, robj, swap)
+    Vector2 * lobj
+    SV * robj
+    IV swap
+  PREINIT:
+    Vector2 *vec = new Vector2;
+  CODE:
+    if (sv_isobject(robj) && sv_derived_from(robj, "Ogre::Vector2")) {
+        const Vector2 *rhs = (Vector2 *) SvIV((SV *) SvRV(robj));
+        *vec = *lobj * *rhs;
+    }
+    else if (looks_like_number(robj)) {
+        Real rhs = (Real)SvNV(robj);
+        *vec = *lobj * rhs;
+    }
+    else {
+        croak("Vector2::vec2_mult_xs: unknown argument!\n");
+    }
+    RETVAL = vec;
+  OUTPUT:
+    RETVAL
+
+# neg
+Vector2 *
+vec2_neg_xs(lobj, robj, swap)
+    Vector2 * lobj
+    SV * robj
+    IV swap
+  PREINIT:
+    Vector2 *vec = new Vector2;
+  CODE:
+    *vec = - (*lobj);
+    RETVAL = vec;
+  OUTPUT:
+    RETVAL
+
+## xxx: +=, -=, *=, /= (with Real too)
+
 Real
 Vector2::length()
 

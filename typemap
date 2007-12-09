@@ -70,6 +70,7 @@ Pass *	O_PASS
 PassthroughControllerFunction *	O_PASSTHROUGHCONTROLLERFUNCTION
 PatchMesh *	O_PATCHMESH
 Plane *	O_PLANE
+PlaneBoundedVolume *	O_PLANEBOUNDEDVOLUME
 PlaneBoundedVolumeListSceneQuery *	O_PLANEBOUNDEDVOLUMELISTSCENEQUERY
 Pose *	O_POSE
 Quaternion *	O_QUATERNION
@@ -100,6 +101,7 @@ Skeleton *	O_SKELETON
 SkeletonInstance *	O_SKELETONINSTANCE
 SkeletonManager *	O_SKELETONMANAGER
 Sphere *	O_SPHERE
+const Sphere *	O_SPHERE
 SphereSceneQuery *	O_SPHERESCENEQUERY
 StaticGeometry *	O_STATICGEOMETRY
 StringInterface *	O_STRINGINTERFACE
@@ -148,6 +150,8 @@ const NumericAnimationTrack *	O_NUMERICANIMATIONTRACK
 const OverlayElement *	O_OVERLAYELEMENT
 const Pass *	O_PASS
 const PassthroughControllerFunction *	O_PASSTHROUGHCONTROLLERFUNCTION
+const Plane *	O_PLANE
+const PlaneBoundedVolume *	O_PLANEBOUNDEDVOLUME
 const Quaternion *	O_QUATERNION
 const Radian *	O_RADIAN
 const Ray *	O_RAY
@@ -180,6 +184,8 @@ Real	T_REAL
 ResourceHandle	T_UV
 WorldFragment *	S_WORLDFRAGMENT
 const WorldFragment *	S_WORLDFRAGMENT
+ManualObjectSection *	S_MANUALOBJECTSECTION
+const ManualObjectSection *	S_MANUALOBJECTSECTION
 NameValuePairList	T_MAPSTRSTR
 
 
@@ -208,6 +214,9 @@ T_MAPSTRSTR
 
 S_WORLDFRAGMENT
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, SceneQuery::WorldFragment)
+
+S_MANUALOBJECTSECTION
+	TMOGRE_IN($arg, $var, $type, $Package, $func_name, ManualObject::ManualObjectSection)
 
 O_DEGRAD
 	TMOGRE_DEGRAD_IN($arg, $var, $Package, $func_name)
@@ -416,6 +425,9 @@ O_PATCHMESH
 O_PLANE
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, Plane)
 
+O_PLANEBOUNDEDVOLUME
+	TMOGRE_IN($arg, $var, $type, $Package, $func_name, PlaneBoundedVolume)
+
 O_PLANEBOUNDEDVOLUMELISTSCENEQUERY
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, PlaneBoundedVolumeListSceneQuery)
 
@@ -586,6 +598,9 @@ T_REAL
 
 S_WORLDFRAGMENT
 	TMOGRE_OUT($arg, $var, SceneQuery::WorldFragment)
+
+S_MANUALOBJECTSECTION
+	TMOGRE_OUT($arg, $var, ManualObject::ManualObjectSection)
 
 O_ANIMABLEOBJECT
 	TMOGRE_OUT($arg, $var, AnimableObject)
@@ -790,6 +805,9 @@ O_PATCHMESH
 
 O_PLANE
 	TMOGRE_OUT($arg, $var, Plane)
+
+O_PLANEBOUNDEDVOLUME
+	TMOGRE_OUT($arg, $var, PlaneBoundedVolume)
 
 O_PLANEBOUNDEDVOLUMELISTSCENEQUERY
 	TMOGRE_OUT($arg, $var, PlaneBoundedVolumeListSceneQuery)

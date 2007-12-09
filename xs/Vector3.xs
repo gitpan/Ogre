@@ -35,6 +35,8 @@ Vector3::new(...)
 void
 Vector3::DESTROY()
 
+## xxx: need to check assignment operator
+
 # ==, !=, <, >
 bool
 vec3_eq_xs(lobj, robj, swap)
@@ -104,7 +106,7 @@ vec3_mult_xs(lobj, robj, swap)
         *vec = *lobj * rhs;
     }
     else {
-        croak("Vector3::mult_xs: unknown argument!\n");
+        croak("Vector3::vec3_mult_xs: unknown argument!\n");
     }
     RETVAL = vec;
   OUTPUT:
