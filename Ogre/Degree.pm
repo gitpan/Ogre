@@ -6,12 +6,16 @@ use warnings;
 
 # xxx: this should be in XS, but I can't get it to work
 use overload
-  '==' => \&eq_xs,
-  '!=' => \&ne_xs,
-  '<' => \&lt_xs,
-  '>' => \&gt_xs,
-  '<=' => \&le_xs,
-  '>=' => \&ge_xs,
+  '==' => \&deg_eq_xs,
+  '!=' => \&deg_ne_xs,
+  '<' => \&deg_lt_xs,
+  '>' => \&deg_gt_xs,
+  '<=' => \&deg_le_xs,
+  '>=' => \&deg_ge_xs,
+  '+' => \&deg_plus_xs,
+  '-' => \&deg_minus_xs,
+  '*' => \&deg_mult_xs,
+  'neg' => \&deg_neg_xs,
   ;
 
 

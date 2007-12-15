@@ -17,6 +17,7 @@ Ogre/Billboard.pm
 Ogre/BillboardChain.pm
 Ogre/BillboardSet.pm
 Ogre/Bone.pm
+Ogre/BorderPanelOverlayElement.pm
 Ogre/Camera.pm
 Ogre/ColourValue.pm
 Ogre/CompositionPass.pm
@@ -69,6 +70,7 @@ Ogre/Overlay.pm
 Ogre/OverlayContainer.pm
 Ogre/OverlayElement.pm
 Ogre/OverlayManager.pm
+Ogre/PanelOverlayElement.pm
 Ogre/Particle.pm
 Ogre/ParticleAffector.pm
 Ogre/ParticleEmitter.pm
@@ -121,6 +123,7 @@ Ogre/SubEntity.pm
 Ogre/SubMesh.pm
 Ogre/TagPoint.pm
 Ogre/Technique.pm
+Ogre/TextAreaOverlayElement.pm
 Ogre/Texture.pm
 Ogre/TextureManager.pm
 Ogre/TextureUnitState.pm
@@ -200,6 +203,7 @@ xs/Billboard.xs
 xs/BillboardChain.xs
 xs/BillboardSet.xs
 xs/Bone.xs
+xs/BorderPanelOverlayElement.xs
 xs/Camera.xs
 xs/ColourValue.xs
 xs/ConfigFile.xs
@@ -247,6 +251,7 @@ xs/Overlay.xs
 xs/OverlayContainer.xs
 xs/OverlayElement.xs
 xs/OverlayManager.xs
+xs/PanelOverlayElement.xs
 xs/Particle.xs
 xs/ParticleAffector.xs
 xs/ParticleEmitter.xs
@@ -294,6 +299,7 @@ xs/SubEntity.xs
 xs/SubMesh.xs
 xs/TagPoint.xs
 xs/Technique.xs
+xs/TextAreaOverlayElement.xs
 xs/Texture.xs
 xs/TextureManager.xs
 xs/TextureUnitState.xs

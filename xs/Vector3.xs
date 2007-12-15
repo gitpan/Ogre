@@ -89,7 +89,7 @@ vec3_mult_xs(lobj, robj, swap)
   CODE:
     if (sv_isobject(robj) && sv_derived_from(robj, "Ogre::Vector3")) {
         const Vector3 *rhs = (Vector3 *) SvIV((SV *) SvRV(robj));
-        *vec = *lobj * *rhs;
+        *vec = swap ? (*rhs * *lobj) : (*lobj * *rhs);
     }
     else if (sv_isobject(robj) && sv_derived_from(robj, "Ogre::Quaternion")) {
         const Quaternion *rhs = (Quaternion *) SvIV((SV *) SvRV(robj));

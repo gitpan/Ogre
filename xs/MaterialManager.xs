@@ -13,15 +13,50 @@ MaterialManager::load(String name, String group, bool isManual=false, ManualReso
   OUTPUT:
     RETVAL
 
-void
-MaterialManager::setDefaultTextureFiltering(fo)
-    int  fo
-  C_ARGS:
-    (TextureFilterOptions)fo
 
 void
-MaterialManager::setDefaultAnisotropy(maxAniso)
-    unsigned int  maxAniso
+MaterialManager::initialise()
+
+## xxx: does DataStream have be handled with a filehandle ?
+void
+MaterialManager::parseScript(DataStream *stream, String groupName)
+  CODE:
+    DataStreamPtr strmPtr = DataStreamPtr(stream);
+    THIS->parseScript(strmPtr, groupName);
+
+void
+MaterialManager::setDefaultTextureFiltering(...)
+  CODE:
+    if (items == 2) {
+        THIS->setDefaultTextureFiltering((TextureFilterOptions) SvIV(ST(1)));
+    }
+    else if (items == 3) {
+        THIS->setDefaultTextureFiltering((FilterType) SvIV(ST(1)), (FilterOptions) SvIV(ST(2)));
+    }
+    else if (items == 4) {
+        THIS->setDefaultTextureFiltering((FilterOptions) SvIV(ST(1)), (FilterOptions) SvIV(ST(2)), (FilterOptions) SvIV(ST(3)));
+    }
+
+int
+MaterialManager::getDefaultTextureFiltering(int ftype)
+  C_ARGS:
+    (FilterType)ftype
+
+void
+MaterialManager::setDefaultAnisotropy(unsigned int maxAniso)
 
 unsigned int
 MaterialManager::getDefaultAnisotropy()
+
+Material *
+MaterialManager::getDefaultSettings()
+  CODE:
+    RETVAL = THIS->getDefaultSettings().getPointer();
+  OUTPUT:
+    RETVAL
+
+String
+MaterialManager::getActiveScheme()
+
+void
+MaterialManager::setActiveScheme(String schemeName)

@@ -1,3 +1,19 @@
+0.35 2007-12-15 | Ogre::AL (new module)
+- new (separate) CPAN module Ogre::AL, which is a binding for
+  the OpenAL audio library and lets you attach sounds to scene nodes
+- added three Perl-specific methods to OverlayManager, to account for
+  C++ casting (see note for 0.33): createTextAreaOverlayElement,
+  createPanelOverlayElement, createBorderPanelOverlayElement,
+  which are all variations of createOverlayElement; also wrapped
+  those three classes while I was at it
+- added -Wno-write-strings to Makefile.PL if you compile with
+  g++ >= 4.2, otherwise you would get literally a thousand warnings
+  which I have no control over (I think these might be gone
+  in perl 5.10, so I also check for that)
+- bumped up OIS requirement in Ogre::ExampleListener to version 0.04
+- added more operator overloads to Degree and Radian
+- wrapped Ogre::MaterialManager to fix Ogre::BetaGUI
+
 0.34 2007-12-09 | scene query enhancements
 - wrapped SceneQuery, ManualObject, and AxisAlignedBox methods
   (for Ogre::BetaGUI itute3.pl and itute4.pl examples)
@@ -8,7 +24,7 @@
   a PlaneBoundedVolumeList (which is a std::vector)
 - added more support for RegionSceneQuery and its subclasses
 
-0.33 2007-12-04 | Ogre::BetaGUI
+0.33 2007-12-04 | Ogre::BetaGUI (new module)
 - new (separate) CPAN module Ogre::BetaGUI; see it and its itute2.pl example
   demonstrating a mouse cursor
 - added createOverlayContainer method to OverlayManager.xs;

@@ -16,7 +16,7 @@ use Ogre::WindowEventUtilities;
 our $VERSION = 0.27;
 
 BEGIN {
-    if (eval { require OIS && $OIS::VERSION >= 0.03 }) {
+    if (eval { require OIS && $OIS::VERSION >= 0.04 }) {
         require OIS::InputManager;
         OIS::InputManager->import();
         # xxx: these constants don't export right...
@@ -26,7 +26,7 @@ BEGIN {
         OIS::Mouse->import(qw(:MouseButtonID));
     }
     else {
-        die(__PACKAGE__ . " requires OIS 0.03 or greater\n");
+        die(__PACKAGE__ . " requires OIS 0.04 or greater\n");
     }
 }
 
@@ -85,11 +85,11 @@ sub new {
 sub DESTROY {
     my ($self) = @_;
 
-    # xxx: not sure where things are getting destroyed...
+    # XXX: not sure where things are getting destroyed...
+    # I wonder if this is why autorepeat turns off when you close
+    # the application....
 
-    # use Data::Dumper; print Dumper($self);
     # Ogre::WindowEventUtilities->removeWindowEventListener($self->{mWindow}, $self);
-
     # $self->windowClosed($self->{mWindow});
 }
 

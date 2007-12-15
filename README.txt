@@ -12,12 +12,13 @@ See TODO.txt for the things I'd like to do. Suggest more things
 
 DEPENDENCIES
 
-Only version 1.4.3 (the current latest release as of late August) of OGRE
-is currently supported (it's the version I have installed), so you need
-to install that either by building from source or by installing
+Only versions >= 1.4.3 (current latest release as of August 2007) of
+OGRE are currently supported (it's the version I have installed),
+so you need to install that either by building from source or by installing
 a package. If you use Ubuntu, I have some notes below that might help.
 
-Later 1.4.x versions will probably work also, just I haven't tried them.
+Later 1.4.x versions will probably work also. (As of 15 Dec 2007, I'm using
+version 1.4.5 on Ubuntu and haven't noticed any problems.)
 
 Makefile.PL uses pkg-config to get information about the libraries and header
 files needed to build against OGRE, so you should be able to do this:

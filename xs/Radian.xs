@@ -32,16 +32,16 @@ Radian::DESTROY()
 
 # ==, !=, <, >, <=, >=
 bool
-eq_xs(lobj, robj, swap)
+rad_eq_xs(lobj, robj, swap)
     Radian * lobj
     Radian * robj
     IV        swap
   ALIAS:
-    ne_xs = 1
-    lt_xs = 2
-    gt_xs = 3
-    le_xs = 4
-    ge_xs = 5
+    rad_ne_xs = 1
+    rad_lt_xs = 2
+    rad_gt_xs = 3
+    rad_le_xs = 4
+    rad_ge_xs = 5
   CODE:
     switch(ix) {
         case 0: RETVAL = (*lobj == *robj); break;
@@ -54,6 +54,63 @@ eq_xs(lobj, robj, swap)
   OUTPUT:
     RETVAL
 
+# +, -   (still need other variations with Real, etc)
+Radian *
+rad_plus(lobj, robj, swap)
+    Radian * lobj
+    Radian * robj
+    IV        swap
+  ALIAS:
+    rad_minus_xs = 1
+  PREINIT:
+    Radian *rad = new Radian;
+  CODE:
+    switch(ix) {
+        case 0: *rad = *lobj + *robj; break;
+        case 1: *rad = swap ? (*robj - *lobj) : (*lobj - *robj); break;
+    }
+    RETVAL = rad;
+  OUTPUT:
+    RETVAL
+
+# *
+Radian *
+rad_mult_xs(lobj, robj, swap)
+    Radian * lobj
+    SV * robj
+    IV swap
+  PREINIT:
+    Radian *rad = new Radian;
+  CODE:
+    if (looks_like_number(robj)) {
+        Real rhs = (Real)SvNV(robj);
+        *rad = *lobj * rhs;
+    }
+    else if (sv_isobject(robj)) {
+        DegRad * rhs;
+        TMOGRE_DEGRAD_IN(robj, rhs, Ogre::Radian, rad_mult_xs);
+        *rad = swap ? (*rhs * *lobj) : (*lobj * *rhs);
+    }
+    else {
+        croak("Radian::rad_mult_xs: unknown argument!\n");
+    }
+    RETVAL = rad;
+  OUTPUT:
+    RETVAL
+
+# neg
+Radian *
+rad_neg_xs(lobj, robj, swap)
+    Radian * lobj
+    SV * robj
+    IV swap
+  PREINIT:
+    Radian *rad = new Radian;
+  CODE:
+    *rad = - (*lobj);
+    RETVAL = rad;
+  OUTPUT:
+    RETVAL
 
 
 Real

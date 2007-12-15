@@ -3,6 +3,10 @@ package Ogre::MaterialManager;
 use strict;
 use warnings;
 
+use Ogre::ResourceManager;
+our @ISA = qw(Ogre::ResourceManager);
+
+
 
 1;
 

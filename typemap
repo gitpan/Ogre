@@ -14,6 +14,7 @@ Billboard *	O_BILLBOARD
 BillboardChain *	O_BILLBOARDCHAIN
 BillboardSet *	O_BILLBOARDSET
 Bone *	O_BONE
+BorderPanelOverlayElement *	O_BORDERPANELOVERLAYELEMENT
 Camera *	O_CAMERA
 ColourValue *	O_COLOURVALUE
 ConfigFile *	O_CONFIGFILE
@@ -61,6 +62,7 @@ Overlay *	O_OVERLAY
 OverlayContainer *	O_OVERLAYCONTAINER
 OverlayElement *	O_OVERLAYELEMENT
 OverlayManager *	O_OVERLAYMANAGER
+PanelOverlayElement *	O_PANELOVERLAYELEMENT
 Particle *	O_PARTICLE
 ParticleAffector *	O_PARTICLEAFFECTOR
 ParticleEmitter *	O_PARTICLEEMITTER
@@ -101,7 +103,6 @@ Skeleton *	O_SKELETON
 SkeletonInstance *	O_SKELETONINSTANCE
 SkeletonManager *	O_SKELETONMANAGER
 Sphere *	O_SPHERE
-const Sphere *	O_SPHERE
 SphereSceneQuery *	O_SPHERESCENEQUERY
 StaticGeometry *	O_STATICGEOMETRY
 StringInterface *	O_STRINGINTERFACE
@@ -109,6 +110,7 @@ SubEntity *	O_SUBENTITY
 SubMesh *	O_SUBMESH
 TagPoint *	O_TAGPOINT
 Technique *	O_TECHNIQUE
+TextAreaOverlayElement *	O_TEXTAREAOVERLAYELEMENT
 Texture *	O_TEXTURE
 TextureManager *	O_TEXTUREMANAGER
 TextureUnitState *	O_TEXTUREUNITSTATE
@@ -131,6 +133,7 @@ const AnimationTrack *	O_ANIMATIONTRACK
 const AxisAlignedBox *	O_AXISALIGNEDBOX
 const Billboard *	O_BILLBOARD
 const Bone *	O_BONE
+const BorderPanelOverlayElement *	O_BORDERPANELOVERLAYELEMENT
 const Camera *	O_CAMERA
 const Camera *	O_CAMERA
 const ColourValue *	O_COLOURVALUE
@@ -148,6 +151,7 @@ const Node *	O_NODE
 const NodeAnimationTrack *	O_NODEANIMATIONTRACK
 const NumericAnimationTrack *	O_NUMERICANIMATIONTRACK
 const OverlayElement *	O_OVERLAYELEMENT
+const PanelOverlayElement *	O_PANELOVERLAYELEMENT
 const Pass *	O_PASS
 const PassthroughControllerFunction *	O_PASSTHROUGHCONTROLLERFUNCTION
 const Plane *	O_PLANE
@@ -160,9 +164,11 @@ const Renderable *	O_RENDERABLE
 const Resource *	O_RESOURCE
 const ScaleControllerFunction *	O_SCALECONTROLLERFUNCTION
 const SkeletonManager *	O_SKELETONMANAGER
+const Sphere *	O_SPHERE
 const SubEntity *	O_SUBENTITY
 const SubMesh *	O_SUBMESH
 const Technique *	O_TECHNIQUE
+const TextAreaOverlayElement *	O_TEXTAREAOVERLAYELEMENT
 const Texture *	O_TEXTURE
 const TextureUnitState *	O_TEXTUREUNITSTATE
 const TimeIndex *	O_TIMEINDEX
@@ -265,6 +271,9 @@ O_BILLBOARDSET
 
 O_BONE
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, Bone)
+
+O_BORDERPANELOVERLAYELEMENT
+	TMOGRE_IN($arg, $var, $type, $Package, $func_name, BorderPanelOverlayElement)
 
 O_CAMERA
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, Camera)
@@ -397,6 +406,9 @@ O_OVERLAYELEMENT
 
 O_OVERLAYMANAGER
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, OverlayManager)
+
+O_PANELOVERLAYELEMENT
+	TMOGRE_IN($arg, $var, $type, $Package, $func_name, PanelOverlayElement)
 
 O_PARTICLE
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, Particle)
@@ -539,6 +551,9 @@ O_TAGPOINT
 O_TECHNIQUE
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, Technique)
 
+O_TEXTAREAOVERLAYELEMENT
+	TMOGRE_IN($arg, $var, $type, $Package, $func_name, TextAreaOverlayElement)
+
 O_TEXTURE
 	TMOGRE_IN($arg, $var, $type, $Package, $func_name, Texture)
 
@@ -640,6 +655,9 @@ O_BILLBOARDSET
 
 O_BONE
 	TMOGRE_OUT($arg, $var, Bone)
+
+O_BORDERPANELOVERLAYELEMENT
+	TMOGRE_OUT($arg, $var, BorderPanelOverlayElement)
 
 O_CAMERA
 	TMOGRE_OUT($arg, $var, Camera)
@@ -778,6 +796,9 @@ O_OVERLAYELEMENT
 
 O_OVERLAYMANAGER
 	TMOGRE_OUT($arg, $var, OverlayManager)
+
+O_PANELOVERLAYELEMENT
+	TMOGRE_OUT($arg, $var, PanelOverlayElement)
 
 O_PARTICLE
 	TMOGRE_OUT($arg, $var, Particle)
@@ -919,6 +940,9 @@ O_TAGPOINT
 
 O_TECHNIQUE
 	TMOGRE_OUT($arg, $var, Technique)
+
+O_TEXTAREAOVERLAYELEMENT
+	TMOGRE_OUT($arg, $var, TextAreaOverlayElement)
 
 O_TEXTURE
 	TMOGRE_OUT($arg, $var, Texture)

@@ -7,7 +7,7 @@ use warnings;
 require DynaLoader;
 our @ISA = qw(DynaLoader);
 
-our $VERSION = '0.34';
+our $VERSION = '0.35';
 
 # use all files under Ogre/ - probably not a good idea
 ## BEGIN USES
@@ -24,6 +24,7 @@ use Ogre::Billboard;
 use Ogre::BillboardChain;
 use Ogre::BillboardSet;
 use Ogre::Bone;
+use Ogre::BorderPanelOverlayElement;
 use Ogre::Camera;
 use Ogre::ColourValue;
 use Ogre::CompositionPass;
@@ -73,6 +74,7 @@ use Ogre::Overlay;
 use Ogre::OverlayContainer;
 use Ogre::OverlayElement;
 use Ogre::OverlayManager;
+use Ogre::PanelOverlayElement;
 use Ogre::Particle;
 use Ogre::ParticleAffector;
 use Ogre::ParticleEmitter;
@@ -124,6 +126,7 @@ use Ogre::SubEntity;
 use Ogre::SubMesh;
 use Ogre::TagPoint;
 use Ogre::Technique;
+use Ogre::TextAreaOverlayElement;
 use Ogre::Texture;
 use Ogre::TextureManager;
 use Ogre::TextureUnitState;

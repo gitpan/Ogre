@@ -3,6 +3,9 @@
 
 
 #include <Ogre.h>
+#include <OgreBorderPanelOverlayElement.h>
+#include <OgrePanelOverlayElement.h>
+#include <OgreTextAreaOverlayElement.h>
 
 
 // typedefs for deeply nested classes
@@ -29,18 +32,20 @@ if (sv_isobject(arg) && sv_derived_from(arg, "Ogre::" #pkg)) { \
 		croak(#package "::" #func "(): " #var " is not an Ogre::" #pkg " object\n"); \
 	}
 
-// handle both Degree and Radian args as Radian
+// handle Degree, Radian, and Real args as Radian
 #define TMOGRE_DEGRAD_IN(arg, var, package, func) \
 Radian rad_ ## var; \
 	if (sv_isobject(arg) && sv_derived_from(arg, "Ogre::Radian")) { \
 		var = (Radian *) SvIV((SV *) SvRV(arg)); \
-	} \
-	else if (sv_isobject(arg) && sv_derived_from(arg, "Ogre::Degree")) { \
+	} else if (sv_isobject(arg) && sv_derived_from(arg, "Ogre::Degree")) { \
 		Degree * degptr_ ## var = (Degree *) SvIV((SV *) SvRV(arg)); \
 		rad_ ## var = * degptr_ ## var; \
 		var = &rad_ ## var; \
+	} else if (looks_like_number(arg)) { \
+		rad_ ## var = (Real)SvNV(arg); \
+		var = &rad_ ## var; \
 	} else { \
-		croak(#package "::" #func "(): " #var " is not a Degree or Radian object\n"); \
+		croak(#package "::" #func "(): " #var " is not a Degree or Radian object or Real number\n"); \
 	}
 
 // handle ControllerValue input args
