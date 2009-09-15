@@ -30,11 +30,11 @@ Plane::new(...)
                 RETVAL = new Plane(*vec, *vec2, *vec3);
             }
             else {
-                croak(usage);
+                croak("%s", usage);
             }
         }
         else {
-            croak(usage);
+            croak("%s", usage);
         }
     }
     // Plane (const Plane &rhs)
@@ -43,7 +43,7 @@ Plane::new(...)
         RETVAL = new Plane(*plane);
     }
     else {
-        croak(usage);
+        croak("%s", usage);
     }
   OUTPUT:
     RETVAL

@@ -20,14 +20,14 @@ Vector3::new(...)
             RETVAL = new Vector3((Real)SvNV(ST(1)));
         }
         else {
-            croak(usage);
+            croak("%s", usage);
         }
     }
     else if (items == 1) {
         RETVAL = new Vector3();
     }
     else {
-        croak(usage);
+        croak("%s", usage);
     }
   OUTPUT:
     RETVAL

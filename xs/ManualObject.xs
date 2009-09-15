@@ -73,7 +73,7 @@ ManualObject::textureCoord(...)
             THIS->textureCoord((Real)SvNV(ST(1)));
         }
         else {
-            croak(usage);
+            croak("%s", usage);
         }
     }
     else if (items == 3) {  // assuming Real
@@ -83,7 +83,7 @@ ManualObject::textureCoord(...)
         THIS->textureCoord((Real)SvNV(ST(1)), (Real)SvNV(ST(2)), (Real)SvNV(ST(3)));
     }
     else {
-        croak(usage);
+        croak("%s", usage);
     }
 
 ## XXX: one day when I am a big boy I will know how to typemap ColourValue OR Reals

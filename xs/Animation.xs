@@ -37,11 +37,11 @@ Animation::createNodeTrack(handle, ...)
             RETVAL = THIS->createNodeTrack(handle, node);
         }
         else {
-            croak(usage);
+            croak("%s", usage);
         }
     }
     else {
-        croak(usage);
+        croak("%s", usage);
     }
   OUTPUT:
     RETVAL
@@ -61,7 +61,7 @@ Animation::createNumericTrack(handle, ...)
         RETVAL = THIS->createNumericTrack(handle, animptr);
     }
     else {
-        croak(usage);
+        croak("%s", usage);
     }
   OUTPUT:
     RETVAL
@@ -82,7 +82,7 @@ Animation::createVertexTrack(handle, ...)
         RETVAL = THIS->createVertexTrack(handle, animType);
     }
     else {
-        croak(usage);
+        croak("%s", usage);
     }
   OUTPUT:
     RETVAL
@@ -164,7 +164,7 @@ Animation::apply(...)
         THIS->apply(timePos, weight, scale);
     }
     else {
-        croak(usage);
+        croak("%s", usage);
     }
 
 void

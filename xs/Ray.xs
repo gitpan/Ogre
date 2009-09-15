@@ -16,7 +16,7 @@ Ray::new(...)
         RETVAL = new Ray(*origin, *direction);
     }
     else {
-        croak(usage);
+        croak("%s", usage);
     }
   OUTPUT:
     RETVAL

@@ -21,7 +21,7 @@ Matrix3::new(...)
         RETVAL = new Matrix3(*m);
     }
     else {
-        croak(usage);
+        croak("%s", usage);
     }
 
 void

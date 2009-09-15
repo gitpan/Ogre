@@ -21,10 +21,10 @@ RenderSystem::destroyHardwareOcclusionQuery(hq)
 String
 RenderSystem::validateConfigOptions()
 
-RenderWindow *
-RenderSystem::initialise(autoCreateWindow, windowTitle=String("OGRE Render Window"))
-    bool  autoCreateWindow
-    String  windowTitle
+##RenderWindow *
+##RenderSystem::initialise(autoCreateWindow, windowTitle=String("OGRE Render Window"))
+##    bool  autoCreateWindow
+##    String  windowTitle
 
 void
 RenderSystem::reinitialise()
@@ -50,29 +50,28 @@ RenderSystem::setWBufferEnabled(bool enabled)
 bool
 RenderSystem::getWBufferEnabled()
 
-## xxx: left off final NameValuePairList arg for now
-## RenderWindow * RenderSystem::createRenderWindow(const String &name, unsigned int width, unsigned int height, bool fullScreen, NameValuePairList *miscParams)
-RenderWindow *
-RenderSystem::createRenderWindow(name, width, height, fullScreen)
-    String  name
-    unsigned int  width
-    unsigned int  height
-    bool  fullScreen
-  C_ARGS:
-    name, width, height, fullScreen, 0
-
-
-## xxx: left off final NameValuePairList arg for now
-## RenderTexture * RenderSystem::createRenderTexture(const String &name, unsigned int width, unsigned int height, TextureType texType=TEX_TYPE_2D, PixelFormat internalFormat=PF_X8R8G8B8, NameValuePairList *miscParams)
-RenderTexture *
-RenderSystem::createRenderTexture(name, width, height, texType=TEX_TYPE_2D, internalFormat=PF_X8R8G8B8)
-    String  name
-    unsigned int  width
-    unsigned int  height
-    int  texType
-    int  internalFormat
-  C_ARGS:
-    name, width, height, (TextureType)texType, (PixelFormat)internalFormat, 0
+#### xxx: left off final NameValuePairList arg for now
+#### RenderWindow * RenderSystem::createRenderWindow(const String &name, unsigned int width, unsigned int height, bool fullScreen, NameValuePairList *miscParams)
+##RenderWindow *
+##RenderSystem::createRenderWindow(name, width, height, fullScreen)
+##    String  name
+##    unsigned int  width
+##    unsigned int  height
+##    bool  fullScreen
+##  C_ARGS:
+##    name, width, height, fullScreen, 0
+##
+#### xxx: left off final NameValuePairList arg for now
+#### RenderTexture * RenderSystem::createRenderTexture(const String &name, unsigned int width, unsigned int height, TextureType texType=TEX_TYPE_2D, PixelFormat internalFormat=PF_X8R8G8B8, NameValuePairList *miscParams)
+##RenderTexture *
+##RenderSystem::createRenderTexture(name, width, height, texType=TEX_TYPE_2D, internalFormat=PF_X8R8G8B8)
+##    String  name
+##    unsigned int  width
+##    unsigned int  height
+##    int  texType
+##    int  internalFormat
+##  C_ARGS:
+##    name, width, height, (TextureType)texType, (PixelFormat)internalFormat, 0
 
 MultiRenderTarget *
 RenderSystem::createMultiRenderTarget(name)
@@ -169,26 +168,26 @@ RenderSystem::isGpuProgramBound(int gptype)
 ## void RenderSystem::setClipPlanes(const PlaneList &clipPlanes)
 
 
-## void RenderSystem::setClipPlane(ushort index, Plane &p)
-## void RenderSystem::setClipPlane(ushort index, Real A, Real B, Real C, Real D)
-void
-RenderSystem::setClipPlane(index, ...)
-    unsigned short  index
-  CODE:
-    if (items == 3 && sv_isobject(ST(2)) && sv_derived_from(ST(2), "Ogre::Plane")) {
-        unsigned short index = (unsigned short)SvUV(ST(1));
-        Plane *p = (Plane *) SvIV((SV *) SvRV(ST(2)));
-        THIS->setClipPlane(index, *p);
-    }
-    else if (items == 6) {
-        THIS->setClipPlane((unsigned short)SvUV(ST(1)), (Real)SvNV(ST(2)), (Real)SvNV(ST(3)), (Real)SvNV(ST(4)), (Real)SvNV(ST(5)));
-    }
-    else {
-        croak("Usage: Ogre::RenderSystem::setClipPlane(THIS, index, plane) or (THIS, index, A, B, C, D)\n");
-    }
-
-void
-RenderSystem::enableClipPlane(unsigned short index, bool enable)
+#### void RenderSystem::setClipPlane(ushort index, Plane &p)
+#### void RenderSystem::setClipPlane(ushort index, Real A, Real B, Real C, Real D)
+##void
+##RenderSystem::setClipPlane(index, ...)
+##    unsigned short  index
+##  CODE:
+##    if (items == 3 && sv_isobject(ST(2)) && sv_derived_from(ST(2), "Ogre::Plane")) {
+##        unsigned short index = (unsigned short)SvUV(ST(1));
+##        Plane *p = (Plane *) SvIV((SV *) SvRV(ST(2)));
+##        THIS->setClipPlane(index, *p);
+##    }
+##    else if (items == 6) {
+##        THIS->setClipPlane((unsigned short)SvUV(ST(1)), (Real)SvNV(ST(2)), (Real)SvNV(ST(3)), (Real)SvNV(ST(4)), (Real)SvNV(ST(5)));
+##    }
+##    else {
+##        croak("Usage: Ogre::RenderSystem::setClipPlane(THIS, index, plane) or (THIS, index, A, B, C, D)\n");
+##    }
+##
+##void
+##RenderSystem::enableClipPlane(unsigned short index, bool enable)
 
 void
 RenderSystem::setInvertVertexWinding(bool invert)

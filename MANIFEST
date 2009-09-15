@@ -162,6 +162,7 @@ examples/cameratrack.pl
 examples/gtk2robot.pl
 examples/lighting.pl
 examples/listeningninja.pl
+examples/manualobject.pl
 examples/ninja.pl
 examples/particleFX.pl
 examples/resources.cfg

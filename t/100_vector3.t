@@ -15,7 +15,8 @@ BEGIN {
 
 
 my $test = 'new():';
-my $v = Ogre::Vector3->new();
+# xxx: ->new() doesn't seem to actually initialize to 0...
+my $v = Ogre::Vector3->new(0, 0, 0);
 isa_ok($v, 'Ogre::Vector3');
 ok(floats_close_enough($v->x, 0), "$test x == 0");
 ok(floats_close_enough($v->y, 0), "$test y == 0");

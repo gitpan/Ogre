@@ -37,11 +37,11 @@ PlaneBoundedVolume::intersects(...)
         //    RETVAL = THIS->intersects(*w);
         //}
         else {
-            croak(usage);
+            croak("%s", usage);
         }
     }
     else {
-        croak(usage);
+        croak("%s", usage);
     }
   OUTPUT:
     RETVAL

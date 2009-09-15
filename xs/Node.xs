@@ -153,11 +153,11 @@ Node::translate(...)
             THIS->translate(*axes, *move, relativeTo);
         }
         else {
-            croak(usage);
+            croak("%s", usage);
         }
     }
     else {
-        croak(usage);
+        croak("%s", usage);
     }
 
 void
@@ -201,7 +201,7 @@ Node::rotate(...)
         THIS->rotate(*q, relativeTo);
     }
     else {
-        croak(usage);
+        croak("%s", usage);
     }
 
 Matrix3 *
@@ -232,7 +232,7 @@ Node::createChild(...)
             RETVAL = THIS->createChild(*translate, *rotate);
         }
         else {
-            croak(usage);
+            croak("%s", usage);
         }
     }
     // Node * Node::createChild(String name, const Vector3 &translate=Vector3::ZERO, const Quaternion &rotate=Quaternion::IDENTITY)
@@ -255,7 +255,7 @@ Node::createChild(...)
             }
         }
         else {
-            croak(usage);
+            croak("%s", usage);
         }
     }
   OUTPUT:
@@ -330,21 +330,21 @@ Node::getRenderOperation(OUTLIST RenderOperation *op)
 ## xxx: is xform an array?
 ## void Node::getWorldTransforms(Matrix4 *xform)
 
-Quaternion *
-Node::getWorldOrientation()
-  CODE:
-    RETVAL = new Quaternion;
-    *RETVAL = THIS->getWorldOrientation();
-  OUTPUT:
-    RETVAL
-
-Vector3 *
-Node::getWorldPosition()
-  CODE:
-    RETVAL = new Vector3;
-    *RETVAL = THIS->getWorldPosition();
-  OUTPUT:
-    RETVAL
+##Quaternion *
+##Node::getWorldOrientation()
+##  CODE:
+##    RETVAL = new Quaternion;
+##    *RETVAL = THIS->getWorldOrientation();
+##  OUTPUT:
+##    RETVAL
+##
+##Vector3 *
+##Node::getWorldPosition()
+##  CODE:
+##    RETVAL = new Vector3;
+##    *RETVAL = THIS->getWorldPosition();
+##  OUTPUT:
+##    RETVAL
 
 void
 Node::setInitialState()

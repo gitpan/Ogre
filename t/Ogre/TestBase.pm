@@ -11,7 +11,7 @@ our @EXPORT_OK = qw(floats_close_enough);
 # for some arbitrary value of "close enough".
 sub floats_close_enough {
     my ($f1, $f2) = @_;
-    return(abs($f1 - $f2) < 0.00001);
+    return(abs($f1 - $f2) < 0.0001);
 }
 
 

@@ -61,3 +61,6 @@ Here are brief descriptions of the examples.
 - lighting.pl: OGRE's "Lighting" sample app, shows how to use ControllerValue
   and ControllerFunction interfaces, as well as using RibbonTrails
   and animations (note: this is still incomplete, though it works fine)
+
+- manualobject.pl: use ManualObject to draw arbitrary shapes
+  (taken from several wiki articles)

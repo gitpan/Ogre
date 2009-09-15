@@ -1,3 +1,10 @@
+0.36 2009-09-15 | update for Ogre version 1.6
+- this breaks a little backward-compatibility, but not enough
+  to affect any of the examples. I doubt I'll worry about
+  maintaining version 1.4 (1.7 is coming out soon...)
+- there is plenty of work to be done; I just removed/renamed
+  enough to get it to compile
+
 0.35 2007-12-15 | Ogre::AL (new module)
 - new (separate) CPAN module Ogre::AL, which is a binding for
   the OpenAL audio library and lets you attach sounds to scene nodes

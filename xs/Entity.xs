@@ -127,11 +127,11 @@ Entity::getBoundingRadius()
 
 ## const Sphere & Entity::getWorldBoundingSphere(bool derive=false)
 
-void
-Entity::setNormaliseNormals(bool normalise)
-
-bool
-Entity::getNormaliseNormals()
+##void
+##Entity::setNormaliseNormals(bool normalise)
+##
+##bool
+##Entity::getNormaliseNormals()
 
 EdgeData *
 Entity::getEdgeList()

@@ -25,7 +25,7 @@ Quaternion::new(...)
             RETVAL = new Quaternion(*m);
         }
         else {
-            croak(usage);
+            croak("%s", usage);
         }
     }
     else if (items == 3) {
@@ -42,7 +42,7 @@ Quaternion::new(...)
             RETVAL = new Quaternion(*rfAngle, *v);
         }
         else {
-            croak(usage);
+            croak("%s", usage);
         }
     }
     else if (items == 4) {
@@ -61,7 +61,7 @@ Quaternion::new(...)
             RETVAL = new Quaternion(*v1, *v2, *v3);
         }
         else {
-            croak(usage);
+            croak("%s", usage);
         }
     }
     else if (items == 5) {
@@ -73,11 +73,11 @@ Quaternion::new(...)
                                     (Real)SvNV(ST(3)), (Real)SvNV(ST(4)));
         }
         else {
-            croak(usage);
+            croak("%s", usage);
         }
     }
     else {
-        croak(usage);
+        croak("%s", usage);
     }
   OUTPUT:
     RETVAL

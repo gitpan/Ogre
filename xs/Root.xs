@@ -235,7 +235,7 @@ Root::unloadPlugin(pluginName)
 # installPlugin, uninstallPlugin, ..., getTimer
 
 unsigned long
-Root::getCurrentFrameNumber()
+Root::getNextFrameNumber()
 
 
 # ...

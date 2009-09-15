@@ -124,11 +124,11 @@ AxisAlignedBox::merge(...)
             THIS->merge(*w);
         }
         else {
-            croak(usage);
+            croak("%s", usage);
         }
     }
     else {
-        croak(usage);
+        croak("%s", usage);
     }
 
 void
@@ -179,11 +179,11 @@ AxisAlignedBox::intersects(...)
             RETVAL = THIS->intersects(*w);
         }
         else {
-            croak(usage);
+            croak("%s", usage);
         }
     }
     else {
-        croak(usage);
+        croak("%s", usage);
     }
   OUTPUT:
     RETVAL
@@ -217,11 +217,11 @@ AxisAlignedBox::contains(...)
             RETVAL = THIS->intersects(*w);
         }
         else {
-            croak(usage);
+            croak("%s", usage);
         }
     }
     else {
-        croak(usage);
+        croak("%s", usage);
     }
   OUTPUT:
     RETVAL

@@ -21,7 +21,7 @@ Radian::new(...)
         }
     }
     else {
-        croak(usage);
+        croak("%s", usage);
     }
   OUTPUT:
     RETVAL

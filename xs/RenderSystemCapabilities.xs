@@ -1,7 +1,7 @@
 MODULE = Ogre     PACKAGE = Ogre::RenderSystemCapabilities
 
 void
-RenderSystemCapabilities::setNumWorldMatricies(unsigned short num)
+RenderSystemCapabilities::setNumWorldMatrices(unsigned short num)
 
 void
 RenderSystemCapabilities::setNumTextureUnits(unsigned short num)
@@ -16,7 +16,7 @@ void
 RenderSystemCapabilities::setNumMultiRenderTargets(unsigned short num)
 
 unsigned short
-RenderSystemCapabilities::getNumWorldMatricies()
+RenderSystemCapabilities::getNumWorldMatrices()
 
 unsigned short
 RenderSystemCapabilities::getNumTextureUnits()
@@ -25,10 +25,10 @@ unsigned short
 RenderSystemCapabilities::getStencilBufferBitDepth()
 
 unsigned short
-RenderSystemCapabilities::numVertexBlendMatrices()
+RenderSystemCapabilities::getNumVertexBlendMatrices()
 
 unsigned short
-RenderSystemCapabilities::numMultiRenderTargets()
+RenderSystemCapabilities::getNumMultiRenderTargets()
 
 void
 RenderSystemCapabilities::setCapability(int c)
@@ -39,12 +39,6 @@ bool
 RenderSystemCapabilities::hasCapability(int c)
   C_ARGS:
     (Capabilities)c
-
-String
-RenderSystemCapabilities::getMaxVertexProgramVersion()
-
-String
-RenderSystemCapabilities::getMaxFragmentProgramVersion()
 
 unsigned short
 RenderSystemCapabilities::getVertexProgramConstantFloatCount()
@@ -64,11 +58,17 @@ RenderSystemCapabilities::getFragmentProgramConstantIntCount()
 unsigned short
 RenderSystemCapabilities::getFragmentProgramConstantBoolCount()
 
-void
-RenderSystemCapabilities::setMaxVertexProgramVersion(String ver)
-
-void
-RenderSystemCapabilities::setMaxFragmentProgramVersion(String ver)
+##String
+##RenderSystemCapabilities::getMaxVertexProgramVersion()
+##
+##void
+##RenderSystemCapabilities::setMaxVertexProgramVersion(String ver)
+##
+##String
+##RenderSystemCapabilities::getMaxFragmentProgramVersion()
+##
+##void
+##RenderSystemCapabilities::setMaxFragmentProgramVersion(String ver)
 
 void
 RenderSystemCapabilities::setVertexProgramConstantFloatCount(unsigned short c)
