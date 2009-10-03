@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:               Ogre
-version:            0.37
+version:            0.38
 abstract:           Perl binding for the OGRE C++ graphics library
 author:
     - Scott Lanning <slanning@cpan.org>
