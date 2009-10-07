@@ -7,7 +7,7 @@ use warnings;
 require DynaLoader;
 our @ISA = qw(DynaLoader);
 
-our $VERSION = '0.39';
+our $VERSION = '0.40';
 
 # use all files under Ogre/ - probably not a good idea
 ## BEGIN USES
@@ -131,6 +131,7 @@ use Ogre::Texture;
 use Ogre::TextureManager;
 use Ogre::TextureUnitState;
 use Ogre::TimeIndex;
+use Ogre::Timer;
 use Ogre::TransformKeyFrame;
 use Ogre::Vector2;
 use Ogre::Vector3;
@@ -682,6 +683,8 @@ This is the list of classes that are at least partially wrapped.
 
 =item L<Ogre::Animation>
 
+=item L<Ogre::AnimationControllerFunction>
+
 =item L<Ogre::AnimationObject>
 
 =item L<Ogre::AnimationState>
@@ -702,6 +705,8 @@ This is the list of classes that are at least partially wrapped.
 
 =item L<Ogre::Bone>
 
+=item L<Ogre::BorderPanelOverlayElement>
+
 =item L<Ogre::Camera>
 
 =item L<Ogre::ColourValue>
@@ -711,6 +716,10 @@ This is the list of classes that are at least partially wrapped.
 =item L<Ogre::CompositionTargetPass>
 
 =item L<Ogre::ConfigFile>
+
+=item L<Ogre::ControllerManager>
+
+=item L<Ogre::ControllerReal>
 
 =item L<Ogre::DataStream>
 
@@ -764,6 +773,8 @@ This is the list of classes that are at least partially wrapped.
 
 =item L<Ogre::ManualObject>
 
+=item L<Ogre::ManualObjectSection>
+
 =item L<Ogre::ManualResourceLoader>
 
 =item L<Ogre::Material>
@@ -784,6 +795,8 @@ This is the list of classes that are at least partially wrapped.
 
 =item L<Ogre::MovableObject>
 
+=item L<Ogre::MovablePlane>
+
 =item L<Ogre::MultiRenderTarget>
 
 =item L<Ogre::Node>
@@ -800,6 +813,8 @@ This is the list of classes that are at least partially wrapped.
 
 =item L<Ogre::OverlayManager>
 
+=item L<Ogre::PanelOverlayElement>
+
 =item L<Ogre::Particle>
 
 =item L<Ogre::ParticleAffector>
@@ -812,11 +827,15 @@ This is the list of classes that are at least partially wrapped.
 
 =item L<Ogre::Pass>
 
+=item L<Ogre::PassthroughControllerFunction>
+
 =item L<Ogre::PatchMesh>
 
 =item L<Ogre::PatchSurface>
 
 =item L<Ogre::Plane>
+
+=item L<Ogre::PlaneBoundedVolume>
 
 =item L<Ogre::PlaneBoundedVolumeListSceneQuery>
 
@@ -862,6 +881,8 @@ This is the list of classes that are at least partially wrapped.
 
 =item L<Ogre::Root>
 
+=item L<Ogre::ScaleControllerFunction>
+
 =item L<Ogre::SceneManager>
 
 =item L<Ogre::SceneNode>
@@ -873,6 +894,8 @@ This is the list of classes that are at least partially wrapped.
 =item L<Ogre::Serializer>
 
 =item L<Ogre::ShadowCaster>
+
+=item L<Ogre::SimpleRenderable>
 
 =item L<Ogre::Skeleton>
 
@@ -896,6 +919,8 @@ This is the list of classes that are at least partially wrapped.
 
 =item L<Ogre::Technique>
 
+=item L<Ogre::TextAreaOverlayElement>
+
 =item L<Ogre::Texture>
 
 =item L<Ogre::TextureManager>
@@ -903,6 +928,8 @@ This is the list of classes that are at least partially wrapped.
 =item L<Ogre::TextureUnitState>
 
 =item L<Ogre::TimeIndex>
+
+=item L<Ogre::Timer>
 
 =item L<Ogre::TransformKeyFrame>
 
@@ -925,6 +952,8 @@ This is the list of classes that are at least partially wrapped.
 =item L<Ogre::VertexElement>
 
 =item L<Ogre::Viewport>
+
+=item L<Ogre::WaveformControllerFunction>
 
 =item L<Ogre::WindowEventUtilities>
 

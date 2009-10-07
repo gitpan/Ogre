@@ -52,6 +52,7 @@ Ogre/Log.pm
 Ogre/LogManager.pm
 Ogre/ManualObject.pm
 Ogre/ManualObject/ManualObjectSection.pm
+Ogre/ManualObjectSection.pm
 Ogre/ManualResourceLoader.pm
 Ogre/Material.pm
 Ogre/MaterialManager.pm
@@ -62,6 +63,7 @@ Ogre/Mesh.pm
 Ogre/MeshManager.pm
 Ogre/MeshPtr.pm
 Ogre/MovableObject.pm
+Ogre/MovablePlane.pm
 Ogre/MultiRenderTarget.pm
 Ogre/Node.pm
 Ogre/NodeAnimationTrack.pm
@@ -112,6 +114,7 @@ Ogre/SceneQuery/WorldFragment.pm
 Ogre/ScriptLoader.pm
 Ogre/Serializer.pm
 Ogre/ShadowCaster.pm
+Ogre/SimpleRenderable.pm
 Ogre/Skeleton.pm
 Ogre/SkeletonInstance.pm
 Ogre/SkeletonManager.pm
@@ -128,6 +131,7 @@ Ogre/Texture.pm
 Ogre/TextureManager.pm
 Ogre/TextureUnitState.pm
 Ogre/TimeIndex.pm
+Ogre/Timer.pm
 Ogre/TransformKeyFrame.pm
 Ogre/Vector2.pm
 Ogre/Vector3.pm
@@ -141,6 +145,7 @@ Ogre/VertexElement.pm
 Ogre/Viewport.pm
 Ogre/WaveformControllerFunction.pm
 Ogre/WindowEventUtilities.pm
+Ogre/WorldFragment.pm
 PerlOGRECallback.cpp
 PerlOGRECallback.h
 PerlOGRECallbackManager.cpp
@@ -308,6 +313,7 @@ xs/Texture.xs
 xs/TextureManager.xs
 xs/TextureUnitState.xs
 xs/TimeIndex.xs
+xs/Timer.xs
 xs/TransformKeyFrame.xs
 xs/Vector2.xs
 xs/Vector3.xs
