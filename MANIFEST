@@ -86,7 +86,6 @@ Ogre/Plane.pm
 Ogre/PlaneBoundedVolume.pm
 Ogre/PlaneBoundedVolumeListSceneQuery.pm
 Ogre/Pose.pm
-Ogre/ProgressiveMesh.pm
 Ogre/Quaternion.pm
 Ogre/QueuedRenderableCollection.pm
 Ogre/Radian.pm
@@ -94,6 +93,7 @@ Ogre/Ray.pm
 Ogre/RaySceneQuery.pm
 Ogre/RegionSceneQuery.pm
 Ogre/RenderOperation.pm
+Ogre/RenderQueue.pm
 Ogre/RenderSystem.pm
 Ogre/RenderSystemCapabilities.pm
 Ogre/RenderTarget.pm
@@ -182,6 +182,7 @@ genscripts/genconsts.pl
 genscripts/gendocs.pl
 genscripts/genxsubs.pl
 genscripts/init-class.pl
+genscripts/showmeths.pl
 genscripts/strip-api-docs.pl
 perlOGRE.h
 perlOGREGUI.cpp
@@ -279,6 +280,7 @@ xs/Ray.xs
 xs/RaySceneQuery.xs
 xs/RegionSceneQuery.xs
 xs/RenderOperation.xs
+xs/RenderQueue.xs
 xs/RenderSystem.xs
 xs/RenderSystemCapabilities.xs
 xs/RenderTarget.xs

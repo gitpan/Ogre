@@ -7,7 +7,7 @@ use warnings;
 require DynaLoader;
 our @ISA = qw(DynaLoader);
 
-our $VERSION = '0.50';
+our $VERSION = '0.60';
 
 # use all files under Ogre/ - probably not a good idea
 ## BEGIN USES
@@ -88,7 +88,6 @@ use Ogre::Plane;
 use Ogre::PlaneBoundedVolume;
 use Ogre::PlaneBoundedVolumeListSceneQuery;
 use Ogre::Pose;
-use Ogre::ProgressiveMesh;
 use Ogre::Quaternion;
 use Ogre::QueuedRenderableCollection;
 use Ogre::Radian;
@@ -685,7 +684,7 @@ This is the list of classes that are at least partially wrapped.
 
 =item L<Ogre::AnimationControllerFunction>
 
-=item L<Ogre::AnimationObject>
+=item L<Ogre::AnimableObject>
 
 =item L<Ogre::AnimationState>
 
@@ -840,8 +839,6 @@ This is the list of classes that are at least partially wrapped.
 =item L<Ogre::PlaneBoundedVolumeListSceneQuery>
 
 =item L<Ogre::Pose>
-
-=item L<Ogre::ProgressiveMesh>
 
 =item L<Ogre::Quaternion>
 
